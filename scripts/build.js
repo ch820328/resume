@@ -12,9 +12,47 @@ const DIST_DIR = path.join(__dirname, '../'); // We decided to keep index.html i
 const OUTPUT_FILE = path.join(__dirname, '../index.html');
 
 const templatePath = path.join(SRC_DIR, 'template.html');
+const DEFAULT_ORDER_FILE = path.join(__dirname, '../slides_order.json');
 
 function build() {
     console.log('🏗️  Building Resume...');
+
+    // Parse Arguments
+    let configPath = DEFAULT_ORDER_FILE;
+    const configArgIndex = process.argv.indexOf('--config');
+    if (configArgIndex > -1 && process.argv[configArgIndex + 1]) {
+        configPath = path.resolve(process.argv[configArgIndex + 1]);
+    }
+
+    let suffix = '';
+    let slideFiles = [];
+
+    if (fs.existsSync(configPath)) {
+        try {
+            const configData = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+            
+            // Handle new unified JSON format
+            if (configData.slides && Array.isArray(configData.slides)) {
+                slideFiles = configData.slides;
+                suffix = configData.suffix || '';
+            } else if (Array.isArray(configData)) {
+                // Fallback for old simple array format
+                slideFiles = configData;
+            }
+
+            // Filter to only include files that actually exist in SLIDES_DIR
+            slideFiles = slideFiles.filter(file => {
+                const exists = fs.existsSync(path.join(SLIDES_DIR, file));
+                if (!exists) console.warn(`⚠️ Warning: Configured slide ${file} not found in ${SLIDES_DIR}`);
+                return exists;
+            });
+        } catch (e) {
+            console.error(`❌ Error parsing config at ${configPath}, falling back to alphabetical sort.`, e);
+        }
+    }
+
+    const OUTPUT_FILENAME = suffix ? `index_${suffix}.html` : 'index.html';
+    const OUTPUT_FILE = path.join(__dirname, '../', OUTPUT_FILENAME);
 
     if (!fs.existsSync(templatePath)) {
         console.error('❌ Template not found!');
@@ -26,25 +64,6 @@ function build() {
     // 1. Read Slides
     if (!fs.existsSync(SLIDES_DIR)) {
         fs.mkdirSync(SLIDES_DIR, { recursive: true });
-    }
-
-    const ORDER_FILE = path.join(__dirname, '../slides_order.json');
-    let slideFiles = [];
-
-    if (fs.existsSync(ORDER_FILE)) {
-        try {
-            const orderList = JSON.parse(fs.readFileSync(ORDER_FILE, 'utf-8'));
-            // Filter to only include files that actually exist in SLIDES_DIR
-            slideFiles = orderList.filter(file => {
-                const exists = fs.existsSync(path.join(SLIDES_DIR, file));
-                if (!exists) console.warn(`⚠️ Warning: Configured slide ${file} not found in ${SLIDES_DIR}`);
-                return exists;
-            });
-
-            // We only want to build what is explicitly listed in slides_order.json
-        } catch (e) {
-            console.error('❌ Error parsing slides_order.json, falling back to alphabetical sort.', e);
-        }
     }
 
     if (slideFiles.length === 0) {
@@ -68,15 +87,13 @@ function build() {
     });
 
     // 2. Inject into Template
-    // We used <!-- {{SLIDES_PLACEHOLDER}} --> in template
-    // But simple string replacement is safer with unique tokens
     const finalHtml = template
         .replace('<!-- {{SLIDES_PLACEHOLDER}} -->', slidesHtml)
         .replace('<!-- {{NAV_DOTS_PLACEHOLDER}} -->', navDotsHtml);
 
     // 3. Write Output
     fs.writeFileSync(OUTPUT_FILE, finalHtml);
-    console.log(`✅ Successfully built index.html with ${slideFiles.length} slides.`);
+    console.log(`✅ Successfully built ${OUTPUT_FILENAME} with ${slideFiles.length} slides.`);
 }
 
 build();

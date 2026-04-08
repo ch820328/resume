@@ -12,5 +12,6 @@
     "issue_analytics.html",
     "gitlab_ci.html",
     "gitlab_cd.html",
-    "baby_tracker.html"
+    "baby_tracker.html",
+    "99_end.html"
 ]

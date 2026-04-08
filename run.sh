@@ -2,6 +2,12 @@
 
 # Simple runner script for resume project
 
+# Check if node_modules exists, if not install dependencies
+if [ ! -d "node_modules" ]; then
+    echo "📦 node_modules not found. Installing dependencies..."
+    npm install
+fi
+
 COMMAND=$1
 
 function run_full_flow {

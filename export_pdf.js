@@ -39,18 +39,21 @@ async function exportPDF(inputFile, outputFile) {
     try {
         console.log('🚀 Starting PDF Export Process...');
 
-        // Export Slide Deck
-        if (fs.existsSync('index.html')) {
-            await exportPDF('index.html', 'resume_slides.pdf');
-        }
+        const arg1 = process.argv[2];
+        const arg2 = process.argv[3];
 
-        // Export One-Page
-        if (fs.existsSync('resume_onepage.html')) {
-            await exportPDF('resume_onepage.html', 'resume_onepage.pdf');
-
-            // For backward compatibility / user convenience, copy one of them to 'resume.pdf'
-            // We'll default to the One-Page as "resume.pdf" for generic use, or Slides?
-            // Let's stick to explicit names, but maybe log it.
+        if (arg1 && arg2) {
+            // Explicit mode
+            console.log(`Mapping specific file: ${arg1} -> ${arg2}`);
+            await exportPDF(arg1, arg2);
+        } else {
+            // Standard mode
+            if (fs.existsSync('index.html')) {
+                await exportPDF('index.html', 'resume_slides.pdf');
+            }
+            if (fs.existsSync('resume_onepage.html')) {
+                await exportPDF('resume_onepage.html', 'resume_onepage.pdf');
+            }
         }
 
     } catch (error) {

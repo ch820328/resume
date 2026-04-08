@@ -1,0 +1,13 @@
+{
+    "suffix": "dell",
+    "slides": [
+        "00_profile.html",
+        "openclaw_mr.html",
+        "openclaw_log.html",
+        "bios_preserve_test.html",
+        "redfish_smbios_check.html",
+        "nvssvt_portal.html",
+        "gitlab_ci.html",
+        "99_end.html"
+    ]
+}
