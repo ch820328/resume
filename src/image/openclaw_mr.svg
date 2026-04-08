@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.10"/>
+    </filter>
+    
+    <linearGradient id="lightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+
+    <linearGradient id="matrixGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+
+    <linearGradient id="successGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="50%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#86efac"/>
+    </linearGradient>
+
+    <marker id="arrowFlow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1e3a8a"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="200" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="16" fill="#1e293b">OpenClaw: AI MR Review Engine</text>
+  <text x="200" y="38" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="11" fill="#64748b">Automated Expert Pipeline for Code Quality</text>
+
+  <!-- TOP TIER: Git Webhook Input -->
+  <g transform="translate(100, 55)">
+    <rect x="0" y="0" width="200" height="40" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="100" y="18" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#334155">🦊 GitLab Merge Request</text>
+    <text x="100" y="32" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="9" fill="#64748b">(Diff Payload + Webhook)</text>
+  </g>
+
+  <path d="M200 95 L200 120" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowFlow)" stroke-dasharray="4,4" fill="none"/>
+
+  <!-- MIDDLE TIER: Orchestrator -->
+  <g transform="translate(30, 120)" filter="url(#shadow)">
+    <rect x="0" y="0" width="340" height="280" rx="10" fill="url(#lightGrad)" stroke="#1e3a8a" stroke-width="2"/>
+    <rect x="0" y="0" width="340" height="30" rx="10" fill="url(#headerGrad)"/>
+    <rect x="0" y="20" width="340" height="10" fill="url(#headerGrad)"/>
+    <text x="170" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#1e3a8a">Orchestrator Node (BullMQ)</text>
+    
+    <!-- Redis Lock Layer -->
+    <rect x="50" y="40" width="240" height="25" rx="12.5" fill="#fef2f2" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="170" y="57" text-anchor="middle" font-family="'Roboto Mono', monospace" font-weight="700" font-size="10" fill="#dc2626">🔒 Redis Lock (Job Idempotency)</text>
+
+    <!-- MATRIX PHASES BOX -->
+    <rect x="20" y="75" width="300" height="190" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    
+    <!-- Phase 1: Planning -->
+    <g transform="translate(45, 85)">
+        <rect x="0" y="0" width="250" height="30" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1"/>
+        <text x="125" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#1e40af">1. Master (Complexity &amp; Experts Plan)</text>
+    </g>
+    
+    <path d="M170 115 L170 135" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrowFlow)"/>
+
+    <!-- Phase 2: Parallel Experts -->
+    <g transform="translate(30, 140)">
+        <text x="140" y="10" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#1e3a8a">2. Parallel Expert Analysis Passes</text>
+        <!-- Security -->
+        <rect x="0" y="20" width="85" height="50" rx="6" fill="url(#matrixGrad)" stroke="#3b82f6" stroke-width="1"/>
+        <text x="42" y="42" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#1e40af">🛡️ Security</text>
+        <text x="42" y="55" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" fill="#475569">Vulnerabilities</text>
+        <!-- Logic -->
+        <rect x="95" y="20" width="90" height="50" rx="6" fill="url(#matrixGrad)" stroke="#3b82f6" stroke-width="1"/>
+        <text x="45" y="42" transform="translate(95,0)" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#1e40af">🧠 Logic</text>
+        <text x="45" y="55" transform="translate(95,0)" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" fill="#475569">Case Integrity</text>
+        <!-- Performance -->
+        <rect x="195" y="20" width="85" height="50" rx="6" fill="url(#matrixGrad)" stroke="#3b82f6" stroke-width="1"/>
+        <text x="42" y="42" transform="translate(195,0)" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#1e40af">⚡ Perf</text>
+        <text x="42" y="55" transform="translate(195,0)" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" fill="#475569">Resources</text>
+    </g>
+
+    <path d="M170 210 L170 225" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrowFlow)"/>
+
+    <!-- Phase 3: Synthesis -->
+    <g transform="translate(45, 230)">
+        <rect x="0" y="0" width="250" height="30" rx="6" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+        <text x="125" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#166534">3. Aggregator (Consolidated JSON)</text>
+    </g>
+  </g>
+
+  <!-- Flow 2 Output -->
+  <path d="M200 400 L200 435" stroke="#64748b" stroke-width="2" marker-end="url(#arrowFlow)" stroke-dasharray="4,4" fill="none"/>
+
+  <!-- BOTTOM TIER: Results -->
+  <g transform="translate(40, 435)">
+    <rect x="0" y="0" width="320" height="40" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="160" y="24" text-anchor="middle" font-family="'Roboto Mono', monospace" font-weight="700" font-size="11" fill="#334155">Dashboard / Emails / API Reports</text>
+  </g>
+
+  <!-- FOOTER -->
+  <g transform="translate(50, 485)">
+      <rect x="0" y="0" width="300" height="25" rx="12.5" fill="url(#successGrad)" stroke="#10b981" stroke-width="1"/>
+      <text x="150" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="11" fill="#166534">⚡ 100% AUTOMATED ARCHITECTURAL GATES</text>
+  </g>
+</svg>

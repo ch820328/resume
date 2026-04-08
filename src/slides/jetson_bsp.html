@@ -1,0 +1,46 @@
+<section class="slide" id="jetson-bsp-optimization">
+    <div class="content-wrapper">
+        <div class="slide-header-row">
+            <h2 class="slide-title">Jetson Orin BSP & Infrastructure Optimization</h2>
+            <span class="slide-tag">Embedded Systems & Performance</span>
+        </div>
+        <div class="star-grid">
+            <div class="star-content">
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Challenge:</span>
+                        <span class="star-text">
+                            Legacy build scripts produced 5.2GB images, exceeding the storage limits for mass-production hardware. Peripheral pin-conflicts further stalled the BSP adaptation, creating a critical bottleneck for the project timeline.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Solution:</span>
+                        <span class="star-text">
+                            Led cross-functional debug sessions between HW and SW teams to resolve pinmux conflicts. I migrated the image compression to <strong>Zstd</strong> and implemented an automated build pipeline supporting multiple board variants.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Impact:</span>
+                        <span class="star-text">
+                            Reduced image footprint by 30% and improved OTA deployment speed by 40%. This workflow was adopted as the department's standard for all Orin-based projects, streamlining the migration for senior engineering teams.
+                        </span>
+                    </div>
+                </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">Zstd Optimization</span>
+                    <span class="tech-tag">Device Tree (dtsi)</span>
+                    <span class="tech-tag">MassFlash / OTA</span>
+                    <span class="tech-tag">Kernel Tuning</span>
+                </div>
+            </div>
+            <div class="star-visual">
+                <img src="src/image/jetson_build.svg" alt="Jetson Architecture / Build Flow Diagram"
+                    class="slide-image">
+            </div>
+        </div>
+    </div>
+</section>

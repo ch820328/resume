@@ -1,0 +1,17 @@
+{
+    "name": "resume-project",
+    "version": "1.0.0",
+    "description": "Resume project with PDF export",
+    "main": "export_pdf.js",
+    "scripts": {
+        "export": "node export_pdf.js",
+        "build": "node scripts/build.js",
+        "build:onepage": "node scripts/build_onepage.js",
+        "sync:tags": "node scripts/sync_tech_tags.js",
+        "release": "node scripts/release.js",
+        "serve": "npx -y http-server -p 20424"
+    },
+    "dependencies": {
+        "puppeteer": "^21.0.0"
+    }
+}

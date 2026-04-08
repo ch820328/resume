@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.10"/>
+    </filter>
+    
+    <!-- Gradients -->
+    <linearGradient id="nvidiaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#76b900"/>
+      <stop offset="100%" stop-color="#4d7902"/>
+    </linearGradient>
+
+    <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Markers -->
+    <marker id="arrowOTA" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#76b900"/>
+    </marker>
+    <linearGradient id="lightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+
+    <linearGradient id="successGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="50%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#86efac"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title / Global -->
+  <text x="200" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="16" fill="#1e293b">Jetson BSP Build Pipeline</text>
+  <text x="200" y="38" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="11" fill="#64748b">Zstd Compression &amp; Fast OTA Delivery</text>
+
+  <!-- =============================== -->
+  <!-- TOP: Inputs (Reference BSP + dtsi) -->
+  <!-- =============================== -->
+  <!-- Adjusted translate to center perfectly across 400px width -->
+  <g transform="translate(35, 55)">
+    <!-- Source 1: Reference BSP -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="145" height="40" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+      <text x="72.5" y="18" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#15803d">NVIDIA Jetson Linux</text>
+      <text x="72.5" y="30" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="9" fill="#166534">Reference BSP</text>
+    </g>
+
+    <!-- Plus sign -->
+    <text x="165" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="16" fill="#94a3b8">+</text>
+
+    <!-- Source 2: Custom dtsi -->
+    <g transform="translate(185, 0)">
+      <rect x="0" y="0" width="145" height="40" rx="6" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+      <text x="72.5" y="18" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#1d4ed8">Carrier Board Config</text>
+      <text x="72.5" y="30" text-anchor="middle" font-family="'Roboto Mono', monospace" font-size="8" fill="#2563eb">Custom Device Tree (.dtsi)</text>
+    </g>
+  </g>
+
+  <!-- Flow 1 -->
+  <path d="M200 95 L200 120" stroke="#76b900" stroke-width="3" marker-end="url(#arrowOTA)"/>
+
+  <!-- =============================== -->
+  <!-- MIDDLE: Optimized Build Engine  -->
+  <!-- =============================== -->
+  <!-- Spread out elements logically to fill area well -->
+  <g transform="translate(40, 120)" filter="url(#shadow)">
+    <!-- Container -->
+    <rect x="0" y="0" width="320" height="210" rx="10" fill="url(#lightGrad)" stroke="#1e293b" stroke-width="2"/>
+    
+    <!-- Header -->
+    <rect x="0" y="0" width="320" height="35" rx="10" fill="url(#headerGrad)"/>
+    <!-- Mac OS Window Buttons -->
+    <circle cx="15" cy="17.5" r="4" fill="#ff5f56"/>
+    <circle cx="27" cy="17.5" r="4" fill="#ffbd2e"/>
+    <circle cx="39" cy="17.5" r="4" fill="#27c93f"/>
+    <text x="160" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#166534">Optimized Image Generator Pipeline</text>
+
+    <!-- Stage 1: Security -->
+    <g transform="translate(30, 55)">
+        <rect x="0" y="0" width="260" height="35" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="130" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="11" fill="#334155">Multi-SKU Image Signing (Secure Boot)</text>
+    </g>
+
+    <!-- Flow Arrow inside -->
+    <path d="M160 90 L160 110" stroke="#475569" stroke-width="2" marker-end="url(#arrowOTA)" style="stroke:#475569; marker-end:none"/>
+
+    <!-- Stage 2: Zstd Compression -->
+    <g transform="translate(30, 110)">
+        <rect x="0" y="0" width="260" height="45" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+        <text x="130" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="12" fill="#1e40af">Zstd RootFS Compression</text>
+        <text x="130" y="35" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="10" fill="#475569">Replaced legacy Gzip (Bloated: 5.2GB)</text>
+    </g>
+
+    <!-- Outcome inside container -->
+    <text x="160" y="185" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="15" fill="#0f172a">System Image Generated: <tspan fill="#16a34a">3.6GB</tspan></text>
+  </g>
+
+  <!-- Flow 2 -->
+  <path d="M200 330 L200 355" stroke="#76b900" stroke-width="3" marker-end="url(#arrowOTA)" fill="none"/>
+
+  <!-- =============================== -->
+  <!-- BOTTOM: OTA / Fleet Deployment  -->
+  <!-- =============================== -->
+  <g transform="translate(40, 355)">
+    <rect x="0" y="0" width="320" height="85" rx="10" fill="url(#lightGrad)" stroke="#1e293b" stroke-width="1"/>
+    <text x="160" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#000000">Global Manufacturing Fleet (FOTA targets)</text>
+    
+    <!-- MassFlash & OTA Boxes -->
+    <g transform="translate(25, 40)">
+        <rect x="0" y="0" width="125" height="30" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1"/>
+        <text x="62.5" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="11" fill="#1e40af">USB MassFlash</text>
+    </g>
+    <g transform="translate(170, 40)">
+        <rect x="0" y="0" width="125" height="30" rx="4" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
+        <text x="62.5" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="11" fill="#166534">Over-The-Air (OTA)</text>
+    </g>
+  </g>
+
+  <!-- =============================== -->
+  <!-- FOOTER: Impact Badges           -->
+  <!-- =============================== -->
+  <g transform="translate(30, 465)">
+      <!-- Left Badge -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="160" height="35" rx="17.5" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+        <text x="80" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="12" fill="#166534">📉 -30% Image Size</text>
+        <text x="80" y="28" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="9" fill="#15803d">(5.2GB ➔ 3.6GB) Saved</text>
+      </g>
+      
+      <!-- Right Badge -->
+      <g transform="translate(180, 0)">
+        <rect x="0" y="0" width="160" height="35" rx="17.5" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+        <text x="80" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="12" fill="#1e40af">⚡ 40% Faster OTA</text>
+        <text x="80" y="28" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="9" fill="#1d4ed8">Bandwidth constraint solved</text>
+      </g>
+  </g>
+
+  <!-- Terminology Legend -->
+  <text x="200" y="510" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" fill="#64748b">BSP: Board Support Package | FOTA: Firmware Over-The-Air | SKU: Stock Keeping Unit</text>
+</svg>

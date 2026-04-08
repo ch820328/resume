@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.10"/>
+    </filter>
+    
+    <linearGradient id="portalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <linearGradient id="lightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+
+    <linearGradient id="successGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="50%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#86efac"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title / Global -->
+  <text x="200" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="16" fill="#1e293b">Deterministic BIOS OCR Engine</text>
+  <text x="200" y="38" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="11" fill="#64748b">OpenCV Template Matching &amp; Spatial Analysis</text>
+
+  <!-- =============================== -->
+  <!-- TOP TIER: Capture & Input       -->
+  <!-- =============================== -->
+  <g transform="translate(60, 55)">
+    <!-- Video Input Node -->
+    <rect x="0" y="0" width="280" height="45" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="140" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#334155">📷 Raw BIOS Video Stream</text>
+    <text x="140" y="34" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="10" fill="#64748b">Low-res pixelated fonts &amp; noisy OSD frame</text>
+  </g>
+
+  <!-- Downward Flow -->
+  <path d="M200 100 L200 130" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowFlow)" stroke-dasharray="4,4" fill="none"/>
+
+  <!-- =============================== -->
+  <!-- MIDDLE TIER: Visual Engine      -->
+  <!-- =============================== -->
+  <g transform="translate(40, 130)" filter="url(#shadow)">
+    <rect x="0" y="0" width="320" height="180" rx="10" fill="url(#lightGrad)" stroke="#1e3a8a" stroke-width="2"/>
+    <rect x="0" y="0" width="320" height="30" rx="10" fill="url(#headerGrad)"/>
+    <rect x="0" y="20" width="320" height="10" fill="url(#headerGrad)"/>
+    <!-- Mac OS Window Buttons -->
+    <circle cx="15" cy="15" r="4" fill="#ff5f56"/>
+    <circle cx="27" cy="15" r="4" fill="#ffbd2e"/>
+    <circle cx="39" cy="15" r="4" fill="#27c93f"/>
+    <text x="160" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#1e3a8a">Lightweight Computer Vision Core</text>
+    
+    <!-- Stage 1: OpenCV Template Matching -->
+    <rect x="30" y="45" width="260" height="40" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+    <text x="160" y="62" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#1e40af">Multi-Thread Template Matching</text>
+    <text x="160" y="76" text-anchor="middle" font-family="'Roboto Mono', monospace" font-size="9" fill="#1d4ed8">cv2.matchTemplate (100% Local, No ML)</text>
+
+    <!-- Sub-Flow -->
+    <path d="M160 85 L160 105" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowFlow)" fill="none"/>
+
+    <!-- Stage 2: Spatial Analyzer -->
+    <rect x="30" y="110" width="260" height="45" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1"/>
+    <text x="160" y="128" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#334155">Spatial Layout Analyzer Algorithms</text>
+    <text x="160" y="142" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="9" fill="#475569">Row Grouping &amp; Gap Analysis (x, y coords ➔ lines)</text>
+  </g>
+
+  <!-- Flow 2 (Down to Output) -->
+  <path d="M200 310 L200 345" stroke="#64748b" stroke-width="2" marker-end="url(#arrowFlow)" stroke-dasharray="4,4" fill="none"/>
+
+  <!-- =============================== -->
+  <!-- BOTTOM TIER: Structured Output  -->
+  <!-- =============================== -->
+  <g transform="translate(60, 345)">
+    <rect x="0" y="0" width="280" height="85" rx="8" fill="url(#lightGrad)" stroke="#1e293b" stroke-width="2"/>
+    <text x="140" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#000000">Deterministic JSON Output</text>
+    
+    <!-- JSON Blob -->
+    <g transform="translate(40, 30)" font-family="'Roboto Mono', monospace" font-size="10" fill="#065f46">
+        <text y="0">{</text>
+        <text y="15" x="20" fill="#334155">"boot_option": <tspan fill="#166534">"UEFI"</tspan>,</text>
+        <text y="30" x="20" fill="#334155">"selected": <tspan fill="#1d4ed8">true</tspan></text>
+        <text y="45">}</text>
+    </g>
+  </g>
+
+  <!-- =============================== -->
+  <!-- FOOTER: Impact Badges           -->
+  <!-- =============================== -->
+  <g transform="translate(30, 465)">
+      <!-- Left Badge -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="160" height="35" rx="17.5" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+        <text x="80" y="18" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="13" fill="#1d4ed8">🎯 99.9% Accuracy</text>
+        <text x="80" y="28" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="9" fill="#2563eb">Deterministic vs Tesseract</text>
+      </g>
+      
+      <!-- Right Badge -->
+      <g transform="translate(180, 0)">
+        <rect x="0" y="0" width="160" height="35" rx="17.5" fill="url(#successGrad)" stroke="#86efac" stroke-width="2"/>
+        <text x="80" y="18" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="13" fill="#166534">⚡ &lt; 50ms Latency</text>
+        <text x="80" y="28" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="9" fill="#15803d">100% Local CV Execution</text>
+      </g>
+  </g>
+  <!-- Terminology Legend -->
+  <text x="200" y="510" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" fill="#64748b">OCR: Optical Character Recognition | CV: Computer Vision | OSD: On-Screen Display</text>
+</svg>

@@ -1,0 +1,296 @@
+{
+    "project_categories": {
+        "validation_platforms_web": {
+            "display_name": "Validation Platforms & Web",
+            "description": "Web-based systems for test automation, data aggregation, and issue tracking.",
+            "projects": [
+                {
+                    "name": "NVSSVT Enterprise Automation Platform",
+                    "role": "Full Stack Developer (Platform Engineering)",
+                    "company": "Supermicro",
+                    "date": "2024 - Present",
+                    "tags": [
+                        "Go / Gin",
+                        "OpenAPI (REST)",
+                        "Jenkins Remote API",
+                        "Distributed Systems"
+                    ],
+                    "details": {
+                        "challenge": "Observed a systemic ambiguity where 30+ engineers were blocked by fragmented CLI tools, preventing upstream CI/CD from connecting to hardware validation.",
+                        "solution": "Approached the problem with an architectural mindset, designing a **Containerized Orchestration Portal**. Decoupled the execution environment and defined a standard **OpenAPI integration layer**, forcing a transition from manual clicks to machine-to-machine automation.",
+                        "impact": "Resolved a major organizational bottleneck. The standard API layer and decoupled architecture **cut task setup time by 80% (5-8 mins/task)**, establishing a scalable foundation for future hardware validation pipelines."
+                    },
+                    "documents_path": ".agent/skills/project_archivist/documents/nvssvt_portal"
+                },
+                {
+                    "name": "Deterministic BIOS OCR Engine",
+                    "role": "Backend Developer (Data Engineering)",
+                    "company": "Supermicro",
+                    "date": "2023 - 2024",
+                    "tags": [
+                        "OpenCV",
+                        "Python / C++",
+                        "Template Matching vs DL OCR",
+                        "Spatial Layout Analysis"
+                    ],
+                    "details": {
+                        "challenge": "Validating BIOS menus required high precision, but industry-standard ML OCR (Tesseract) achieved only 85% accuracy on low-res fonts and lacked critical **spatial context**.",
+                        "solution": "Challenged the 'AI-for-everything' status quo with a data-driven approach. Developed a lightweight, **multi-threaded CV engine** using OpenCV with custom, dynamic **row-grouping logic** to process spatial layouts.",
+                        "impact": "Pushed accuracy to **>99%** with millisecond latency, completely outperforming heavy ML models. This unconventional approach fully liberated the QA team, automating visual regression testing entirely."
+                    },
+                    "documents_path": ".agent/skills/project_archivist/documents/issue_analytics"
+                },
+                {
+                    "name": "Jetson Build Service & Automation Portal",
+                    "role": "Full Stack Developer (Internal Tool)",
+                    "tags": [
+                        "Vue.js",
+                        "Python",
+                        "Flask",
+                        "Shell"
+                    ],
+                    "details": {
+                        "challenge": "Developers struggled with complex manual CLI parameters for creating MassFlash/OTA images, leading to frequent build failures and dependency on specific SUT (System Under Test) states.",
+                        "solution": "Built a **Web-based Build Server** offering a UI for customizing Jetson boards. Integrated an **offline build mechanism** using RAMCODE to eliminate hardware dependencies and a heartbeat notification system.",
+                        "impact": "Streamlined the build process for 3+ SKUs (0000, 0001, 0005), enabling non-experts to generate signed MassFlash/OTA packages, guaranteeing parameter correctness."
+                    }
+                }
+            ]
+        },
+        "embedded_bsp_firmware": {
+            "display_name": "Embedded Systems, BSP & Firmware",
+            "description": "Low-level development, Jetson L4T, BIOS features, and hardware testing.",
+            "projects": [
+                {
+                    "name": "Jetson Orin BSP & Infrastructure Optimization",
+                    "role": "Lead System Integrator (Embedded Performance)",
+                    "company": "Supermicro",
+                    "date": "2023 - Present",
+                    "tags": [
+                        "Zstd Optimization",
+                        "Device Tree (dtsi)",
+                        "MassFlash / OTA",
+                        "Kernel Tuning"
+                    ],
+                    "details": {
+                        "challenge": "Adapting Jetson Orin BSP faced blocking hardware conflicts and a bloated deployment process that hindered mass production scalability.",
+                        "solution": "Proactively **led a cross-functional squad (HW, TS, PM)** without formal authority to resolve conflicts. Persuaded the team to adopt **Zstd compression** and established a multi-SKU automated packaging pipeline.",
+                        "impact": "Reduced image size by 30% and **accelerated OTA speeds by ~40%**. Successfully mentored senior engineers on the new pipeline, transforming it into the department's standard **future development convention**."
+                    },
+                    "documents_path": ".agent/skills/project_archivist/documents/jetson_bsp/architecture.md"
+                }
+            ]
+        },
+        "test_frameworks_qa": {
+            "display_name": "Test Frameworks & QA Strategies",
+            "description": "Test case development (Base, HW, FW), coverage logic, and standardization.",
+            "projects": [
+                {
+                    "name": "Firmware Configuration & NVRAM Persistence Validation",
+                    "role": "Validation Engineer",
+                    "company": "Supermicro",
+                    "date": "2026 - Present",
+                    "tags": [
+                        "UEFI Shell (C)",
+                        "NVRAM Logic",
+                        "BMC Redfish (OOB)",
+                        "Self-Healing Test-bed"
+                    ],
+                    "details": {
+                        "challenge": "Validating BIOS settings (Boot Options, Setup configurations) across firmware updates. Traditional UI-based testing was too slow and impossible to apply for In-Band flash validation.",
+                        "solution": "Developed a **UEFI Shell (C/EDK II)** suite to directly manipulate NVRAM variables. Integrated an **OOB (Out-of-Band) recovery flow** via BMC Redfish to automatically re-flash and recover systems.",
+                        "impact": "Prevented critical production field failures by successfully isolating BIOS-BMC sync race conditions, achieved by building a UEFI Shell testing suite with an Out-of-Band Redfish auto-recovery mechanism, which automated 80% of manual UI regression testing."
+                    },
+                    "documents_path": ".agent/skills/project_archivist/documents/bios_preserve_test"
+                },
+                {
+                    "name": "Cross-Interface Consistency Validation Framework",
+                    "role": "Validation Architect (Systems QA)",
+                    "company": "Supermicro",
+                    "date": "2024 - Present",
+                    "tags": [
+                        "Python (Strategy Pattern)",
+                        "Redfish (RESTful)",
+                        "Selenium WebDriver",
+                        "Data Reconciliation"
+                    ],
+                    "details": {
+                        "challenge": "Data discrepancies between legacy SMBIOS and modern Redfish API frequently caused validation failures. Manual cross-referencing across 3+ BMC generations (AST2500/2600/OpenBMC) was inefficient and prone to human error.",
+                        "solution": "Built a modular Python framework using the Strategy Pattern to decouple data retrieval from validation logic. Integrated Selenium for UI scraping and Redfish API for backend verification, enabling multi-layered consistency checks (API vs. GUI vs. SMBIOS).",
+                        "impact": "Reduced end-to-end verification time by 90%. Established a unified quality gate that standardized data auditing across multiple vendor-specific BMC firmware, identifying several field-critical data conversion bugs."
+                    },
+                    "documents_path": ".agent/skills/project_archivist/documents/redfish_smbios_check"
+                }
+            ]
+        },
+        "developer_tools_productivity": {
+            "display_name": "Internal Tools & Developer Productivity",
+            "description": "CLI tools, library refactoring, OOB config tools, and automation scripts.",
+            "projects": [
+                {
+                    "name": "Unified Engineering Productivity Portal",
+                    "role": "Full Stack Developer (Engineering Productivity)",
+                    "company": "Supermicro",
+                    "date": "2024 - Present",
+                    "tags": [
+                        "Go (Gin)",
+                        "Angular",
+                        "WebSockets (Socket.io)",
+                        "Redfish/IPMI API",
+                        "Data Aggregation"
+                    ],
+                    "details": {
+                        "challenge": "Engineers suffered from high cognitive load due to context-switching between SSH terminals, fragmented CLI tools (IPMI/Redfish), and disparate project management platforms (Redmine/Project Board).",
+                        "solution": "Proactively developed a unified Go + Angular portal. Integrated WebSocket-based WebSSH, real-time SUT (System Under Test) status monitoring, and GUI-driven hardware utility wrappers. Aggregated multi-source issue data into a central dashboard.",
+                        "impact": "Consolidated 10+ disparate tools into a single pane of glass, **reducing setup time by 40%**. Enabled 'One-Click Debugging' for junior engineers, significantly lowering the barrier to complex hardware validation tasks."
+                    },
+                    "documents_path": ".agent/skills/project_archivist/documents/central_dashboard"
+                },
+                {
+                    "name": "Test-Driven Infrastructure as Code (Ansible)",
+                    "role": "Automation Architect",
+                    "company": "Supermicro",
+                    "date": "2023 - Present",
+                    "tags": [
+                        "Ansible",
+                        "Molecule",
+                        "Testinfra",
+                        "Docker",
+                        "CI/CD"
+                    ],
+                    "details": {
+                        "challenge": "Faced significant environment drift during distributed stress testing (4 VMs vs. 1 Host), where version mismatches in tools like sysbench caused critical syntax errors and inconsistent performance metrics. Manual provisioning across diverse OS (Ubuntu/CentOS) was error-prone and unscalable.",
+                        "solution": "Designed a modular Ansible framework with idempotent roles to standardize baseline environments. Built a test-driven infrastructure workflow using Molecule and Testinfra to validate configurations in Docker containers before deployment. Implemented cross-platform logic (Ubuntu/CentOS) and dynamic versioning to ensure consistent toolchains.",
+                        "impact": "Eliminated environment drift across stress-testing nodes, preventing deployment blockers caused by version mismatches. Established a reproducible infrastructure that supports rapid scaling of engineering capacity."
+                    }
+                }
+            ]
+        },
+        "infrastructure_cicd": {
+            "display_name": "Infrastructure & CI/CD",
+            "description": "Pipeline automation, GitLab CI/Jenkins, Docker, and Kubernetes envs.",
+            "projects": [
+                {
+                    "name": "GitLab CI Automated Quality Gate",
+                    "role": "DevOps Engineer (Governance)",
+                    "company": "Supermicro",
+                    "date": "2023 - Present",
+                    "tags": [
+                        "GitLab CI",
+                        "Conventional Commits",
+                        "Docker",
+                        "Python (Tooling)",
+                        "Static Analysis"
+                    ],
+                    "details": {
+                        "challenge": "Manual code hygiene reviews were inconsistent and time-consuming. Issues like non-standard commit history and missing changelogs led to technical debt and difficult production audits.",
+                        "solution": "Created a modular CI pipeline using Dockerized runners to enforce strict gates: Conventional Commits validation, automated Linting, and Git rebase status checks. Built custom Python scripts to verify synchronized updates between code and documentation.",
+                        "impact": "Decreased manual code review cycles by 30% and eliminated version drift by introducing a modular GitLab CI/CD pipeline with Dockerized runners and strict Conventional Commits validations."
+                    },
+                    "documents_path": ".agent/skills/project_archivist/documents/gitlab_ci_quality"
+                },
+                {
+                    "name": "Secure CD & Automated Release Engineering",
+                    "role": "DevOps Engineer (Release Engineering)",
+                    "company": "Supermicro",
+                    "date": "2023 - Present",
+                    "tags": [
+                        "GitLab CI/CD",
+                        "Semantic Versioning",
+                        "API-Driven Deploy",
+                        "Security Hardening"
+                    ],
+                    "details": {
+                        "challenge": "Manual releases suffered from version drift and human errors. Legacy deployment relied on high-risk SSH access to production, creating security vulnerabilities and lacking a centralized audit trail.",
+                        "solution": "Built a GitLab CD pipeline that enforces Semantic Versioning by parsing CHANGELOG metadata. Developed a secure Webhook-based Deployment Agent to trigger updates via internal APIs, eliminating the need for persistent SSH credentials.",
+                        "impact": "Automated deployments, achieving a 96% reduction in deployment time (15m to 30s). Standardized release cycles across 20+ microservices while ensuring complete auditability for all production changes."
+                    },
+                    "documents_path": ".agent/skills/project_archivist/documents/gitlab_cd_automation"
+                }
+            ]
+        },
+        "full_stack_mobile": {
+            "display_name": "Full-Stack & Mobile Development",
+            "description": "Cross-platform mobile applications and complex full-stack web systems.",
+            "projects": [
+                {
+                    "name": "Offline-First Distributed System (Baby Tracker)",
+                    "role": "Full Stack Developer",
+                    "company": "Personal Project",
+                    "date": "2025 - Present",
+                    "tags": [
+                        "React Native",
+                        "Offline-First",
+                        "Optimistic Locking",
+                        "Distributed Locks",
+                        "Eventual Consistency"
+                    ],
+                    "details": {
+                        "challenge": "Caregivers in unstable network environments require zero-latency logging, while concurrent multi-device writes risk data races, duplicate records, and silent overwrite of family health data.",
+                        "solution": "Sole architect and engineer. Designed a production-grade distributed sync engine: **Offline-First** WatermelonDB + Optimistic UI for instant local response; **Hierarchical Redis Smart Locks** (Root/Leaf scope) to serialize concurrent family writes; **Redis SETNX Idempotency Middleware** to deduplicate network retries; **Version-based Optimistic Locking** (per ADR) with per-row `version` columns and `bulkSafeUpsert` for conflict detection; all mutations wrapped in **Prisma ACID transactions** (ReadCommitted) with dynamic TTL locks; **Elastic Batching** in the pull service to prevent timestamp-boundary data loss; post-commit **WebSocket push** for real-time cross-device cache invalidation.",
+                        "impact": "Achieved zero data corruption across all sync scenarios. Delivered **sub-50ms Optimistic UI** response eliminating perceived latency. Implemented **5 production-grade ADRs** covering Hybrid Locking, Optimistic Concurrency Control, and Offline-First architecture tradeoffs—demonstrating full ownership of a distributed systems design from spec to production."
+                    }
+                }
+            ]
+        },
+        "ai_llm_productivity": {
+            "display_name": "AI & LLM-Driven Productivity",
+            "description": "Multi-agent systems, automated code review, and LLM orchestration tools.",
+            "projects": [
+                {
+                    "name": "OpenClaw AI Merge Request Review Service",
+                    "role": "Lead Architect & Backend Engineer (AI Productivity)",
+                    "company": "Personal Project / Open Source",
+                    "date": "2024 - Present",
+                    "tags": [
+                        "LLM Matrix Orchestration",
+                        "Multi-Agent Architecture",
+                        "GitLab CI/CD Integration",
+                        "BullMQ / Redis",
+                        "Node.js & TypeScript"
+                    ],
+                    "details": {
+                        "challenge": "Manual code reviews in large projects are inconsistent and slow, creating CI/CD bottlenecks and increasing technical debt due to surface-level checks under tight deadlines.",
+                        "solution": "Architected a **Matrix Review Engine** that parallelizes analysis across specialized agents. Built a robust async pipeline using **BullMQ** and **Redis Distributed Locks** to ensure atomic and idempotent analysis of every MR change.",
+                        "impact": "Achieved **100% automated coverage** of architectural and security gates. Delivered a **comprehensive, multi-dimensional review experience** that Identifies logic errors and security vulnerabilities before human reviewer interaction."
+                    },
+                    "tech_stack": [
+                        "Node.js",
+                        "TypeScript",
+                        "BullMQ",
+                        "Redis (Distributed Locking)",
+                        "GitLab REST/Webhook API",
+                        "LLM Orchestration"
+                    ],
+                    "documents_path": ".agent/skills/project_archivist/documents/openclaw_mr"
+                },
+                {
+                    "name": "OpenClaw: Log Matrix & RAG Diagnostic Platform",
+                    "role": "Lead Architect & Backend Engineer (AI Productivity)",
+                    "company": "Personal Project / Open Source",
+                    "date": "2024 - Present",
+                    "tags": [
+                        "RAG (Vector Indexing)",
+                        "Log Pattern Analysis",
+                        "FAIL Test Diagnosis",
+                        "Automated Root-Cause",
+                        "Python & TypeScript"
+                    ],
+                    "details": {
+                        "challenge": "Diagnostic delays in complex firmware test logs (FAIL tests) often stall validation pipelines, where root causes are buried in megabytes of raw log data across disparate subsystems.",
+                        "solution": "Built a unified **Log Matrix Pipeline** integrating **RAG (Retrieval-Augmented Generation)**. Optimized context ingestion by indexing the codebase to correlate log failures with actual implementation logic using semantic search.",
+                        "impact": "Significantly accelerated **root-cause triage** for platform blocks. Transformed raw log data into actionable diagnostic reports (Category, Action Items, Severity), reducing the manual effort required for complex firmware debugging."
+                    },
+                    "tech_stack": [
+                        "Node.js / TypeScript",
+                        "Python (Log Parsing)",
+                        "Vector Database (RAG)",
+                        "LLM Multi-Agent Flow",
+                        "BullMQ / Redis"
+                    ],
+                    "documents_path": ".agent/skills/project_archivist/documents/openclaw_log"
+                }
+            ]
+        }
+    }
+}

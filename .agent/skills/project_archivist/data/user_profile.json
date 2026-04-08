@@ -1,0 +1,74 @@
+{
+    "personal_info": {
+        "name": "Chun-Yu, Tsai",
+        "title": "Senior Software Engineer",
+        "mobile": "0928-283-929",
+        "email": "ch03282012@gmail.com",
+        "profile_photo": "src/image/profile_photo.png"
+    },
+    "summary": "Software Engineer with 5+ years of experience in **Engineering Productivity**, **Infrastructure**, and **Automation Architecture**. Proven ability to navigate ambiguity, lead cross-functional initiatives without formal authority, and architect highly scalable platforms that systematically resolve organizational bottlenecks and redefine engineering conventions.",
+    "education": [
+        {
+            "school": "National Chiao Tung University",
+            "degree": "B.S. & M.S. in Mechanical Engineering",
+            "date": "2011-2017"
+        }
+    ],
+    "work_experience": [
+        {
+            "company": "Supermicro",
+            "role": "Software Engineer",
+            "date": "2020 - Present",
+            "description": ""
+        },
+        {
+            "company": "Nanjing Ding Teng Graphen",
+            "role": "Project Manager",
+            "date": "2018 - 2020",
+            "description": "Coordinated cross-functional teams to define system requirements for smart warehouse systems. Designed business logic flows for automated inventory management."
+        },
+        {
+            "company": "Inventec",
+            "role": "Mechanical Engineer",
+            "date": "2017 - 2018",
+            "description": "Applied precise mechanical constraints and thermal logic to 4U rack server design. Collaborated with EE/Thermal engineers to optimize performance."
+        },
+        {
+            "company": "Personal Project",
+            "role": "Full Stack Developer",
+            "date": "2025 - Present",
+            "description": ""
+        }
+    ],
+    "skills": {
+        "backend": [
+            "Python",
+            "Go (Gin)",
+            "PHP (Laravel)",
+            "C (EDK II)"
+        ],
+        "frontend": [
+            "React",
+            "Vue.js",
+            "Angular",
+            "TypeScript",
+            "TailwindCSS"
+        ],
+        "infrastructure": [
+            "Docker",
+            "Kubernetes",
+            "Jenkins",
+            "GitLab CI/CD",
+            "Ansible",
+            "Redis",
+            "PostgreSQL"
+        ],
+        "domain": [
+            "UEFI/BIOS",
+            "Redfish/IPMI",
+            "BSP Integration",
+            "Local-First Sync",
+            "Distributed Systems"
+        ]
+    }
+}

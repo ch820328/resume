@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Page Resume</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            /* Classic Blue from reference */
+            --text-color: #333;
+            --date-column-width: 120px;
+        }
+
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            color: var(--text-color);
+            line-height: 1.3;
+            margin: 0;
+            padding: 0;
+            font-size: 9.5pt;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 8mm 10mm;
+            margin: 0 auto;
+            background: white;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header-left h1 {
+            font-size: 24pt;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .header-middle {
+            text-align: right;
+            font-size: 9.5pt;
+            line-height: 1.4;
+            flex-grow: 1;
+            padding-right: 1rem;
+        }
+
+        .header-right img {
+            width: 24mm;
+            height: 32mm;
+            /* Aspect ratio roughly 3:4 */
+            object-fit: cover;
+            border-radius: 50%;
+            /* Rounded as per image */
+            border: 1px solid #eee;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 0.8rem;
+        }
+
+        h2 {
+            font-size: 13pt;
+            color: var(--primary-color);
+            font-style: italic;
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 0.4rem;
+            padding-bottom: 0.1rem;
+        }
+
+        /* Layout for Dates + Content */
+        .entry {
+            display: flex;
+            margin-bottom: 0.3rem;
+        }
+
+        .date-col {
+            width: var(--date-column-width);
+            font-weight: bold;
+            font-style: italic;
+            flex-shrink: 0;
+        }
+
+        .content-col {
+            flex-grow: 1;
+        }
+
+        .job-header {
+            font-weight: bold;
+            font-size: 10.5pt;
+            margin-bottom: 0.1rem;
+        }
+
+        /* Bullet Points grouping */
+        .topic-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .topic-title {
+            font-weight: bold;
+            font-size: 10.5pt;
+            margin-bottom: 0.3rem;
+            color: #444;
+        }
+
+        ul {
+            margin: 0.1rem 0;
+            padding-left: 1.2rem;
+            line-height: 1.4;
+        }
+
+        li {
+            margin-bottom: 0.2rem;
+            text-align: justify;
+        }
+
+        li strong {
+            color: var(--primary-color);
+        }
+
+        .education-entry {
+            display: flex;
+        }
+
+        .skills-list {
+            padding-left: var(--date-column-width);
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                margin: 2;
+            }
+
+            .page {
+                width: 210mm;
+                height: 297mm;
+                padding: 10mm;
+                /* Keep the padding in print! */
+                margin: 2 auto;
+                border: none;
+                box-shadow: none;
+            }
+
+            /* Hide browser default header/footer if possible, though mostly controlled by print dialog */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page" id="resume-page">
+        <header>
+            <div class="header-left">
+                <h1 id="name">Chun-Yu, Tsai</h1>
+                <div id="title" style="color:#666; font-size:12pt; margin-top:2px;">Senior Software Engineer</div>
+            </div>
+            <div class="header-middle">
+                <div>Email: ch03282012@gmail.com</div>
+                <div>GitHub: <a href="https://github.com/ch820328"
+                        style="color: var(--primary-color); text-decoration: none;">github.com/ch820328</a></div>
+                <div>LinkedIn: <a href="https://www.linkedin.com/in/chun-yu-tsai-5614371b5/"
+                        style="color: var(--primary-color); text-decoration: none;">linkedin.com/in/chun-yu-tsai</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Summary Section -->
+        <section id="summary-section">
+            <h2>Summary</h2>
+            <div style="padding-left: var(--date-column-width);">
+                <p id="core-competency">
+                    [Core Competency Placeholder]
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div id="education-container">
+                <!-- Education entries go here -->
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills-section">
+            <h2>Skills</h2>
+            <div class="skills-list">
+                <div id="must-to-do-skills" style="margin-bottom: 5px;">
+                    <strong>Must-to-do:</strong> <span id="must-to-do-list"></span>
+                </div>
+                <div id="tech-skills">
+                    <strong>Languages & Tools:</strong> <span id="languages-tools-list"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section (Injected by JS) -->
+        <section>
+            <h2>Experience</h2>
+            <div id="experience-container">
+                <!-- Entries go here -->
+            </div>
+        </section>
+
+    </div>
+
+</body>
+
+</html>

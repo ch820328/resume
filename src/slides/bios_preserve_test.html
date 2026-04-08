@@ -1,0 +1,54 @@
+<section class="slide">
+    <div class="content-wrapper">
+        <div class="slide-header-row">
+            <h2 class="slide-title">Firmware Configuration & NVRAM Persistence Validation</h2>
+            <span class="slide-tag">Systems Automation & Reliability</span>
+        </div>
+        <div class="star-grid">
+            <div class="star-content">
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Challenge:</span>
+                        <span class="star-text">
+                            Validating BIOS settings (Boot Options, Setup configurations) across firmware updates.
+                            Traditional UI-based testing was too slow and impossible to apply for <strong>In-Band flash
+                                validation</strong>,
+                            where the presentation layer is unavailable.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Solution:</span>
+                        <span class="star-text">
+                            Developed a <strong>UEFI Shell suite (EDK II/C)</strong> to directly manipulate NVRAM
+                            variables.
+                            Integrated an <strong>OOB (Out-of-Band) recovery flow</strong> via BMC Redfish to
+                            automatically
+                            re-flash and recover systems in case of flash failures, ensuring continuous test cycles.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Impact:</span>
+                        <span class="star-text">
+                            Automated 80% of regression cases. Enabled <strong>In-Band BIOS validation</strong>
+                            that was previously un-testable via UI. Ensured configuration persistence
+                            across hundreds of firmware update cycles, significantly improving release reliability.
+                        </span>
+                    </div>
+                </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">UEFI Shell (C)</span>
+                    <span class="tech-tag">NVRAM Logic</span>
+                    <span class="tech-tag">BMC Redfish (OOB)</span>
+                    <span class="tech-tag">Self-Healing Test-bed</span>
+                </div>
+            </div>
+            <div class="star-visual">
+                <img src="src/image/bios_preserve_assets.svg" alt="BIOS Preserve Requirements" class="slide-image">
+            </div>
+        </div>
+    </div>
+</section>

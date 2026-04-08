@@ -1,0 +1,45 @@
+<section class="slide" id="pic-transcript">
+    <div class="content-wrapper">
+        <div class="slide-header-row">
+            <h2 class="slide-title">Deterministic BIOS OCR Engine</h2>
+            <span class="slide-tag">Computer Vision & Automation</span>
+        </div>
+        <div class="star-grid">
+            <div class="star-content">
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Challenge:</span>
+                        <span class="star-text">
+                            Standard ML-based OCR (like Tesseract) only got about 85% accuracy on our low-res BIOS fonts. It didn't understand the layout at all, and for BIOS validation, even a tiny error could break our whole test suite.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Solution:</span>
+                        <span class="star-text">
+                            I decided to skip the AI hype and built a <strong>deterministic CV engine</strong> using OpenCV. I used template matching and custom row-grouping logic to make sure the spatial context stayed perfect every time.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Impact:</span>
+                        <span class="star-text">
+                            Pushed our accuracy to <strong>over 99%</strong> with almost zero latency. This completely freed up the QA team because we could finally automate visual regression testing without worrying about false positives.
+                        </span>
+                    </div>
+                </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">Python / C++</span>
+                    <span class="tech-tag">Template Matching vs DL OCR</span>
+                    <span class="tech-tag">Spatial Layout Analysis</span>
+                </div>
+            </div>
+            <div class="star-visual">
+                <img src="src/image/pic_transcript.svg" alt="CV Template Matching vs OCR" class="slide-image">
+            </div>
+        </div>
+    </div>
+</section>

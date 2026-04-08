@@ -1,0 +1,56 @@
+<section class="slide" id="redfish-validation-framework">
+    <div class="content-wrapper">
+        <div class="slide-header-row">
+            <h2 class="slide-title">Cross-Interface Consistency Validation Framework</h2>
+            <span class="slide-tag">Systems QA & Architecture</span>
+        </div>
+        <div class="star-grid">
+            <div class="star-content">
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Challenge:</span>
+                        <span class="star-text">
+                            Data discrepancies between legacy <strong>SMBIOS</strong> and modern <strong>Redfish
+                                API</strong>
+                            frequently caused validation failures. Manual cross-referencing across 3+ BMC generations
+                            (AST2500/2600/OpenBMC) was inefficient and prone to human error.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Solution:</span>
+                        <span class="star-text">
+                            Built a modular Python framework using the <strong>Strategy Pattern</strong> to
+                            decouple data retrieval from validation logic. Integrated <strong>Selenium</strong> for UI
+                            scraping
+                            and <strong>Redfish API</strong> for backend verification, enabling multi-layered
+                            consistency checks (API vs. GUI vs. SMBIOS).
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Impact:</span>
+                        <span class="star-text">
+                            Reduced end-to-end verification time by <strong>90%</strong>. Established a unified quality
+                            gate
+                            that standardized data auditing across multiple vendor-specific BMC firmware,
+                            identifying several <strong>field-critical data conversion bugs</strong>.
+                        </span>
+                    </div>
+                </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">Python (Strategy Pattern)</span>
+                    <span class="tech-tag">Redfish (RESTful)</span>
+                    <span class="tech-tag">Selenium WebDriver</span>
+                    <span class="tech-tag">Data Reconciliation</span>
+                </div>
+            </div>
+            <div class="star-visual">
+                <img src="src/image/redfish_validation.svg" alt="Strategy Pattern Architecture for Multi-BMC Validation"
+                    class="slide-image">
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,50 @@
+<!-- Slide 2: Ansible OS Baseline Setup -->
+<section class="slide" id="slide-2">
+    <div class="content-wrapper">
+        <div class="slide-header-row">
+            <h2 class="slide-title">Test-Driven Infrastructure as Code (Ansible)</h2>
+            <span class="slide-tag">Infrastructure & Automation</span>
+        </div>
+        <div class="star-grid">
+            <div class="star-content">
+                <!-- STAR Item 1: Challenge -->
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Challenge:</span>
+                        <span class="star-text">
+                            Setting up VMs for stress tests was a total slog—it took 3 hours manually because machines kept "drifting" apart. We had constant syntax errors because tool versions didn't match between the dev boxes and the test hosts.
+                        </span>
+                    </div>
+                </div>
+                <!-- STAR Item 2: Solution -->
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Solution:</span>
+                        <span class="star-text">
+                            I built a test-driven workflow using <strong>Molecule & Testinfra</strong> so we could validate everything in Docker first. I also forced strict version pinning for Ubuntu/CentOS to make sure every node stayed perfectly in sync.
+                        </span>
+                    </div>
+                </div>
+                <!-- STAR Item 3: Impact -->
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Impact:</span>
+                        <span class="star-text">
+                            We cut that 3-hour setup time down to less than 5 minutes. Having <strong>100% environment parity</strong> meant we stopped seeing those weird "works on my machine" bugs during scaling.
+                        </span>
+                    </div>
+                </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">Ansible</span>
+                    <span class="tech-tag">Molecule</span>
+                    <span class="tech-tag">Testinfra</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">CI/CD</span>
+                </div>
+            </div>
+            <div class="star-visual">
+                <img src="src/image/ansible.svg" alt="Ansible Provisioning Workflow" class="slide-image">
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.10"/>
+    </filter>
+    
+    <linearGradient id="lightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+
+    <!-- Markers -->
+    <marker id="arrowCD" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1e3a8a"/>
+    </marker>
+    <marker id="arrowJenkins" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0ea5e9"/>
+    </marker>
+  </defs>
+
+  <!-- Title / Global -->
+  <text x="200" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="16" fill="#1e293b">GitLab CD Pipeline</text>
+  <text x="200" y="38" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="11" fill="#64748b">Secure Zero-Touch Deployment</text>
+
+  <!-- =============================== -->
+  <!-- TOP: Semantic Versioning / Tag  -->
+  <!-- =============================== -->
+  <g transform="translate(130, 55)">
+    <rect x="0" y="0" width="140" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+    <text x="70" y="19" text-anchor="middle" font-family="'Roboto Mono', monospace" font-weight="700" font-size="11" fill="#334155">git tag v1.2.0</text>
+    <text x="70" y="33" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="9" fill="#0ea5e9">Semantic Versioning</text>
+  </g>
+
+  <!-- Flow 1 -->
+  <path d="M200 95 L200 120" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowCD)"/>
+
+  <!-- =============================== -->
+  <!-- MIDDLE: Release Orchestration   -->
+  <!-- =============================== -->
+  <g transform="translate(45, 120)" filter="url(#shadow)">
+    <!-- Container -->
+    <rect x="0" y="0" width="310" height="230" rx="12" fill="url(#lightGrad)" stroke="#1e293b" stroke-width="2"/>
+    
+    <!-- Header -->
+    <rect x="0" y="0" width="310" height="30" rx="10" fill="url(#headerGrad)"/>
+    <!-- Square bottom corners -->
+    <rect x="0" y="20" width="310" height="10" fill="url(#headerGrad)"/>
+    <!-- Mac OS Window Buttons -->
+    <circle cx="15" cy="15" r="4" fill="#ff5f56"/>
+    <circle cx="27" cy="15" r="4" fill="#ffbd2e"/>
+    <circle cx="39" cy="15" r="4" fill="#27c93f"/>
+    <text x="155" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#1e293b">🦊 Release Engineering Engine</text>
+
+    <!-- Stage 1: GitLab Pipeline (Data Prep) -->
+    <g transform="translate(20, 45)">
+        <rect x="0" y="0" width="270" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="135" y="18" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#334155">📦 Release Data Aggregation</text>
+        <text x="135" y="32" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="9" fill="#64748b">Parse CHANGELOG &amp; Prepare Artifacts</text>
+    </g>
+
+    <!-- Down Arrow Inside -->
+    <path d="M155 85 L155 105" stroke="#cbd5e1" stroke-width="2" marker-end="url(#arrowCD)"/>
+
+    <!-- Stage 2: Web API Trigger Layer -->
+    <g transform="translate(20, 105)">
+        <rect x="0" y="0" width="270" height="45" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+        <text x="135" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="12" fill="#1e40af">Web API Orchestrator (Webhook)</text>
+        <text x="135" y="35" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="10" fill="#2563eb">Transforms payload &amp; verifies security</text>
+    </g>
+
+    <!-- Down Arrow Inside -->
+    <path d="M155 150 L155 170" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrowJenkins)"/>
+
+    <!-- Stage 3: Jenkins Execution -->
+    <g transform="translate(20, 170)">
+        <rect x="0" y="0" width="270" height="40" rx="6" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="2"/>
+        <text x="135" y="18" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="11" fill="#0284c7">Trigger Jenkins Job</text>
+        <text x="135" y="32" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="9" fill="#0369a1">Executes robust deployment scripts (No SSH needed)</text>
+    </g>
+  </g>
+
+  <!-- Flow 2 -->
+  <path d="M200 350 L200 380" stroke="#10b981" stroke-width="3" marker-end="url(#arrowCD)" fill="none"/>
+
+  <!-- =============================== -->
+  <!-- BOTTOM: Target Environments     -->
+  <!-- =============================== -->
+  <g transform="translate(60, 380)">
+    <rect x="0" y="0" width="280" height="60" rx="8" fill="#f0fdf4" stroke="#10b981" stroke-width="2"/>
+    <text x="140" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#065f46">Production Datacenter / Fleet</text>
+    <text x="140" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="10" fill="#059669">Zero-Touch Automated Update applies v1.2.0</text>
+  </g>
+
+  <!-- =============================== -->
+  <!-- FOOTER: Impact Badges           -->
+  <!-- =============================== -->
+  <g transform="translate(30, 465)">
+      <!-- Left Badge -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="160" height="30" rx="15" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+        <text x="80" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#16a34a">⚡ 80% Faster Deploys</text>
+      </g>
+      
+      <!-- Right Badge -->
+      <g transform="translate(180, 0)">
+        <rect x="0" y="0" width="160" height="30" rx="15" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+        <text x="80" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#2563eb">🛡️ 100% Auditability</text>
+      </g>
+  </g>
+
+  <!-- Terminology Legend -->
+  <text x="200" y="510" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" fill="#64748b">CD: Continuous Deployment</text>
+</svg>

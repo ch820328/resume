@@ -1,0 +1,45 @@
+<section class="slide" id="gitlab-cd-automation">
+    <div class="content-wrapper">
+        <div class="slide-header-row">
+            <h2 class="slide-title">Secure CD & Automated Release Engineering</h2>
+            <span class="slide-tag">DevOps & Infrastructure</span>
+        </div>
+        <div class="star-grid">
+            <div class="star-content">
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Challenge:</span>
+                        <span class="star-text">
+                            Our release process was pretty risky—we were manual-tagging and relying on shared SSH access to production. It lacked a proper audit trail, and human errors during versioning were common.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Solution:</span>
+                        <span class="star-text">
+                            I set up a GitLab CD pipeline that handles <strong>Semantic Versioning</strong> automatically based on changelogs. I also built a secure webhook agent to trigger updates, which allowed us to finally retire those old SSH keys.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Impact:</span>
+                        <span class="star-text">
+                            We reached a true <strong>"Zero-Touch" deployment</strong> flow, and releases now take just 3 minutes instead of 15. Every production change is now logged and standardized across our microservices.
+                        </span>
+                    </div>
+                </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">GitLab CI/CD</span>
+                    <span class="tech-tag">Semantic Versioning</span>
+                    <span class="tech-tag">API-Driven Deploy</span>
+                    <span class="tech-tag">Security Hardening</span>
+                </div>
+            </div>
+            <div class="star-visual">
+                <img src="src/image/release_pipeline.svg" alt="GitLab CD Pipeline" class="slide-image">
+            </div>
+        </div>
+    </div>
+</section>

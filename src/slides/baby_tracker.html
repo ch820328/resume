@@ -1,0 +1,57 @@
+<section class="slide">
+    <div class="content-wrapper">
+        <div class="slide-header-row">
+            <h2 class="slide-title">Offline-First Distributed System (Baby Tracker)</h2>
+            <span class="slide-tag">Distributed Systems & Mobile</span>
+        </div>
+        <div class="star-grid">
+            <div class="star-content">
+                <!-- STAR Item 1: Challenge -->
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Challenge:</span>
+                        <span class="star-text">
+                            Maintaining <strong>eventual consistency</strong> for caregivers logging activities
+                            (feeding,
+                            medical) in zero-connectivity environments. Managing concurrent updates across multiple
+                            devices without data corruption was a critical <strong>Distributed System</strong>
+                            challenge.
+                        </span>
+                    </div>
+                </div>
+                <!-- STAR Item 2: Solution -->
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Solution:</span>
+                        <span class="star-text">
+                            Implemented an <strong>Offline-First architecture</strong> using WatermelonDB. Implemented a
+                            custom sync engine with <strong>Optimistic Locking</strong> (versioning) and <strong>Redis
+                                Hybrid Locks</strong> to handle high-concurrency race conditions.
+                        </span>
+                    </div>
+                </div>
+                <!-- STAR Item 3: Impact -->
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Impact:</span>
+                        <span class="star-text">
+                            Achieved <strong>100% perceived uptime</strong> with Optimistic UI. Successfully
+                            synchronized 1,000+ records with <strong>zero data loss</strong>, resolving conflicts via
+                            "Last-Write-Wins" and strict schema validation.
+                        </span>
+                    </div>
+                </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Offline-First</span>
+                    <span class="tech-tag">Optimistic Locking</span>
+                    <span class="tech-tag">Distributed Locks</span>
+                    <span class="tech-tag">Eventual Consistency</span>
+                </div>
+            </div>
+            <div class="star-visual">
+                <img src="src/image/baby_tracker_app.svg" alt="Baby Tracker Mobile UI" class="slide-image">
+            </div>
+        </div>
+    </div>
+</section>

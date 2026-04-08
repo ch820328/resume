@@ -1,0 +1,54 @@
+<section class="slide" id="gitlab-ci-quality-gate">
+    <div class="content-wrapper">
+        <div class="slide-header-row">
+            <h2 class="slide-title">GitLab CI Automated Quality Gate</h2>
+            <span class="slide-tag">Developer Productivity & Governance</span>
+        </div>
+        <div class="star-grid">
+            <div class="star-content">
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Challenge:</span>
+                        <span class="star-text">
+                            Manual code hygiene reviews were inconsistent and time-consuming.
+                            Issues like non-standard commit history and missing changelogs led to
+                            <strong>technical debt</strong> and difficult production audits.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Solution:</span>
+                        <span class="star-text">
+                            Created a modular CI pipeline using <strong>Dockerized runners</strong> to enforce
+                            strict gates: <strong>Conventional Commits</strong> validation, automated Linting,
+                            and Git rebase status checks. Built custom Python scripts to verify
+                            synchronized updates between code and documentation.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Impact:</span>
+                        <span class="star-text">
+                            Automated 100% of code hygiene checks, reducing manual review cycles by
+                            <strong>90%</strong>.
+                            Guaranteed a <strong>clean and searchable Git history</strong>, enabling automated
+                            release note generation and improving overall build stability.
+                        </span>
+                    </div>
+                </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">GitLab CI</span>
+                    <span class="tech-tag">Conventional Commits</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Python (Tooling)</span>
+                    <span class="tech-tag">Static Analysis</span>
+                </div>
+            </div>
+            <div class="star-visual">
+                <img src="src/image/cicd_pipeline.svg" alt="GitLab CI Pipeline Stages" class="slide-image">
+            </div>
+        </div>
+    </div>
+</section>

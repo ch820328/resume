@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.10"/>
+    </filter>
+    
+    <!-- Gradients -->
+    <linearGradient id="rnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Markers -->
+    <marker id="arrowSync" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b"/>
+    </marker>
+    <marker id="arrowSyncRev" markerWidth="8" markerHeight="6" refX="1" refY="3" orient="auto">
+      <polygon points="8 0, 0 3, 8 6" fill="#64748b"/>
+    </marker>
+    <linearGradient id="lightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title / Global (Moved up from 30/50 to 20/40) -->
+  <text x="200" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="16" fill="#1e293b">Baby Tracker</text>
+  <text x="200" y="38" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="11" fill="#64748b">Offline-First Cross-Platform Architecture</text>
+
+  <!-- =============================== -->
+  <!-- TOP: Cross-Platform Clients       -->
+  <!-- =============================== -->
+  <!-- Moved up from y=80 to y=55 -->
+  <g transform="translate(60, 55)" filter="url(#shadow)">
+    <!-- Client Container (Height 190 -> 160) -->
+    <rect x="0" y="0" width="280" height="160" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    
+    <!-- Auth Badge (Moved to top border to prevent overlap) -->
+    <rect x="200" y="-11" width="70" height="22" rx="11" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="235" y="4" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="9" fill="#334155">🔐 OAuth</text>
+    
+    <text x="140" y="24" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#0f172a">Devices &amp; Web (React Native)</text>
+
+    <!-- Features Tags -->
+    <g transform="translate(30, 35)">
+        <rect x="0" y="0" width="60" height="20" rx="4" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+        <text x="30" y="14" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="10" fill="#16a34a">Feeding</text>
+        
+        <rect x="80" y="0" width="60" height="20" rx="4" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+        <text x="110" y="14" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="10" fill="#dc2626">Medical</text>
+        
+        <rect x="160" y="0" width="60" height="20" rx="4" fill="#eff6ff" stroke="#93c5fd" stroke-width="1"/>
+        <text x="190" y="14" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="10" fill="#2563eb">Growth</text>
+    </g>
+
+    <!-- UI / Offline Engine (Moved up to y=65, Height 35->30) -->
+    <rect x="50" y="65" width="180" height="30" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="140" y="85" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="11" fill="#334155">⚡ Optimistic UI</text>
+
+    <!-- Local DB (WatermelonDB) (Moved up to y=105, Height 45->40) -->
+    <rect x="50" y="105" width="180" height="40" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1"/>
+    <text x="140" y="123" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#1e40af">Local Database Cache</text>
+    <text x="140" y="137" text-anchor="middle" font-family="'Roboto Mono', monospace" font-size="8" fill="#2563eb">(WatermelonDB / IndexedDB)</text>
+  </g>
+
+  <!-- =============================== -->
+  <!-- MIDDLE: Sync Engine / Network   -->
+  <!-- =============================== -->
+  <!-- Moved up from y=300 to y=235 -->
+  <g transform="translate(130, 235)">
+    <!-- Bidirectional Arrows (Vertical, shortened 80->50) -->
+    <path d="M 70 -10 L 70 45" stroke="#94a3b8" stroke-width="3" stroke-dasharray="4,4" marker-end="url(#arrowSync)" marker-start="url(#arrowSyncRev)"/>
+    
+    <!-- Sync Label -->
+    <rect x="15" y="0" width="110" height="30" rx="15" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="70" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#475569">Backgound Sync</text>
+    
+    <!-- Logic labels - shifted right to avoid center line -->
+    <!-- Eventual Consistency / LWW -->
+    <text x="140" y="12" font-family="'Inter', sans-serif" font-weight="600" font-size="10" fill="#ea580c">Eventual Consistency</text>
+    <text x="140" y="26" font-family="'Roboto Mono', monospace" font-size="9" fill="#64748b">LWW Resolution</text>
+  </g>
+
+  <!-- =============================== -->
+  <!-- BOTTOM: Cloud Backend           -->
+  <!-- =============================== -->
+  <!-- Moved up from y=380 to y=290 -->
+  <g transform="translate(60, 290)" filter="url(#shadow)">
+    <!-- Cloud Container (Height 170 -> 150) -->
+    <rect x="0" y="0" width="280" height="150" rx="10" fill="url(#lightGrad)" stroke="#1e293b" stroke-width="2"/>
+    <text x="140" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#0f172a">Cloud Backend</text>
+    
+    <!-- Sync API (Moved up to 45, Height 35->30) -->
+    <rect x="50" y="45" width="180" height="30" rx="6" fill="#f1f5f9" stroke="#475569" stroke-width="1"/>
+    <text x="140" y="65" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="11" fill="#334155">Sync API (REST / GraphQL)</text>
+
+    <!-- Redis Locks (Moved up to 85, Height 30->25) -->
+    <rect x="50" y="85" width="180" height="25" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1"/>
+    <text x="140" y="102" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="10" fill="#1e40af">Redis Hybrid Locks</text>
+    
+    <!-- Master DB (Moved up to 120, Height 25->20) -->
+    <rect x="50" y="120" width="180" height="20" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1"/>
+    <text x="140" y="135" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#1e40af">Master DB (PostgreSQL)</text>
+  </g>
+
+  <!-- =============================== -->
+  <!-- FOOTER: Impact Badges           -->
+  <!-- =============================== -->
+  <!-- Moved up from y=580 to y=465 -->
+  <g transform="translate(20, 465)">
+      <!-- Left Badge -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="170" height="30" rx="15" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+        <text x="85" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#16a34a">✅ 100% Perceived Uptime</text>
+      </g>
+      
+      <!-- Right Badge -->
+      <g transform="translate(190, 0)">
+        <rect x="0" y="0" width="170" height="30" rx="15" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+        <text x="85" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#2563eb">🛡️ Zero Data Loss</text>
+      </g>
+  </g>
+
+  <!-- Terminology Legend -->
+  <text x="200" y="510" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" fill="#64748b">LWW: Last Write Win | CRDT: Conflict-free Replicated Data Type</text>
+</svg>

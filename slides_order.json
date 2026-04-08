@@ -1,0 +1,16 @@
+[
+    "00_profile.html",
+    "openclaw_mr.html",
+    "openclaw_log.html",
+    "jetson_bsp.html",
+    "ansible.html",
+    "central_dashboard.html",
+    "bios_preserve_test.html",
+    "redfish_smbios_check.html",
+    "pic_transcript.html",
+    "nvssvt_portal.html",
+    "issue_analytics.html",
+    "gitlab_ci.html",
+    "gitlab_cd.html",
+    "baby_tracker.html"
+]
