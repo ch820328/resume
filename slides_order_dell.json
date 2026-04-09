@@ -5,7 +5,6 @@
         "openclaw_mr.html",
         "openclaw_log.html",
         "central_dashboard.html",
-        "redfish_smbios_check.html",
         "gitlab_ci.html",
         "99_end.html"
     ]
