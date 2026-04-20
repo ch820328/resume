@@ -69,7 +69,7 @@ While the current solution works well, I would:
 1. **Add GitLab CI integration**: Trigger playbook runs automatically when infrastructure changes are committed
 2. **Implement secrets management**: Use Ansible Vault for sensitive data instead of plain-text inventory files
 3. **Add monitoring agent role**: Install Prometheus `node_exporter` during provisioning for instant observability
-4. **Extend to Kubernetes**: Add a role for k8s cluster bootstrapping to support future microservices migration
+4. **Extend to Container Orchestration**: Add a role for Swarm or similar orchestration for future microservices migration
 
 ---
 

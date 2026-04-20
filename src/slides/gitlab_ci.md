@@ -29,10 +29,10 @@
 ### [L5 Architecture] Scaling Runner Infrastructure (CI 基礎設施的規模化)
 *   **❓ Question:** "As the engineering team triples, CI queues are constantly backed up. The monolithic GitLab Runner is at 100% CPU. How do you re-architect the runner infrastructure?"
 *   **🇺🇸 English Defense:**
-    *   "**Migrate to Kubernetes Auto-Scaling Runners.** The GitLab Runner itself becomes a stateless Dispatcher. Each pipeline job provisions a fresh, ephemeral Kubernetes Pod and tears it down afterward."
+    *   "**Migrate to Docker-based Auto-Scaling Runners.** The GitLab Runner itself becomes a stateless Dispatcher. Each pipeline job provisions a fresh, ephemeral Docker container and tears it down afterward."
     *   "**Benefits:** Unlimited horizontal scalability, guaranteed clean slate for every job (no artifact leakage), and cost optimization via cluster auto-scaling (scale-to-zero during off-peak hours)."
     *   "**Trade-off:** Pod startup time adds ~30s latency vs. persistent shell runners—acceptable since this is amortized across CI jobs totaling tens of minutes."
 *   **🇹🇼 中文防禦:**
-    *   「**遷移到 Kubernetes 自動擴展 Runner。** GitLab Runner 本身變成無狀態的 Dispatcher。每個 Pipeline 任務都動態創建全新的短暫 Kubernetes Pod，執行完畢立即銷毀。」
+    *   「**遷移到 Docker 自動擴展 Runner。** GitLab Runner 本身變成無狀態的 Dispatcher。每個 Pipeline 任務都動態創建全新的短暫 Docker 容器，執行完畢立即銷毀。」
     *   「**優點:** 無限水平擴展、每個任務都有 100% 乾淨的執行環境（無製品洩漏），以及透過叢集自動縮放節省成本（離峰縮至零節點）。」
     *   「**取捨:** Pod 啟動時間增加約 30 秒的延遲，相比於持久型 Shell Runner 略有增加——但相對於整個 CI 任務動輒數十分鐘的執行時間，這是完全可以接受的。」

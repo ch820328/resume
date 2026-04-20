@@ -110,6 +110,6 @@ docker compose exec ansible env ANSIBLE_CONFIG=/ansible/ansible.cfg \
 - **Target OS**: CentOS 7/8, potentially Ubuntu (role prepared)
 
 ## Future Enhancements
-- Add Kubernetes deployment role
+- Add Dockerized deployment role
 - Integrate with GitLab CI for auto-provisioning on commit
 - Add monitoring agent installation (Prometheus node_exporter)

@@ -20,11 +20,11 @@
     *   **Trade-off:** 犧牲了使用者的「即時結果反饋」，換取系統的高吞吐量 (High Throughput) 與容錯能力。後續透過 WebSockets 解決了前端等待進度的問題。
 *   **[L5 架構題] 服務隔離與單點故障 (Single Point of Failure, SPOF)**
     *   **Q:** 「如果你的 Go Orchestration Portal 掛了，所有的 Jenkins 測試就會停擺嗎？你的架構有 SPOF 嗎？如何做到 High Availability (高可用性)？」
-    *   **A:** 這是從架構演進的角度來看。初期可能是單體架構 (Monolith)。為了晉升 L5，你需要展示你考慮到了 **Stateless Design (無狀態設計)**。將 Go Portal 容器化並運行在 Kubernetes 上，搭配 Load Balancer。所有狀態（誰在測什麼機器、測試跑了多久）都卸載 (Offload) 到外部持久化資料庫 (PostgreSQL) 或 Redis 中，這樣 Portal 節點掛了隨時可以重啟/擴展，不會重置測試狀態，原本實體機上的測試也會繼續跑 (No Orphaned Jobs)。
+    *   **A:** 這是從架構演進的角度來看。初期可能是單體架構 (Monolith)。為了晉升 L5，你需要展示你考慮到了 **Stateless Design (無狀態設計)**。將 Go Portal 進行容器化部署 (Containerization)，搭配 Load Balancer。所有狀態（誰在測什麼機器、測試跑了多久）都卸載 (Offload) 到外部持久化資料庫 (PostgreSQL) 或 Redis 中，這樣 Portal 節點掛了隨時可以重啟/擴展，不會重置測試狀態，原本實體機上的測試也會繼續跑 (No Orphaned Jobs)。
     *   **進階 Trade-off (狀態同步機制: Webhook vs Polling):**
         *   **Webhook (Event-Driven / Push):** 讓 Jenkins 跑完主動打回 Go Portal。雖然即時性高，但如果 Go Portal 剛好在那一分鐘重啟，Webhook 送達失敗，這筆測試就會永遠卡在 `RUNNING` 狀態 (Zombie State)。
         *   **Polling (Pull) + DB State:** 因此我選擇了定時 Polling 的設計。Go 的 Background Worker 會定時去掃 DB 裡標記為 `RUNNING` 的單子去問 Jenkins。這雖然增加了微小的 API Overhead，但它是 **Idempotent (具備冪等性)** 且 **高容錯 (Fault Tolerant)** 的。這賦予了系統極強的 **Self-Healing (自我修復)** 能力，徹底消滅了 Zombie Jobs。
-    *   **Extensibility:** 採用 OpenAPI compliance，強制前後端與上下游服務合約化 (Contract-first)，方便未來抽換 Jenkins 引擎改用 GitLab Runner 或 K8s Jobs，而不需要重寫商業邏輯。
+    *   **Extensibility:** 採用 OpenAPI compliance，強制前後端與上下游服務合約化 (Contract-first)，方便未來抽換 Jenkins 引擎改用 GitLab Runner 或其他容器化任務 (Containerized Jobs)，而不需要重寫商業邏輯。
 
 ### 2. Offline-First Distributed System (Baby Tracker)
 **面試維度：CAP 定理、Eventual Consistency、衝突解決 (Conflict Resolution)、行動端/雲端同步機制**

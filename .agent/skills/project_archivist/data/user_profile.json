@@ -56,7 +56,6 @@
         ],
         "infrastructure": [
             "Docker",
-            "Kubernetes",
             "Jenkins",
             "GitLab CI/CD",
             "Ansible",

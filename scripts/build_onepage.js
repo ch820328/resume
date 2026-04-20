@@ -5,7 +5,7 @@ const PROJECTS_PATH = path.join(__dirname, '../.agent/skills/project_archivist/d
 const PROFILE_PATH = path.join(__dirname, '../.agent/skills/project_archivist/data/user_profile.json');
 const PROFILE_SLIDE_PATH = path.join(__dirname, '../src/slides/00_profile.html');
 const TEMPLATE_PATH = path.join(__dirname, '../src/resume_onepage.html');
-const OUTPUT_PATH = path.join(__dirname, '../resume_onepage.html');
+const CONFIG_PATH = path.join(__dirname, 'onepage_config.json');
 
 function loadProjects() {
     if (!fs.existsSync(PROJECTS_PATH)) return { project_categories: {} };
@@ -25,50 +25,44 @@ function loadProfile() {
             summary: "",
             education: [],
             work_experience: [],
-            skills: { languages: [], frameworks: [], tools: [] }
+            skills: { backend: [], frontend: [], infrastructure: [], domain: [] }
         };
     }
     return JSON.parse(fs.readFileSync(PROFILE_PATH, 'utf8'));
 }
 
-function extractCoreCompetency() {
-    // Try to scrape from 00_profile.html if it exists, otherwise use a default
-    if (fs.existsSync(PROFILE_SLIDE_PATH)) {
-        const content = fs.readFileSync(PROFILE_SLIDE_PATH, 'utf8');
-        const match = content.match(/<p class="summary-text">(.*?)<\/p>/s);
-        if (match) {
-            return match[1].trim();
-        }
-    }
-    return "Senior Software Engineer specialized in Embedded Systems, BSP, and Automation.";
+function loadConfig() {
+    if (!fs.existsSync(CONFIG_PATH)) return { profiles: {} };
+    return JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
 }
 
-function generateResume() {
-    const projectData = loadProjects();
-    const profile = loadProfile();
+function markdownToHtml(text) {
+    if (!text) return '';
+    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+}
+
+function generateResume(profileKey, profileCfg, masterProjectData, masterProfileData) {
+    console.log(`🏗️  Generating Resume for Profile: ${profileKey} (${profileCfg.name})...`);
     let html = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
     // 1. Inject Personal Info
-    html = html.replace(/id="name">.*?<\/h1>/, `id="name">${profile.personal_info.name}</h1>`);
-    html = html.replace(/id="title".*?>.*?<\/div>/, `id="title" style="color:#666; font-size:12pt; margin-top:5px;">${profile.personal_info.title}</div>`);
-    html = html.replace(/Mobile:.*?<\/div>/, `Mobile: ${profile.personal_info.mobile}</div>`);
-    html = html.replace(/E-mail:.*?<\/div>/, `E-mail: ${profile.personal_info.email}</div>`);
+    html = html.replace(/id="name">.*?<\/h1>/, `id="name">${masterProfileData.personal_info.name}</h1>`);
+    html = html.replace(/id="title".*?>.*?<\/div>/, `id="title" style="color:#666; font-size:12pt; margin-top:5px;">${profileCfg.name}</div>`);
+    
+    const contactInfo = `
+        <div>Email: ${masterProfileData.personal_info.email}</div>
+        <div>GitHub: <a href="https://github.com/ch820328" style="color: var(--primary-color); text-decoration: none;">github.com/ch820328</a></div>
+        <div>LinkedIn: <a href="https://www.linkedin.com/in/chun-yu-tsai-5614371b5/" style="color: var(--primary-color); text-decoration: none;">linkedin.com/in/chun-yu-tsai</a></div>
+    `;
+    html = html.replace(/<div class="header-middle">[\s\S]*?<\/div>/, `<div class="header-middle">${contactInfo}</div>`);
 
     // 2. Inject Summary
-    const summary = profile.summary || extractCoreCompetency();
-    function markdownToHtml(text) {
-        if (!text) return '';
-        return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    }
+    const summary = profileCfg.summary;
     html = html.replace('[Core Competency Placeholder]', markdownToHtml(summary));
 
-    // 3. Inject Education (Moved to bottom in template, but data process here)
-    // Note: Template has hardcoded education structure for simplicity in this redesign, 
-    // or we can dynamically inject if we want to support multiple entries.
-    // For now, let's keep the hardcoded one in HTML or update if needed.
-    // Actually, let's overwrite the hardcoded one to be safe.
+    // 3. Inject Education
     let educationHtml = '';
-    profile.education.forEach(edu => {
+    masterProfileData.education.forEach(edu => {
         educationHtml += `
             <div class="entry">
                 <div class="date-col">${edu.date}</div>
@@ -82,24 +76,14 @@ function generateResume() {
     });
     html = html.replace(/<div id="education-container">[\s\S]*?<\/div>/, `<div id="education-container">${educationHtml}</div>`);
 
-    // 4. Process Work Experience
-    // Group projects by company
+    // 4. Process Work Experience (Filtered by Profile Projects)
     const companyProjectsMap = {};
+    const FEATURED_PROJECTS = profileCfg.featured_projects;
 
-    // Define the specific order and selection of projects for the One-Page Resume
-    const FEATURED_PROJECTS = [
-        "NVSSVT Enterprise Automation Platform",
-        "Deterministic BIOS OCR Engine",
-        "Unified Engineering Productivity Portal",
-        "Test-Driven Infrastructure as Code (Ansible)",
-        "Jetson Orin BSP & Infrastructure Optimization",
-        "Offline-First Distributed System (Baby Tracker)"
-    ];
-    for (const catKey in projectData.project_categories) {
-        const category = projectData.project_categories[catKey];
+    for (const catKey in masterProjectData.project_categories) {
+        const category = masterProjectData.project_categories[catKey];
         if (category.projects) {
             category.projects.forEach(proj => {
-                // Filter: Only include if it's in our featured list
                 if (!FEATURED_PROJECTS.includes(proj.name)) return;
 
                 const comp = proj.company || "Independent Projects";
@@ -119,41 +103,24 @@ function generateResume() {
     }
 
     let experienceHtml = '';
-
-    function markdownToHtml(text) {
-        if (!text) return '';
-        return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    }
-
-    // Use work_experience from profile as the source of truth for timeline
-    profile.work_experience.forEach(workExp => {
+    masterProfileData.work_experience.forEach(workExp => {
         const companyProjects = companyProjectsMap[workExp.company] || [];
-
         let projectsHtml = '';
 
-        if (workExp.description && workExp.description.trim()) {
-            // Use description from profile (for non-software roles)
+        if (workExp.description && workExp.description.trim() && companyProjects.length === 0) {
             projectsHtml = `<li>${markdownToHtml(workExp.description)}</li>`;
         } else if (companyProjects.length > 0) {
-            // Use projects from projects.json (for software roles)
             companyProjects.forEach(proj => {
                 let description = '';
-
                 if (proj.details) {
-                    // Extract only the FIRST sentence from solution (main action)
                     let action = '';
                     if (proj.details.solution) {
                         const fullSolution = proj.details.solution;
-                        // Take only first sentence. Look for period followed by space or end of string.
-                        // This prevents splitting on "CheckBIOSPreserveSetupConfigurationX64.efi"
                         const match = fullSolution.match(/^.*?[.!?](?:\s|$)/);
                         action = match ? match[0].trim() : fullSolution;
                         action = markdownToHtml(action);
                     }
-
-                    // Keep full impact (already quantified)
                     const impact = proj.details.impact ? markdownToHtml(proj.details.impact.trim()) : '';
-
                     if (action && impact) {
                         description = `<strong>${proj.name}</strong>: ${action} ➔ ${impact}`;
                     } else if (action) {
@@ -162,16 +129,13 @@ function generateResume() {
                         description = `<strong>${proj.name}</strong>: ${impact}`;
                     }
                 }
-
                 if (description) {
-                    projectsHtml += `
-                        <li>${description}</li>
-                    `;
+                    projectsHtml += `<li>${description}</li>`;
                 }
             });
         }
 
-        if (projectsHtml || workExp.description) {
+        if (projectsHtml) {
             experienceHtml += `
                 <div class="entry">
                     <div class="date-col">${workExp.date}</div>
@@ -189,27 +153,54 @@ function generateResume() {
         }
     });
 
-    // 5. Inject Skills
-    const skills = profile.skills;
-    const backend = skills.backend ? skills.backend.join(", ") : "";
-    const frontend = skills.frontend ? skills.frontend.join(", ") : "";
-    const infra = skills.infrastructure ? skills.infrastructure.join(", ") : "";
-    const domain = skills.domain ? skills.domain.join(", ") : "";
+    // 5. Inject Skills (Re-ordered by Priority)
+    const skillMap = {
+        backend: `<strong>Backend:</strong> <span>${(masterProfileData.skills.backend || []).join(", ")}</span>`,
+        frontend: `<strong>Frontend:</strong> <span>${(masterProfileData.skills.frontend || []).join(", ")}</span>`,
+        infrastructure: `<strong>Infrastructure:</strong> <span>${(masterProfileData.skills.infrastructure || []).join(", ")}</span>`,
+        domain: `<strong>Domain:</strong> <span>${(masterProfileData.skills.domain || []).join(", ")}</span>`
+    };
+
+    const priority = profileCfg.skills_priority || ["backend", "frontend", "infrastructure", "domain"];
+    let skillsHtml = priority.map(p => skillMap[p]).join('<br>\n        ');
 
     html = html.replace('id="must-to-do-skills" style="margin-bottom: 5px;">', 'id="backend-skills">');
-    html = html.replace('<strong>Must-to-do:</strong> <span id="must-to-do-list"></span>', `<strong>Backend:</strong> <span>${backend}</span>`);
-
-    html = html.replace('id="tech-skills">', 'id="frontend-skills">');
-    html = html.replace('<strong>Languages & Tools:</strong> <span id="languages-tools-list"></span>', `
-        <strong>Frontend:</strong> <span>${frontend}</span><br>
-        <strong>Infrastructure:</strong> <span>${infra}</span><br>
-        <strong>Domain:</strong> <span>${domain}</span>
-    `);
-
+    html = html.replace('<strong>Must-to-do:</strong> <span id="must-to-do-list"></span>', `<span>${skillsHtml}</span>`);
+    
+    // Cleanup old tech-skills block if it exists
+    html = html.replace(/<div id="tech-skills">[\s\S]*?<\/div>/, '');
     html = html.replace('<!-- Entries go here -->', experienceHtml);
 
-    fs.writeFileSync(OUTPUT_PATH, html);
-    console.log(`✅ One-Page Resume Generated at: ${OUTPUT_PATH}`);
+    const outputPath = path.join(__dirname, '../', profileCfg.output_file || `resume_${profileKey}.html`);
+    fs.writeFileSync(outputPath, html);
+    console.log(`✅ Resume for [${profileKey}] generated at: ${outputPath}`);
 }
 
-generateResume();
+function runBuild() {
+    const projectData = loadProjects();
+    const profileData = loadProfile();
+    const config = loadConfig();
+
+    const args = process.argv.slice(2);
+    let targetProfile = null;
+    args.forEach(arg => {
+        if (arg.startsWith('--profile=')) {
+            targetProfile = arg.split('=')[1];
+        }
+    });
+
+    if (targetProfile) {
+        if (config.profiles[targetProfile]) {
+            generateResume(targetProfile, config.profiles[targetProfile], projectData, profileData);
+        } else {
+            console.error(`❌ Profile "${targetProfile}" not found in config.`);
+        }
+    } else {
+        // Build all profiles by default
+        for (const key in config.profiles) {
+            generateResume(key, config.profiles[key], projectData, profileData);
+        }
+    }
+}
+
+runBuild();

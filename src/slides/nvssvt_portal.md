@@ -29,10 +29,10 @@
     *   「**架構取捨 (Trade-off):** 我犧牲了 API 同步回傳結果的即時性，換取了系統的極致穩定與硬體保護。呼叫端必須使用 Task_ID 查詢進度，但實體機台完美擋住了瞬間高併發的流量衝擊。」
 
 ### [L5 Architecture] Single Point of Failure and Extensibility (單點故障與擴充性)
-*   **❓ Question:** "If your Go Portal goes down, does the ecosystem halt? How difficult is it to rip out the underlying Jenkins runners if the company mandates moving to Kubernetes?"
+*   **❓ Question:** "If your Go Portal goes down, does the ecosystem halt? How difficult is it to rip out the underlying Jenkins runners if the company mandates moving to another container orchestrator or GitLab Runner?"
 *   **🇺🇸 English Defense:**
     *   "The Go portal is strictly **Stateless**. Deployed behind a Load Balancer, we can scale replica pods instantly; all state lives in highly available PostgreSQL/Redis."
-    *   "For extensibility, the backend schedules jobs using the **Adapter Pattern**. The logic depends on an `IRunner` interface. Currently, we inject a `JenkinsAdapter`. Changing to a `KubernetesJobAdapter` requires writing a new class implementing `IRunner`, but exactly zero changes to the core scheduling logic or client-facing REST API."
+    *   "For extensibility, the backend schedules jobs using the **Adapter Pattern**. The logic depends on an `IRunner` interface. Currently, we inject a `JenkinsAdapter`. Changing to a `DockerRunnerAdapter` requires writing a new class implementing `IRunner`, but exactly zero changes to the core scheduling logic or client-facing REST API."
 *   **🇹🇼 中文防禦:**
     *   「Go Portal 本身是 **無狀態 (Stateless)** 的，所有狀態存於外部的高可用 Redis/Postgres 中，隨時可以隨機砍掉 Pod 重新擴展。」
-    *   「在未來擴充性上，排程核心實作了 **轉接器模式 (Adapter Pattern)**。業務邏輯只與 `IRunner` 介面互動。現在底層是 `JenkinsAdapter`，如果未來要換成 `K8sAdapter`，核心排程層與對外的 API 合約 (Contract) 一行程式碼都不用改。」
+    *   「在未來擴充性上，排程核心實作了 **轉接器模式 (Adapter Pattern)**。業務邏輯只與 `IRunner` 介面互動。現在底層是 `JenkinsAdapter`，如果未來要換成 `DockerAdapter`，核心排程層與對外的 API 合約 (Contract) 一行程式碼都不用改。」

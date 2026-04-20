@@ -1,0 +1,30 @@
+{
+    "profiles": {
+        "embedded": {
+            "name": "Embedded Systems & Firmware Specialist",
+            "summary": "Senior Software Engineer with 5+ years of experience in **Embedded Systems**, **BSP Integration**, and **Hardware Validation Architecture**. Expert in navigating low-level hardware-software interfaces, developing UEFI/BIOS diagnostic suites, and optimizing build infrastructure for massive production scales. Proven track record of leading cross-functional teams to resolve critical hardware blocks and defining department-wide development conventions.",
+            "featured_projects": [
+                "Jetson Orin BSP & Infrastructure Optimization",
+                "Deterministic BIOS OCR Engine",
+                "Firmware Configuration & NVRAM Persistence Validation",
+                "Cross-Interface Consistency Validation Framework",
+                "OpenClaw: Log Matrix & RAG Diagnostic Platform"
+            ],
+            "skills_priority": ["domain", "infrastructure", "backend", "frontend"],
+            "output_file": "resume_embedded.html"
+        },
+        "fullstack": {
+            "name": "Full-Stack & Distributed Systems Architect",
+            "summary": "Full Stack Developer and Architect specialized in **Distributed Systems**, **Offline-First Synchronization**, and **Scalable Platform Engineering**. Expertise in designing high-concurrency architectures with rigorous consistency models and idempotent automation pipelines. Skilled in transforming fragmented legacy tools into unified, API-driven portals that systematically resolve organizational bottlenecks and accelerate CI/CD workflows.",
+            "featured_projects": [
+                "Offline-First Distributed System (Baby Tracker)",
+                "NVSSVT Enterprise Automation Platform",
+                "Unified Engineering Productivity Portal",
+                "Test-Driven Infrastructure as Code (Ansible)",
+                "OpenClaw AI Merge Request Review Service"
+            ],
+            "skills_priority": ["backend", "frontend", "infrastructure", "domain"],
+            "output_file": "resume_fullstack.html"
+        }
+    }
+}

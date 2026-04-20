@@ -168,7 +168,7 @@
         },
         "infrastructure_cicd": {
             "display_name": "Infrastructure & CI/CD",
-            "description": "Pipeline automation, GitLab CI/Jenkins, Docker, and Kubernetes envs.",
+            "description": "Pipeline automation, GitLab CI/Jenkins, Docker, and Containerized envs.",
             "projects": [
                 {
                     "name": "GitLab CI Automated Quality Gate",
