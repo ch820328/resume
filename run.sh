@@ -15,12 +15,6 @@ function run_full_flow {
     if npm run release; then
         echo "✅ Release successful!"
         
-        echo "🌐 Starting FastAPI RAG Backend..."
-        ./rag_backend/start.sh &
-        BACKEND_PID=$!
-        
-        trap "echo '🛑 Shutting down backend...'; kill \$BACKEND_PID 2>/dev/null; exit" EXIT INT TERM
-
         echo "🌐 Starting Dev Server..."
         npm run serve
     else
@@ -44,12 +38,6 @@ case "$COMMAND" in
         npm run release
         ;;
     serve)
-        echo "🌐 Starting FastAPI RAG Backend..."
-        ./rag_backend/start.sh &
-        BACKEND_PID=$!
-        
-        trap "echo '🛑 Shutting down backend...'; kill \$BACKEND_PID 2>/dev/null; exit" EXIT INT TERM
-
         echo "🌐 Starting Dev Server..."
         npm run serve
         ;;

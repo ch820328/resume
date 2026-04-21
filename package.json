@@ -8,10 +8,10 @@
         "build": "node scripts/build.js",
         "build:onepage": "node scripts/build_onepage.js",
         "build:dell": "node scripts/build.js --config slides_order_dell.json",
-        "export:dell": "node export_pdf.js index_dell.html resume_slides_dell.pdf",
+        "export:dell": "node export_pdf.js output/index_dell.html output/resume_slides_dell.pdf",
         "sync:tags": "node scripts/sync_tech_tags.js",
         "release": "node scripts/release.js",
-        "serve": "npx -y http-server -p 20424"
+        "serve": "npx -y http-server -p 20424 -c-1"
     },
     "dependencies": {
         "puppeteer": "^24.40.0"

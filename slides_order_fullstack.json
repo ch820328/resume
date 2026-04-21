@@ -1,0 +1,12 @@
+{
+    "suffix": "fullstack",
+    "slides": [
+        "00_profile.html",
+        "central_dashboard.html",
+        "nvssvt_portal.html",
+        "openclaw_log.html",
+        "gitlab_ci.html",
+        "baby_tracker.html",
+        "99_end.html"
+    ]
+}

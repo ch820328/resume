@@ -1,5 +1,18 @@
 {
     "profiles": {
+        "master": {
+            "name": "Senior Software Engineer (Generalist Portfolio)",
+            "summary": "Multi-disciplinary Software Engineer with 5+ years of experience across **Embedded Systems**, **Distributed Platforms**, and **Automated Quality Infrastructure**. Specialized in architecting high-fidelity validation frameworks and unified engineering portals that systematically eliminate organizational bottlenecks. Proven track record of delivering scalable solutions from low-level BSP optimization to AI-driven diagnostic platforms.",
+            "featured_projects": [
+                "Jetson Orin BSP & Infrastructure Optimization",
+                "NVSSVT Enterprise Automation Platform",
+                "Unified Engineering Productivity Portal",
+                "Offline-First Distributed System (Baby Tracker)",
+                "Deterministic BIOS OCR Engine"
+            ],
+            "skills_priority": ["backend", "domain", "infrastructure", "frontend"],
+            "output_file": "resume_master.html"
+        },
         "embedded": {
             "name": "Embedded Systems & Firmware Specialist",
             "summary": "Senior Software Engineer with 5+ years of experience in **Embedded Systems**, **BSP Integration**, and **Hardware Validation Architecture**. Expert in navigating low-level hardware-software interfaces, developing UEFI/BIOS diagnostic suites, and optimizing build infrastructure for massive production scales. Proven track record of leading cross-functional teams to resolve critical hardware blocks and defining department-wide development conventions.",
@@ -8,7 +21,7 @@
                 "Deterministic BIOS OCR Engine",
                 "Firmware Configuration & NVRAM Persistence Validation",
                 "Cross-Interface Consistency Validation Framework",
-                "OpenClaw: Log Matrix & RAG Diagnostic Platform"
+                "OpenClaw: Log Matrix & Semantic Diagnostic Platform"
             ],
             "skills_priority": ["domain", "infrastructure", "backend", "frontend"],
             "output_file": "resume_embedded.html"
@@ -25,6 +38,19 @@
             ],
             "skills_priority": ["backend", "frontend", "infrastructure", "domain"],
             "output_file": "resume_fullstack.html"
+        },
+        "tailored": {
+            "name": "Software Engineer III (Performance Infrastructure)",
+            "summary": "Software Engineer with 5+ years of experience specialized in **Performance Infrastructure**, **Test Automation Architecture**, and **Distributed Systems**. Expert in designing high-fidelity measurement tools and automated regression testing pipelines that accelerate **New Product Introduction (NPI)** cycles. Proven ability to architect comprehensive **dashboards** for real-time visibility into system health, systematically isolating components and triaging complex failures in large-scale environments.",
+            "featured_projects": [
+                "OpenClaw: Log Matrix & Semantic Diagnostic Platform",
+                "NVSSVT Enterprise Automation Platform",
+                "Jetson Orin BSP & Infrastructure Optimization",
+                "Cross-Interface Consistency Validation Framework",
+                "Unified Engineering Productivity Portal"
+            ],
+            "skills_priority": ["infrastructure", "domain", "backend", "frontend"],
+            "output_file": "resume_tailored.html"
         }
     }
 }

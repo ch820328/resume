@@ -48,28 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
         chatBody.scrollTop = chatBody.scrollHeight;
 
         try {
-            // 3. Call RAG API (using dynamic hostname to fix network issues)
-            const apiUrl = `http://${window.location.hostname}:46579/chat`;
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: text })
-            });
-            const data = await response.json();
-
-            // Remove loading
+            // Mock response
+            await new Promise(resolve => setTimeout(resolve, 1000));
             document.getElementById(loadingId).remove();
-
-            // Show AI response
-            if (data.reply) {
-                appendMessage(false, data.reply);
-                // Optionally show sources
-                // if (data.sources && data.sources.length > 0) {
-                //    appendMessage(false, `(Sources: ${data.sources.join(', ')})`);
-                // }
-            } else {
-                appendMessage(false, "Oops, I couldn't process that.");
-            }
+            appendMessage(false, "I am a static interface. The automated diagnostic backend has been removed.");
 
         } catch (error) {
             document.getElementById(loadingId).remove();

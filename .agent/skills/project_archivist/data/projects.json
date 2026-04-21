@@ -265,12 +265,12 @@
                     "documents_path": ".agent/skills/project_archivist/documents/openclaw_mr"
                 },
                 {
-                    "name": "OpenClaw: Log Matrix & RAG Diagnostic Platform",
+                    "name": "OpenClaw: Log Matrix & Semantic Diagnostic Platform",
                     "role": "Lead Architect & Backend Engineer (AI Productivity)",
                     "company": "Personal Project / Open Source",
                     "date": "2024 - Present",
                     "tags": [
-                        "RAG (Vector Indexing)",
+                        "Knowledge Indexing",
                         "Log Pattern Analysis",
                         "FAIL Test Diagnosis",
                         "Automated Root-Cause",
@@ -278,13 +278,13 @@
                     ],
                     "details": {
                         "challenge": "Diagnostic delays in complex firmware test logs (FAIL tests) often stall validation pipelines, where root causes are buried in megabytes of raw log data across disparate subsystems.",
-                        "solution": "Built a unified **Log Matrix Pipeline** integrating **RAG (Retrieval-Augmented Generation)**. Optimized context ingestion by indexing the codebase to correlate log failures with actual implementation logic using semantic search.",
+                        "solution": "Built a unified **Log Matrix Pipeline** integrating **Semantic Search**. Optimized context ingestion by indexing the codebase to correlate log failures with actual implementation logic using high-fidelity contextual matching.",
                         "impact": "Significantly accelerated **root-cause triage** for platform blocks. Transformed raw log data into actionable diagnostic reports (Category, Action Items, Severity), reducing the manual effort required for complex firmware debugging."
                     },
                     "tech_stack": [
                         "Node.js / TypeScript",
                         "Python (Log Parsing)",
-                        "Vector Database (RAG)",
+                        "Vector Database (Semantic Search)",
                         "LLM Multi-Agent Flow",
                         "BullMQ / Redis"
                     ],

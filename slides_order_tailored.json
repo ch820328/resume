@@ -1,0 +1,12 @@
+{
+    "suffix": "tailored",
+    "slides": [
+        "tailored_00_profile.html",
+        "tailored_openclaw_log.html",
+        "tailored_nvssvt_portal.html",
+        "tailored_jetson_bsp.html",
+        "tailored_redfish_smbios_check.html",
+        "tailored_central_dashboard.html",
+        "99_end.html"
+    ]
+}

@@ -1,6 +1,6 @@
-# 面試指南：OpenClaw Log Matrix & RAG 診斷平台 (STAR 答題)
+# 面試指南：OpenClaw Log Matrix & Semantic Diagnosis 診斷平台 (STAR 答題)
 
-本指南專注於自動化測試失敗診斷之技術挑戰、RAG 檢索策略與系統整合。
+本指南專注於自動化測試失敗診斷之技術挑戰、Semantic Diagnosis 檢索策略與系統整合。
 
 ---
 
@@ -8,20 +8,20 @@
 - **Situation**: 在大量 Firmware 測試中，`rf_debug` 或 `BiosLib` 的 Log 可能高達數萬行，傳統做法是由工程師手工搜尋關鍵字，耗時且效率低，且常面臨「知其然而不知其所以然」。
 - **Task**: 建立一個能從海量 Log 中自動「讀懂」根因並連結 codebase 的 AI 工具。
 - **Action**: 
-    - 實作了 **Log Matrix Pipeline**：透過專家模式篩選有效 Log 區段，並決定是否啟動 RAG。
-    - **檢索增強生成 (RAG)**：建立了 codebase 向量索引，當 Log 分析提到特定函式或錯誤模組時，AI 會主動搜尋實作原始碼並併入分析 Context。
+    - 實作了 **Log Matrix Pipeline**：透過專家模式篩選有效 Log 區段，並決定是否啟動 Semantic Diagnosis。
+    - **語義檢索診斷 (Semantic Diagnosis)**：建立了 codebase 向量索引，當 Log 分析提到特定函式或錯誤模組時，AI 會主動搜尋實作原始碼並併入分析 Context。
     - 結合 **FAIL 展開分析器**：針對測試資料庫中的 FAIL 項點擊即分析，產出結構化建議。
 - **Result**: 顯著加速了 **FAIL 測試的初步排查效率**。診斷報告包含「可能的根因、建議 Action 與嚴重度」，將原本需要數小時的手動 Log 分析縮短至分鐘級別的初步定位。
 
 ---
 
-### Q2: "RAG 檢索時，如何避免檢索到無關的程式碼（Noisy Context）？"
+### Q2: "Semantic Diagnosis 檢索時，如何避免檢索到無關的程式碼（Noisy Context）？"
 - **Situation**: 程式碼庫可能包含數十個 Repo，隨意檢索會帶入大量冗餘資訊，干擾 LLM 判斷。
 - **Task**: 提高檢索精度，確保 AI 只看到與 FAIL log 真正相關的實作。
 - **Action**: 
     - 實作了 **白名單邊界規則 (Whitelist Boundary)**：檢索範圍被嚴格限制在與測試項目對應的專案路徑內。
     - **日誌專家指派 (Log Master)**：AI 會先判讀日誌中的測項名稱 (e.g. `BIOS_Update`)，再針對該模組進行關鍵字加權搜尋。
-    - 紀錄 **RAG Metadata**：在最終報告中列出 `codebase_rag_files`，讓使用者看得到 AI 參考了哪些檔案，增加透明度。
+    - 紀錄 **Semantic Diagnosis Metadata**：在最終報告中列出 `codebase_rag_files`，讓使用者看得到 AI 參考了哪些檔案，增加透明度。
 - **Result**: 檢索準確度顯著提升，LLM 的幻覺 (Hallucination) 發生率降低，診斷結果的可信度與工程師的真實代碼實作高度掛鉤。
 
 ---

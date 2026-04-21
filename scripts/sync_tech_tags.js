@@ -46,22 +46,22 @@ function syncTechTags() {
 
     const data = loadProjects();
 
-    // Map project names to slide files
+    // Map project names to slide files (and their tailored counterparts)
     const projectSlideMap = {
-        'Jetson Build Service & Automation Portal': null, // No slide yet
-        "OpenClaw AI Merge Request Review Service": "openclaw_mr.html",
-        "OpenClaw: Log Matrix & RAG Diagnostic Platform": "openclaw_log.html",
-        'Jetson Orin BSP & Infrastructure Optimization': 'jetson_bsp.html',
-        'Test-Driven Infrastructure as Code (Ansible)': 'ansible.html',
-        'Unified Engineering Productivity Portal': 'central_dashboard.html',
-        'Firmware Configuration & NVRAM Persistence Validation': 'bios_preserve_test.html',
-        "Deterministic BIOS OCR Engine": "pic_transcript.html",
-        "Cross-Interface Consistency Validation Framework": "redfish_smbios_check.html",
-        'NVSSVT Enterprise Automation Platform': 'nvssvt_portal.html',
-        'Cross-Platform Business Intelligence Engine': 'issue_analytics.html',
-        'GitLab CI Automated Quality Gate': 'gitlab_ci.html',
-        'Secure CD & Automated Release Engineering': 'gitlab_cd.html',
-        'Offline-First Distributed System (Baby Tracker)': 'baby_tracker.html'
+        'Jetson Build Service & Automation Portal': [],
+        "OpenClaw AI Merge Request Review Service": ["openclaw_mr.html"],
+        "OpenClaw: Log Matrix & Semantic Diagnostic Platform": ["openclaw_log.html", "tailored_openclaw_log.html"],
+        'Jetson Orin BSP & Infrastructure Optimization': ["jetson_bsp.html", "tailored_jetson_bsp.html"],
+        'Test-Driven Infrastructure as Code (Ansible)': ["ansible.html"],
+        'Unified Engineering Productivity Portal': ["central_dashboard.html", "tailored_central_dashboard.html"],
+        'Firmware Configuration & NVRAM Persistence Validation': ["bios_preserve_test.html"],
+        "Deterministic BIOS OCR Engine": ["pic_transcript.html"],
+        "Cross-Interface Consistency Validation Framework": ["redfish_smbios_check.html", "tailored_redfish_smbios_check.html"],
+        'NVSSVT Enterprise Automation Platform': ["nvssvt_portal.html", "tailored_nvssvt_portal.html"],
+        'Cross-Platform Business Intelligence Engine': ["issue_analytics.html"],
+        'GitLab CI Automated Quality Gate': ["gitlab_ci.html"],
+        'Secure CD & Automated Release Engineering': ["gitlab_cd.html"],
+        'Offline-First Distributed System (Baby Tracker)': ["baby_tracker.html"]
     };
 
     for (const categoryKey in data.project_categories) {
@@ -70,11 +70,13 @@ function syncTechTags() {
         if (!category.projects) continue;
 
         category.projects.forEach(project => {
-            const slideFile = projectSlideMap[project.name];
+            const slideFiles = projectSlideMap[project.name];
 
-            if (slideFile && project.tags) {
-                updateSlideTechFooter(slideFile, project.tags);
-            } else if (!slideFile) {
+            if (slideFiles && slideFiles.length > 0 && project.tags) {
+                slideFiles.forEach(file => {
+                    updateSlideTechFooter(file, project.tags);
+                });
+            } else if (!slideFiles || slideFiles.length === 0) {
                 console.log(`ℹ️  No slide mapping for: ${project.name}`);
             }
         });

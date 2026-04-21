@@ -9,7 +9,7 @@ const DIST_DIR = path.join(__dirname, '../'); // We decided to keep index.html i
 // If we move index.html to dist/, we need to adjust links to ../styles.css
 // OR we output index.html to Root (overwriting the old one).
 // Outputting to Root is safer for existing relative paths (images, css, js).
-const OUTPUT_FILE = path.join(__dirname, '../index.html');
+const OUTPUT_DIR = path.join(__dirname, '../output'); 
 
 const templatePath = path.join(SRC_DIR, 'template.html');
 const DEFAULT_ORDER_FILE = path.join(__dirname, '../slides_order.json');
@@ -52,7 +52,11 @@ function build() {
     }
 
     const OUTPUT_FILENAME = suffix ? `index_${suffix}.html` : 'index.html';
-    const OUTPUT_FILE = path.join(__dirname, '../', OUTPUT_FILENAME);
+    const OUTPUT_FILE = path.join(OUTPUT_DIR, OUTPUT_FILENAME);
+
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+    }
 
     if (!fs.existsSync(templatePath)) {
         console.error('❌ Template not found!');
@@ -87,11 +91,19 @@ function build() {
     });
 
     // 2. Inject into Template
-    const finalHtml = template
+    let finalHtml = template
         .replace('<!-- {{SLIDES_PLACEHOLDER}} -->', slidesHtml)
         .replace('<!-- {{NAV_DOTS_PLACEHOLDER}} -->', navDotsHtml);
 
-    // 3. Write Output
+    // 3. Adjust Paths for Output Subdirectory
+    finalHtml = finalHtml
+        .replace(/href="styles\.css"/g, 'href="../styles.css"')
+        .replace(/href="chat_widget\.css"/g, 'href="../chat_widget.css"')
+        .replace(/src="script\.js"/g, 'src="../script.js"')
+        .replace(/src="chat_widget\.js"/g, 'src="../chat_widget.js"')
+        .replace(/src="src\/image\//g, 'src="../src/image/');
+
+    // 4. Write Output
     fs.writeFileSync(OUTPUT_FILE, finalHtml);
     console.log(`✅ Successfully built ${OUTPUT_FILENAME} with ${slideFiles.length} slides.`);
 }

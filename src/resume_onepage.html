@@ -8,28 +8,28 @@
     <style>
         :root {
             --primary-color: #0056b3;
-            /* Classic Blue from reference */
             --text-color: #333;
             --date-column-width: 120px;
         }
 
         body {
-            font-family: 'Calibri', 'Arial', sans-serif;
+            font-family: 'Inter', 'Calibri', 'Arial', sans-serif;
             color: var(--text-color);
-            line-height: 1.3;
+            line-height: 1.4;
             margin: 0;
             padding: 0;
-            font-size: 9.5pt;
+            font-size: 10.5pt;
         }
 
         .page {
             width: 210mm;
-            min-height: 297mm;
-            padding: 8mm 10mm;
+            height: 297mm;
+            padding: 10mm;
             margin: 0 auto;
             background: white;
             box-sizing: border-box;
             position: relative;
+            overflow: hidden;
         }
 
         /* Header */
@@ -37,32 +37,33 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.6rem;
-            border-bottom: 1px solid #ccc;
+            margin-bottom: 0.8rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
         }
 
         .header-left h1 {
             font-size: 24pt;
             margin: 0;
             font-weight: bold;
+            color: #000;
+            font-family: 'Outfit', sans-serif;
         }
 
         .header-middle {
             text-align: right;
-            font-size: 9.5pt;
-            line-height: 1.4;
+            font-size: 10pt;
+            line-height: 1.5;
             flex-grow: 1;
-            padding-right: 1rem;
+            padding-right: 25px;
         }
 
         .header-right img {
-            width: 24mm;
-            height: 32mm;
-            /* Aspect ratio roughly 3:4 */
+            width: 28mm;
+            height: 28mm;
             object-fit: cover;
             border-radius: 50%;
-            /* Rounded as per image */
-            border: 1px solid #eee;
+            border: 2px solid #eee;
         }
 
         /* Sections */
@@ -71,18 +72,19 @@
         }
 
         h2 {
-            font-size: 13pt;
+            font-size: 14pt;
             color: var(--primary-color);
             font-style: italic;
             border-bottom: 2px solid var(--primary-color);
-            margin-bottom: 0.4rem;
-            padding-bottom: 0.1rem;
+            margin-top: 0.4rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 2px;
         }
 
         /* Layout for Dates + Content */
         .entry {
             display: flex;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
         }
 
         .date-col {
@@ -90,6 +92,7 @@
             font-weight: bold;
             font-style: italic;
             flex-shrink: 0;
+            color: #444;
         }
 
         .content-col {
@@ -98,30 +101,26 @@
 
         .job-header {
             font-weight: bold;
-            font-size: 10.5pt;
-            margin-bottom: 0.1rem;
+            font-size: 11pt;
+            margin-bottom: 3px;
         }
 
-        /* Bullet Points grouping */
-        .topic-group {
-            margin-bottom: 0.8rem;
-        }
-
-        .topic-title {
-            font-weight: bold;
-            font-size: 10.5pt;
-            margin-bottom: 0.3rem;
-            color: #444;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 30px;
+            padding-left: 10px;
+            font-size: 10pt;
         }
 
         ul {
-            margin: 0.1rem 0;
-            padding-left: 1.2rem;
-            line-height: 1.4;
+            margin: 0.2rem 0;
+            padding-left: 1.5rem;
+            line-height: 1.45;
         }
 
         li {
-            margin-bottom: 0.2rem;
+            margin-bottom: 4px;
             text-align: justify;
         }
 
@@ -129,32 +128,13 @@
             color: var(--primary-color);
         }
 
-        .education-entry {
-            display: flex;
-        }
-
-        .skills-list {
-            padding-left: var(--date-column-width);
-        }
-
         @media print {
-            body {
-                -webkit-print-color-adjust: exact;
+            body { 
+                -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact;
-                margin: 2;
+                margin: 0; 
             }
-
-            .page {
-                width: 210mm;
-                height: 297mm;
-                padding: 10mm;
-                /* Keep the padding in print! */
-                margin: 2 auto;
-                border: none;
-                box-shadow: none;
-            }
-
-            /* Hide browser default header/footer if possible, though mostly controlled by print dialog */
+            .page { width: 210mm; height: 297mm; padding: 10mm; margin: 0; border: none; box-shadow: none; overflow: hidden; }
         }
     </style>
 </head>
@@ -165,53 +145,47 @@
         <header>
             <div class="header-left">
                 <h1 id="name">Chun-Yu, Tsai</h1>
-                <div id="title" style="color:#666; font-size:12pt; margin-top:2px;">Senior Software Engineer</div>
+                <div id="title" style="color:#666; font-size:12pt; margin-top:4px;">Senior Software Engineer</div>
             </div>
             <div class="header-middle">
-                <div>Email: ch03282012@gmail.com</div>
-                <div>GitHub: <a href="https://github.com/ch820328"
-                        style="color: var(--primary-color); text-decoration: none;">github.com/ch820328</a></div>
-                <div>LinkedIn: <a href="https://www.linkedin.com/in/chun-yu-tsai-5614371b5/"
-                        style="color: var(--primary-color); text-decoration: none;">linkedin.com/in/chun-yu-tsai</a>
-                </div>
+                [CONTACT_INFO]
+            </div>
+            <div class="header-right">
+                <img src="../src/image/profile_photo.png" alt="Profile Photo">
             </div>
         </header>
 
         <!-- Summary Section -->
         <section id="summary-section">
             <h2>Summary</h2>
-            <div style="padding-left: var(--date-column-width);">
-                <p id="core-competency">
-                    [Core Competency Placeholder]
+            <div style="padding-left: 10px;">
+                <p id="core-competency" style="margin:0; text-align: justify;">
+                    [SUMMARY_CONTENT]
                 </p>
             </div>
         </section>
 
-        <section>
+        <!-- Education Section -->
+        <section id="education-section">
             <h2>Education</h2>
             <div id="education-container">
-                <!-- Education entries go here -->
+                <!-- Education injected here -->
             </div>
         </section>
 
         <!-- Skills Section -->
         <section id="skills-section">
             <h2>Skills</h2>
-            <div class="skills-list">
-                <div id="must-to-do-skills" style="margin-bottom: 5px;">
-                    <strong>Must-to-do:</strong> <span id="must-to-do-list"></span>
-                </div>
-                <div id="tech-skills">
-                    <strong>Languages & Tools:</strong> <span id="languages-tools-list"></span>
-                </div>
+            <div class="skills-grid">
+                [SKILLS_LIST]
             </div>
         </section>
 
         <!-- Experience Section (Injected by JS) -->
-        <section>
+        <section id="experience-section">
             <h2>Experience</h2>
             <div id="experience-container">
-                <!-- Entries go here -->
+                <!-- Experience injected here -->
             </div>
         </section>
 

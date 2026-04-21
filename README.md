@@ -18,4 +18,4 @@ A modern, interactive web-based presentation built with HTML, CSS, and JavaScrip
 
 ## Development
 
-For instructions on how to add new slides, customize layouts, or modify the content, please refer to the [Development Guide](DEVELOPMENT.md).
+For instructions on how to add new slides, customize layouts, or modify the content, please refer to the [Development Guide](docs/development/DEVELOPMENT.md).

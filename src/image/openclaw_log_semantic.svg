@@ -4,7 +4,7 @@
       <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.10"/>
     </filter>
     
-    <linearGradient id="ragGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <linearGradient id="semanticGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#eff6ff"/>
       <stop offset="100%" stop-color="#dbeafe"/>
     </linearGradient>
@@ -33,7 +33,7 @@
   </defs>
 
   <!-- Title -->
-  <text x="200" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="16" fill="#1e293b">OpenClaw: Log Matrix &amp; RAG</text>
+  <text x="200" y="20" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="16" fill="#1e293b">OpenClaw: Log Matrix &amp; Automated Diagnosis</text>
   <text x="200" y="38" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="11" fill="#64748b">Automated Log Contextualization &amp; Diagnosis</text>
 
   <!-- TOP TIER: Sources -->
@@ -61,10 +61,10 @@
     <rect x="0" y="20" width="340" height="10" fill="url(#headerGrad)"/>
     <text x="170" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#1e3a8a">Log Diagnostic Pipeline</text>
     
-    <!-- RAG RETRIEVAL -->
+    <!-- SEMANTIC RETRIEVAL -->
     <g transform="translate(30, 45)">
-      <rect x="0" y="0" width="280" height="50" rx="6" fill="url(#ragGrad)" stroke="#3b82f6" stroke-width="1"/>
-      <text x="140" y="18" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#1e40af">RAG Engine: Semantic Search</text>
+      <rect x="0" y="0" width="280" height="50" rx="6" fill="url(#semanticGrad)" stroke="#3b82f6" stroke-width="1"/>
+      <text x="140" y="18" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#1e40af">Semantic Engine: Contextual Search</text>
       <text x="140" y="34" text-anchor="middle" font-family="'Roboto Mono', monospace" font-size="9" fill="#1e3a8a">Query(FAIL Log) → Fetch(Source Code)</text>
     </g>
 

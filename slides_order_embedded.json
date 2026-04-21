@@ -1,0 +1,11 @@
+{
+    "suffix": "embedded",
+    "slides": [
+        "00_profile.html",
+        "jetson_bsp.html",
+        "bios_preserve_test.html",
+        "redfish_smbios_check.html",
+        "ansible.html",
+        "99_end.html"
+    ]
+}
