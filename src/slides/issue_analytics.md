@@ -1,47 +1,56 @@
-# Interview Guide: Cross-Platform Business Intelligence Engine
+# 面試備忘錄：技術治理與績效分析平台 (Issue Analytics)
 
-## 🎤 簡報講稿 (Elevator Pitch)
-*   **🇺🇸 English (1-min Pitch):** "I built an internal dashboard using Laravel to pull data from Redmine, Excel, and other project boards. By cleaning up the data and running background jobs to summarize it, the dashboard loads instantly and gives managers a quick view of team blockers and ticket trends."
-*   **🇹🇼 中文 (1 分鐘講稿):** 「我用 Laravel 寫了一個內部儀表板，負責把 Redmine、Excel 還有專案看板的資料統整起來。透過統一資料格式，加上在背景跑排程先把數據算好，這個系統載入速度很快，能讓主管馬上看出專案哪裡卡住或是整體的進度趨勢。」
-
-## 一、 資料整合與 ETL (Data Integration & ETL)
-
-### Q: 既然資料來源包含 Redmine, Excel 和 Project Board，你如何處理「資料清洗」與欄位不統一的問題? / How do you handle data cleaning and schema mapping from disparate sources?
-*   **🇺🇸 English:** "I created a standard format we wanted everything to end up in. Then, I wrote small adapters for each system like Redmine or the boards, to translate their statuses into our standard format. For Excel uploads, I added strict checks upfront so bad data gets rejected before it even enters the database."
-*   **🇹🇼 中文:** 「我先訂好一個我們想要的通用格式（例如只留幾種狀態）。然後針對 Redmine 或看板各寫一個轉接程式，把他們原本的狀態對應到我們的標準。至於 Excel 匯入，我在上傳那一關就加了嚴格的檢查，格式不對直接擋掉，不會讓髒資料進到資料庫。」
-
-## 二、 效能與擴展性 (Performance & Scalability)
-
-### Q: 當資料量變大時，複雜的 SQL 統計會變得很慢，你如何優化查詢效能? / How do you optimize complex SQL queries for large datasets?
-*   **🇺🇸 English:** "I don't run heavy SQL joins when the user loads the page. Instead, I use cron jobs to calculate the totals and metrics in the background every hour, and save them in a summary table. So when the frontend asks for data, it just reads that small table, which takes milliseconds."
-*   **🇹🇼 中文:** 「我不會在打開網頁的當下去撈好幾個大表做計算。我是設定每小時在背景跑排程，先把統計數據算完，存到一張總表裡。前端抓資料時，只要讀這張已經算好的小表就好，所以網頁幾乎是秒開。」
-
-## 三、 框架選型 (Technology Choice)
-
-### Q: 為什麼選擇 Laravel 搭配 PHP? / Why Laravel over Python/Django for Data Analytics?
-*   **🇺🇸 English:** "Python is great for data, but for an internal tool, development speed is key. Laravel has everything built-in—auth, database tools, queues—which made it really fast to spin up a secure web app that fits into our existing PHP setup."
-*   **🇹🇼 中文:** 「雖然 Python 很適合算資料，但做內部工具，開發速度最重要。Laravel 的套件很完整，像是權限控制、資料庫連線、背景排程都包好了。這讓我能很快把一個安全的網頁系統趕出來，也比較好跟公司現有的 PHP 伺服器整合。」
-
-## 四、 商業影響力 (Business Impact)
-
-### Q: 你如何定義「Unhealthy Rate」? 這個指標真的能反映團隊效率嗎? / How did you define "Unhealthy Rate" and why?
-*   **🇺🇸 English:** "I tracked tickets that hadn't been updated for over 7 days. Just counting closed tickets doesn't tell you much. Seeing the 'Unhealthy Rate' go up helps management catch team blockers early, so they can step in and help before a deadline is missed."
-*   **🇹🇼 中文:** 「我特別去抓那些『超過 7 天沒動靜的票』。因為只看關了多少票不夠準確，『不健康率』能直接點出哪裡卡關或沒人在管。只要看到這個比例往上飆，主管就可以提早發現問題去幫忙，而不是等到專案快 deadine 了才發現做不完。」
+這張投影片的核心在於：**將混亂的工單數據轉化為具備指導意義的「工程指標」，透過數據建模預測項目風險。**
 
 ---
 
-## 🚀 Google L4/L5 System Design & Architecture Deep Dives
+### 1. 💬 口語說明 (Colloquial Explanation)
 
-### [L4 深度題] Extending Design Patterns for New Data Sources (新資料源的無縫擴展)
-*   **🇺🇸 English:** "If the company mandates adding Jira as a 4th data source next month, how does your backend architecture handle this without rewriting the core analytics engine?"
-*   **🇹🇼 中文:** 「如果公司下個月強制要求把 Jira 接入變成第四個資料來源，你的後端架構如何在不改寫核心統計引擎的狀況下吃下這份需求？」
-*   **💡 Expected Defense:**
-    *   *Design:* "I separated the data fetching from the main logic using the Adapter Pattern. The core system only expects our standard data object. So to add Jira, someone just needs to write a Jira adapter that converts Jira's API response into our standard object. It won't break the existing Redmine or Excel logic at all."
-    *   *(中文防禦：我有把串接資料跟核心計算分開做。核心系統只認我們自己的標準格式，所以要加 Jira 的話，只要寫一個 Jira 的轉接器，把 Jira 的 API 格式轉換成我們的標準格式丟過去就好。這樣完全不會動到原本算好的系統，也不會弄壞舊的功能。)*
+*   **🇺🇸 English (Simple & Direct):**
+    "Tracking technical debt across many projects is usually a mess of spreadsheets. I built an 'Issue Analytics Hub' to turn that raw data into actionable insights. I developed a special 'Unhealthy Rate' algorithm that uses data like issue aging and priority shifts to flag projects that are falling behind. It’s an early-warning system that helps managers move resources to where they are needed most before a project fails."
+    
+*   **🇹🇼 中文 (口語精簡):**
+    「要追蹤這麼多專案的技術債通常很混亂。我開發了這個『Issue Analytics Hub』，把原始數據轉化為有意義的指標。我設計了一套專門的『不健康率演算法』，根據工單逾期天數和優先級變動來找出落後的專案。它就像一個預警系統，幫助主管在專案出問題前，就根據數據把資源調配到最需要的地方。」
 
-### [L5 架構題] Data Governance & Row-Level Security (資料分享與權限控管)
-*   **🇺🇸 English:** "This platform holds productivity metrics for 500+ engineers. How did you design the backend to ensure a Team Lead only sees their 10 subordinates, while a Director sees the aggregate, without manually writing rigid database queries for every possible role?"
-*   **🇹🇼 中文:** 「這個平台握有五百個工程師的績效數據。你如何設計後端，確保一般主管只能看到他底下 10 個人，而處長可以看到全局？你不可能為了每個階層都去寫死 (Hardcode) 不同的 SQL 語法吧？」
-*   **💡 Expected Defense:**
-    *   *Design:* "I used database query scopes. When a user logs in, we know who reports to them. The database automatically adds a filter to only show records linked to their team members on every query. This saves us from having to manually check permissions in every single API endpoint, preventing accidental data leaks."
-    *   *(中文防禦：我是用 Laravel 內建的 Global Scope 在資料庫層做控管。當使用者登入後，系統知道他底下有哪些人，並在底層自動幫每個資料庫查詢加上『只包含下屬資料』的過濾條件。這樣我們就不用在每個 API 裡面手動寫權限判斷，也避免了工程師忘記寫而導致資料外洩的風險。)*
+---
+
+### 2. ❓ 模擬問答 (Possible Q&A - Google/Amazon Hybrid Strategy)
+
+1.  **問：「為什麼要自己寫演算法來算『不健康率』？這跟一般的 KPI 有什麼不同？」(Invent and Simplify / Dive Deep)**
+    *   **🇺🇸 English**: "Standard KPIs are often too static. My algorithm uses a **Weighted Average** of multiple signals—like how long a bug stays open and its re-open rate. It's designed to capture the 'momentum' of a project, identifying risks two weeks before they become obvious. It simplifies complex project health into a single, trustable metric."
+    *   **🇹🇼 中文**: 「標準 KPI 通常太僵化。我的演算法採用了多種訊號的**加權平均**——例如 Bug 開啟多久以及重啟率。它的目的是捕捉專案的『動量』，在風險變得明顯前兩週就識別出來。它把複雜的專案健康度簡化成一個可信的指標。」
+
+2.  **問：「在開發這套平台時，你最擔心的『數據偏誤』是什麼？」(Inner Monologue)**
+    *   **🇺🇸 English**: "I was worried that teams would start 'gaming the system'—closing tickets fast just to improve their score. I realized that a single metric is dangerous. This pushed me to include **Re-open Rate** as a stabilizer. If you close things too fast and they bounce back, your score actually gets worse. I wanted to ensure we were measuring real progress, not just activity."
+    *   **🇹🇼 中文**: 「我擔心團隊會開始『鑽系統漏洞』——為了衝高分而隨便關閉工單。我意識到單一指標很危險，這促使我加入 **Re-open Rate (重啟率)** 作為穩定器。如果你關得太快但問題沒修好，分數反而會變差。我要確保我們測量的是真實進度，而不只是虛假活動。」
+
+3.  **問：「當資料量增加到百萬級別時，你如何維持查詢效能？」(Dive Deep / Performance Awareness)**
+    *   **🇺🇸 English**: "Querying millions of rows for live reports is slow and memory-intensive. I implemented **Materialized Views** and **Summary Tables**. We pre-calculate high-cost aggregations in the background, so the frontend only reads 'lightweight' results. This ensures millisecond response times regardless of data volume."
+    *   **🇹🇼 中文**: 「對百萬行數據進行實時查詢既慢又耗內存。我實作了**物化視圖 (Materialized Views)** 與**統計摘要表**。我們在背景預先計算高成本的聚合運算，前端只讀取『輕量級』結果。這確保了無論資料量多大，都能維持毫秒級的響應速度。」
+
+4.  **問：「為什麼選擇 Laravel 而非 Python 框架？」(Trade-offs / Decision Making)**
+    *   **🇺🇸 English**: "For this specific project, I prioritized **Developer Velocity** and built-in tooling. Laravel's Eloquent ORM and task scheduling allowed me to build the full data aggregation pipeline and admin UI in half the time it would take in Flask. I chose the tool that delivered the highest ROI for the business."
+    *   **🇹🇼 中文**: 「針對這個專案，我優先考慮了**開發速度**與內建工具。Laravel 的 ORM 與任務排程讓我只花了一半的時間就蓋好數據聚合管線與管理介面。我選擇了對業務來說投資報酬率 (ROI) 最高的工具。」
+
+5.  **問：「這種『量化治理』的經驗，如何幫助你應對 Google 的規模？」(Future Pacing)**
+    *   **🇺🇸 English**: "At Google's scale, you can't manage by intuition; you must manage by metrics. This project taught me how to distill massive noise into a few high-signal indicators. I will bring this data-driven governance mindset to Google to help our teams identify and eliminate technical debt efficiently."
+    *   **🇹🇼 中文**: 「在 Google 的規模下，你不能靠直覺管理，必須靠指標。這個專案教會我如何從海量雜訊中萃取高訊號指標。我會將這種數據驅動的治理思維帶到 Google，幫助團隊高效地識別並消除技術債。」
+
+6.  **問：「如果原始系統的 API 欄位改了，你的分析平台會崩潰嗎？」(High Standards / Maintenance)**
+    *   **🇺🇸 English**: "No, I built a **Data Schema Mapping** layer. The core algorithm doesn't touch raw API fields; it uses an internal `MetricModel`. If the source changes, I only update the mapper. This ensures our technical governance remains stable even when the underlying tools are in flux."
+    *   **🇹🇼 中文**: 「不會，我建立了**數據架構映射層 (Mapping Layer)**。核心演算法不會直接碰原始 API 欄位，而是使用內部的 `MetricModel`。如果源頭改了，我只要更新映射關係。這確保了即使底層工具變動，我們的技術治理依然穩定。」
+
+---
+
+### 3. 📚 技術名詞解析 (Technical Glossary)
+
+*   **🇺🇸 Weighted Algorithm / 🇹🇼 加權演算法**:
+    A method of calculating a value where different factors are given different levels of importance (weights). (根據不同因素的重要性（權重）來計算數值的方法。)
+*   **🇺🇸 Issue Aging / 🇹🇼 工單逾期/老化**:
+    The length of time a task or bug remains unresolved. (任務或 Bug 持續未解決的時間長度。)
+*   **🇺🇸 Materialized Views / 🇹🇼 物化視圖**:
+    A database object that contains the results of a query, stored physically to improve query performance. (存儲查詢結果的資料庫對象，實體化存儲以提升查詢效能。)
+*   **🇺🇸 Re-open Rate / 🇹🇼 重啟率**:
+    The frequency at which closed issues are reopened, often used as a proxy for fix quality. (已關閉工單被重新開啟的頻率，通常用來衡量修復品質。)
+*   **🇺🇸 Service Pattern / 🇹🇼 服務模式**:
+    A design pattern that encapsulates business logic into separate, reusable classes (Services). (將業務邏輯封裝進獨立、可複用類別（Services）的設計模式。)

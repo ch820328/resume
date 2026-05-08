@@ -38,7 +38,7 @@
                         "solution": "Challenged the 'AI-for-everything' status quo with a data-driven approach. Developed a lightweight, **multi-threaded CV engine** using OpenCV with custom, dynamic **row-grouping logic** to process spatial layouts.",
                         "impact": "Pushed accuracy to **>99%** with millisecond latency, completely outperforming heavy ML models. This unconventional approach fully liberated the QA team, automating visual regression testing entirely."
                     },
-                    "documents_path": ".agent/skills/project_archivist/documents/issue_analytics"
+                    "documents_path": ".agent/skills/project_archivist/documents/bios_ocr"
                 },
                 {
                     "name": "Jetson Build Service & Automation Portal",

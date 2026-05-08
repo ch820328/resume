@@ -1,8 +1,8 @@
-<section class="slide" id="jetson-bsp-optimization">
+<section class="slide" id="jetson_bsp">
     <div class="content-wrapper">
         <div class="slide-header-row">
-            <h2 class="slide-title">Jetson Orin BSP & Infrastructure Optimization</h2>
-            <span class="slide-tag">Embedded Systems & Performance</span>
+            <h2 class="slide-title">Embedded BSP Factory (NVIDIA Edge AI)</h2>
+            <span class="slide-tag">Embedded Systems & Manufacturing</span>
         </div>
         <div class="star-grid">
             <div class="star-content">
@@ -10,7 +10,7 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            Legacy build scripts produced 5.2GB images, exceeding the storage limits for mass-production hardware. Peripheral pin-conflicts further stalled the BSP adaptation, creating a critical bottleneck for the project timeline.
+                            Manual Jetson BSP builds faced high SKU fragmentation and 5GB+ image bottlenecks. "Manual BCT edits" for different memory vendors (RAM Code) risked catastrophic hardware bricking during mass deployment.
                         </span>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            Led cross-functional debug sessions between HW and SW teams to resolve pinmux conflicts. I migrated the image compression to <strong>Zstd</strong> and implemented an automated build pipeline supporting multiple board variants.
+                            Architected a <strong>Full-Stack BSP Factory</strong> using <strong>Go (Gin)</strong> to orchestrate NVIDIA L4T builds. Integrated <strong>Zstd compression</strong> to optimize UPH and implemented <strong>SKU-aware automation</strong> for dynamic RAM Code/BoardID injection.
                         </span>
                     </div>
                 </div>
@@ -26,19 +26,20 @@
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            Reduced image footprint by 30% and improved OTA deployment speed by 40%. This workflow was adopted as the department's standard for all Orin-based projects, streamlining the migration for senior engineering teams.
+                            Increased <strong>Factory UPH by 25%</strong> via Zstd-accelerated image delivery and parallel MassFlash (MFI) orchestration. Eliminated 100% of bricking risks through automated SKU-validation guardrails.
                         </span>
                     </div>
                 </div>
                 <div class="tech-footer">
-                    <span class="tech-tag">Zstd Optimization</span>
-                    <span class="tech-tag">Device Tree (dtsi)</span>
-                    <span class="tech-tag">MassFlash / OTA</span>
-                    <span class="tech-tag">Kernel Tuning</span>
+                    <span class="tech-tag">Embedded Linux</span>
+                    <span class="tech-tag">Go / Gin</span>
+                    <span class="tech-tag">NVIDIA L4T</span>
+                    <span class="tech-tag">Zstd (Compression)</span>
+                    <span class="tech-tag">MassFlash (MFI)</span>
                 </div>
             </div>
             <div class="star-visual">
-                <img src="src/image/jetson_build.svg" alt="Jetson Architecture / Build Flow Diagram"
+                <img src="src/image/jetson_build.svg" alt="Jetson Build Server Architecture"
                     class="slide-image">
             </div>
         </div>

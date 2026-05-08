@@ -1,8 +1,8 @@
-<section class="slide" id="gitlab-cd-automation">
+<section class="slide" id="gitlab_cd">
     <div class="content-wrapper">
         <div class="slide-header-row">
-            <h2 class="slide-title">Secure CD & Automated Release Engineering</h2>
-            <span class="slide-tag">DevOps & Infrastructure</span>
+            <h2 class="slide-title">Automated Release Engineering & IaC</h2>
+            <span class="slide-tag">Systems Reliability & DevOps</span>
         </div>
         <div class="star-grid">
             <div class="star-content">
@@ -10,7 +10,7 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            Our release process was pretty risky—we were manual-tagging and relying on shared SSH access to production. It lacked a proper audit trail, and human errors during versioning were common.
+                            Manual release processes were constrained by fragmented versioning and the security risk of storing static SSH keys in CI servers. Lack of metadata-driven audit trails led to frequent environment drift.
                         </span>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            I set up a GitLab CD pipeline that handles <strong>Semantic Versioning</strong> automatically based on changelogs. I also built a secure webhook agent to trigger updates, which allowed us to finally retire those old SSH keys.
+                            Engineered a <strong>Zero-Trust CD Pipeline</strong>. Developed a <strong>Dynamic Runner Provisioning</strong> system via Python and GitLab API, and implemented a <strong>Metadata-Driven Release Engine</strong> that parses CHANGELOG.md for fully automated tagging and webhook triggers.
                         </span>
                     </div>
                 </div>
@@ -26,19 +26,20 @@
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            We reached a true <strong>"Zero-Touch" deployment</strong> flow, and releases now take just 3 minutes instead of 15. Every production change is now logged and standardized across our microservices.
+                            Achieved 100% automated synchronization between documentation and production releases. Reduced credential exposure significantly via short-lived token strategies, achieving instantaneous atomic deployment.
                         </span>
                     </div>
                 </div>
                 <div class="tech-footer">
-                    <span class="tech-tag">GitLab CI/CD</span>
-                    <span class="tech-tag">Semantic Versioning</span>
-                    <span class="tech-tag">API-Driven Deploy</span>
-                    <span class="tech-tag">Security Hardening</span>
+                    <span class="tech-tag">GitLab API</span>
+                    <span class="tech-tag">Infrastructure as Code</span>
+                    <span class="tech-tag">Python (Paramiko)</span>
+                    <span class="tech-tag">Automated Tagging</span>
+                    <span class="tech-tag">Webhook Agent</span>
                 </div>
             </div>
             <div class="star-visual">
-                <img src="src/image/release_pipeline.svg" alt="GitLab CD Pipeline" class="slide-image">
+                <img src="src/image/gitlab_cd.svg" alt="Automated Release Architecture" class="slide-image">
             </div>
         </div>
     </div>

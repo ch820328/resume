@@ -1,53 +1,56 @@
-# Interview Guide: Offline-First Distributed System (Baby Tracker)
+# 面試備忘錄：Baby Tracker (選型與整合實戰)
 
-## 🎤 Elevator Pitch (1-Minute)
-*   **🇺🇸 English:** "As the sole architect and engineer, I designed and shipped a production-grade distributed sync engine for a cross-platform caregiving app. The core challenge was multi-device concurrent writes in an offline-first environment. I built a Hierarchical Redis Smart Lock system (Root/Leaf scope), a Redis SETNX Idempotency Middleware to eliminate duplicate writes from network retries, version-based optimistic locking with per-row version columns inside ACID-guaranteed Prisma transactions, and an Elastic Batching pull service to prevent timestamp-boundary data loss. Post-commit, a WebSocket service invalidates cross-device caches in real time. All major design decisions are documented in 5 production ADRs."
-*   **🇹🇼 中文:** 「我以唯一的架構師兼工程師身份，設計並交付了一套生產環境等級的分散式同步引擎。核心挑戰是 Offline-First 環境下的多裝置併發寫入。我構建了分層的 Redis Smart Lock 系統（Family Root 鎖 / Baby Leaf 鎖）、防範網路重試重複寫入的 Redis SETNX 冪等性中間件、基於每列版本號的樂觀鎖定包裹在 Prisma ACID 交易中、以及防止時間戳邊界資料遺失的 Elastic Batching 拉取服務。交易提交後，WebSocket 服務即時讓各裝置的快取失效。所有重大設計決定記錄在 5 個生產等級的 ADR 文件中。」
+這張投影片的核心在於：**展示你如何「聰明選型」並在資源受限的環境下解決實際的同步衝突問題。**
 
-## 🚀 Google L4/L5 Behavioral & Architecture Deep Dive
+---
 
-### [L4/L5 Behavioral] Full Ownership of a Distributed System (從零到生產的完整擁有權)
-*   **❓ Question:** "Tell me about the most complex technical system you've designed and owned end-to-end."
-*   **🇺🇸 English Response:**
-    *   **Context:** I needed a sync engine that felt instant to the user (Offline-First), yet was provably correct—no data loss, no silent overwrites of healthcare data—across concurrent multi-device writes.
-    *   **Action (Ownership):** I wrote all 5 ADRs first, formally evaluating Redlock vs Hybrid Locking, LWW vs CRDT vs Optimistic Locking, and WatermelonDB vs raw SQLite. I then implemented each layer: idempotency middleware, hierarchical locks, optimistic locking inside atomic DB transactions, elastic batching in pull, and WebSocket cache invalidation.
-    *   **Impact:** Zero data corruption in production. Sub-50ms UI response. The system works correctly under double-retry, concurrent multi-device, and offline-to-online transition scenarios.
-*   **🇹🇼 中文回應:**
-    *   **情境:** 我需要一個讓用戶感受瞬間（Offline-First），同時在技術上可以被證明正確的同步引擎——不能有資料遺失，不能靜默覆蓋健康紀錄——而且必須應對多裝置的高併發寫入。
-    *   **行動 (完整擁有):** 我先寫完所有 5 個 ADR，系統性評估了 Redlock vs Hybrid Lock、LWW vs CRDT vs Optimistic Lock、WatermelonDB vs 裸 SQLite。再逐層實作：冪等性中間件、分層鎖、在 ACID 交易內的樂觀鎖、Elastic Batching Pull、以及 WebSocket 快取失效。
-    *   **影響:** 生產環境零資料毀損。UI 感受低於 50ms。系統在雙重重試、多裝置併發、以及離線轉線上的各種情境下均正確運作。
+### 1. 💬 口語說明 (Colloquial Explanation)
 
-### [L4 Architecture] Hierarchical Lock Design — Root vs. Leaf (分層鎖設計的取捨)
-*   **❓ Question:** "You implemented a Root/Leaf hierarchical locking system. Why not always lock at the Family (Root) level? What's the trade-off?"
-*   **🇺🇸 English Defense:**
-    *   "**Trade-off:** A single root lock is simple but creates an unnecessary serialization bottleneck for independent operations."
-    *   "If two caregivers from the same family update different babies simultaneously, a Root lock would force one to wait even though they're touching completely separate data. A Leaf lock per `baby_id` allows true parallelism."
-    *   "The Smart Lock Middleware inspects the incoming payload's table keys. Root-scope tables (e.g., `profile_family`, `food_categories`) require a Root lock. Baby-scoped-only payloads targeting exactly one `baby_id` use a cheaper Leaf lock. Mixed-baby payloads default to Root to prevent deadlocks."
-*   **🇹🇼 中文防禦:**
-    *   「**取捨:** 統一 Root 鎖簡單，但對獨立操作製造了不必要的序列化瓶頸。」
-    *   「若兩個照護者同時更新同家庭不同寶寶的紀錄，Root 鎖會讓其中一個白等。Baby Leaf 鎖允許真正的並行。」
-    *   「Smart Lock 中間件檢查 Payload 的 Table 鍵。Root 範圍的表需要 Root 鎖；只涉及 Baby 範圍且只有單一 `baby_id` 的 Payload 用 Leaf 鎖；混合 Baby 的 Payload 預設 Root 鎖防止死鎖。」
+*   **🇺🇸 English (Simple & Direct):**
+    "I built a synchronization system for a 'Baby Tracker' app to help family members log activities together in real-time. The main challenge was keeping data consistent across multiple devices while keeping the app fast on older phones. I chose **WatermelonDB** because of its **JSI** technology, which allows the app to handle large amounts of data without lagging. I also used **Redis** on the backend to prevent data from being overwritten when two people try to update the same record at the same time."
+    
+*   **🇹🇼 中文 (口語精簡):**
+    「我為 Baby Tracker 開發了一套同步系統，方便家人一起實時記錄寶寶狀況。主要的挑戰是在網路不穩或多台設備同時操作時，如何保證數據一致，且在舊手機上也要跑得順。我選用了 **WatermelonDB**，利用它的 **JSI** 技術讓 App 處理大量數據時不會卡頓。後端我則用 **Redis** 來處理併發衝突，確保兩個人同時修改時，數據不會互相覆蓋。」
 
-### [L4 Architecture] Elastic Batching — The Timestamp Boundary Problem (時間戳邊界問題)
-*   **❓ Question:** "You built an 'Elastic Batching' mechanism in the pull service. What is the timestamp-boundary data loss problem and how does your design solve it?"
-*   **🇺🇸 English Defense:**
-    *   "**Problem:** The pull query uses `updatedAt > lastPulledAt`. If the batch limit is 1000 and many records were inserted simultaneously at timestamp `T`, the 1001st record—also at `T`—is silently cut off. The next pull advances the cursor past `T`, permanently losing that record."
-    *   "**Solution:** When a batch hits the limit, `extendBatch` checks if the last record's `updatedAt` has a 'collision'—records at the exact same timestamp that were sliced off. It fetches them explicitly using `id NOT IN` the already-returned set. This guarantees atom-correct batches regardless of write bursts."
-*   **🇹🇼 中文防禦:**
-    *   「**問題:** Pull 查詢使用 `updatedAt > lastPulledAt`。若批次上限 1000 筆，而同一時間戳 `T` 有多筆被創建，第 1001 筆被默默截斷。下次 Pull 游標推進超過 `T`，那筆資料就永久消失了。」
-    *   「**解法:** 批次達到上限時，`extendBatch` 函式檢查最後一筆的 `updatedAt` 是否有『碰撞』紀錄。它用 `id NOT IN` 明確撈取那些被截斷的剩餘記錄。無論寫入突增，每個批次都被保證完整且原子正確。」
+---
 
-### [L5 Architecture] Idempotency Middleware — Atomic Lock-then-Cache Pattern (冪等性的原子設計)
-*   **❓ Question:** "Your idempotency middleware uses Redis SETNX. What if two identical requests arrive simultaneously? Isn't there a race condition where both could find the result key missing and both proceed?"
-*   **🇺🇸 English Defense:**
-    *   "This is exactly why I used **SETNX as an Atomic Mutex**, not a simple cache check."
-    *   "Step 1: Both requests attempt `SET lockKey 'processing' EX 60 NX`. Redis guarantees only one succeeds atomically."
-    *   "Step 2: The loser immediately checks the result cache. If present, replay it. If not, return HTTP 429—the request is in-flight."
-    *   "Step 3: The winner writes the final response to `resultKey` (setex, 24h TTL) and deletes the lock key when finished."
-    *   "**Fail-closed:** If Redis is down, I return HTTP 503. I cannot guarantee idempotency, so I refuse to allow potentially duplicate writes."
-*   **🇹🇼 中文防禦:**
-    *   「這正是我用 **SETNX 作為原子互斥鎖** 而非普通快取鍵的原因。」
-    *   「步驟一：兩個請求都嘗試 `SET lockKey 'processing' EX 60 NX`。Redis 原子性保證只有一個成功。」
-    *   「步驟二：失敗方立即嘗試讀取結果快取。有則重播；無則回傳 HTTP 429。」
-    *   「步驟三：勝出方完成後，將最終回應寫入 `resultKey`（setex，24h TTL）並刪除鎖的 Key。」
-    *   「**Fail-Close 設計:** Redis 掉線回傳 HTTP 503，拒絕請求。無法保證冪等性時，我拒絕允許潛在的重複寫入。」
+### 2. ❓ 模擬問答 (Possible Q&A - Google/Amazon Hybrid Strategy)
+
+1.  **問：「為什麼選 WatermelonDB 而不是直接用 SQLite 或 Realm？」(Invent and Simplify / Trade-offs)**
+    *   **🇺🇸 English**: "I prioritized **UI Responsiveness** and **Offline-First** architecture. Standard SQLite via a bridge is slow in React Native. WatermelonDB uses **JSI (JavaScript Interface)** to communicate directly with the underlying database, bypassing the bridge's serialization overhead. It simplified my sync logic while providing the best performance for the user."
+    *   **🇹🇼 中文**: 「我優先考慮 **UI 響應速度** 與 **離線優先 (Offline-First)** 架構。在 React Native 中，透過 Bridge 使用標準 SQLite 會很慢。WatermelonDB 利用 **JSI** 直接與底層資料庫通訊，繞過了 Bridge 的序列化開銷。這在提供最佳效能的同時，也簡化了我的同步邏輯。」
+
+2.  **問：「在開發這套同步系統時，你遇到的最大挫折是什麼？」(Inner Monologue)**
+    *   **🇺🇸 English**: "I initially struggled with 'Race Conditions' where two parents would log a feeding at the exact same time. I felt the pressure of potentially losing critical baby data. I realized that 'Client-side only' logic wasn't enough. I had to rethink the backend and introduce **Atomic Locking with Redis**. It was a tough lesson in distributed systems, but it made the app rock-solid."
+    *   **🇹🇼 中文**: 「我最初在處理『競爭狀態』時遇到很大挫折，比如父母兩個人同時紀錄餵奶時間。我當時很擔心會遺失關鍵的寶寶數據。我意識到只靠『前端邏輯』是不夠的，我必須重構後端並引入 **Redis 原子鎖**。這對我來說是分散式系統的一堂硬課，但它讓 App 變得非常穩固。」
+
+3.  **問：「舊手機跑這套系統會卡嗎？你做了哪些效能優化？」(Dive Deep / Performance Awareness)**
+    *   **🇺🇸 English**: "Performance on low-end devices was a key requirement. Beyond using JSI, I implemented **Lazy Loading** for all lists. We only load data that is visible on the screen. I also profiled the JS thread and found that heavy object mapping was a bottleneck, so I optimized our data models to be more 'flat' to reduce GC pressure."
+    *   **🇹🇼 中文**: 「低階設備的效能是關鍵需求。除了使用 JSI，我還實作了所有列表的 **Lazy Loading (懶加載)**。我們只載入螢幕可見的數據。我還剖析了 JS 執行緒，發現重型的物件映射 (Mapping) 是瓶頸，所以我優化了數據模型，使其更『扁平』以減少 GC (垃圾回收) 壓力。」
+
+4.  **問：「你如何保證家庭數據的安全性，不讓 A 看到 B 的資料？」(High Standards / Ownership)**
+    *   **🇺🇸 English**: "Data privacy for families is non-negotiable. I implemented **IDOR protection** at the database layer using Prisma Middleware. Every query is automatically scoped to the user's `family_id`. I also wrote automated **Security Integration Tests** to verify that a user with an unauthorized token would get a 403 error immediately."
+    *   **🇹🇼 中文**: 「家庭數據的隱私是不容妥協的。我利用 Prisma Middleware 在資料庫層實作了 **IDOR 防護**。每一筆查詢都會自動被鎖定在該使用者的 `family_id` 範圍內。我還寫了自動化**安全性整合測試**，確保任何持有未授權 Token 的使用者都會立刻收到 403 錯誤。」
+
+5.  **問：「這段個人開發經驗，對你在 Google 處理大規模 Infra 有什麼幫助？」(Future Pacing)**
+    *   **🇺🇸 English**: "It taught me to be 'Product-Minded.' Even in Infra, the end goal is always the user experience. At Google, I will use this 'Performance-First' mindset to build infrastructure that isn't just scalable, but also provides the lowest possible latency for our end users."
+    *   **🇹🇼 中文**: 「這教會我具備『產品思維』。即使是在 Infra 領域，終極目標永遠是使用者體驗。在 Google，我會利用這種『效能優先』的思維來建立基礎設施，不僅要具備擴展性，還要為我們的最終使用者提供最低的延遲。」
+
+6.  **問：「你是如何驗證你的同步邏輯在網路極差的情況下依然有效？」(Dive Deep / Learn and Be Curious)**
+    *   **🇺🇸 English**: "I used **Network Throttling** tools to simulate 2G and high-latency environments. I specifically tested the 'Conflict Resolution' logic by making simultaneous edits while the app was offline. This 'stress testing' gave me the confidence that our sync model could handle real-world messy connectivity."
+    *   **🇹🇼 中文**: 「我使用了 **Network Throttling (網路限流)** 工具來模擬 2G 和高延遲環境。我特別測試了在 App 離線時進行同時編輯的『衝突解決』邏輯。這種『壓力測試』給了我信心，讓我們知道同步模型能應付現實世界混亂的連線狀況。」
+
+---
+
+### 3. 📚 技術名詞解析 (Technical Glossary)
+
+*   **🇺🇸 JSI (JavaScript Interface) / 🇹🇼 JS 介面**:
+    A new layer in React Native that allows JavaScript to call C++ methods directly, bypassing the asynchronous bridge. (React Native 中的新層級，允許 JS 直接呼叫 C++ 方法，繞過非同步 Bridge 以提升效能。)
+*   **🇺🇸 Race Condition / 🇹🇼 競爭狀態**:
+    A situation where the outcome of a process depends on the timing or sequence of other events. (當程序的結果取決於其他事件發生的時機或順序時，所產生的不確定狀態。)
+*   **🇺🇸 IDOR (Insecure Direct Object Reference) / 🇹🇼 不安全的直接物件參照**:
+    A security vulnerability where an application provides direct access to objects based on user-supplied input. (一種安全性漏洞，應用程式根據使用者輸入直接提供物件存取權，未進行適當權限檢查。)
+*   **🇺🇸 Offline-First / 🇹🇼 離線優先**:
+    A design approach where an app is built to function fully without an internet connection, syncing data once it's back online. (一種設計方法，讓 App 在無網路時也能完全運作，並在連線後同步數據。)
+*   **🇺🇸 GC Pressure (Garbage Collection Pressure) / 🇹🇼 垃圾回收壓力**:
+    The workload placed on the system's memory management to identify and reclaim unused memory. (系統內存管理為了識別並回收不再使用的內存所承受的負擔，過大會造成 UI 卡頓。)

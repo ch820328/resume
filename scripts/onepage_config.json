@@ -2,7 +2,7 @@
     "profiles": {
         "master": {
             "name": "Senior Software Engineer (Generalist Portfolio)",
-            "summary": "Multi-disciplinary Software Engineer with 5+ years of experience across **Embedded Systems**, **Distributed Platforms**, and **Automated Quality Infrastructure**. Specialized in architecting high-fidelity validation frameworks and unified engineering portals that systematically eliminate organizational bottlenecks. Proven track record of delivering scalable solutions from low-level BSP optimization to AI-driven diagnostic platforms.",
+            "summary": "我是一位專注於 **後端開發**、**分散式平台** 與 **自動化基礎設施** 的工程師。過去 5 年，我致力於打造能解決團隊痛點的工具，從底層的 BSP 優化到支持百萬用戶的同步引擎。我傾向於務實的架構設計，追求能系統性提升效率且穩定可靠的工程方案。",
             "featured_projects": [
                 "Jetson Orin BSP & Infrastructure Optimization",
                 "NVSSVT Enterprise Automation Platform",
@@ -15,7 +15,7 @@
         },
         "embedded": {
             "name": "Embedded Systems & Firmware Specialist",
-            "summary": "Senior Software Engineer with 5+ years of experience in **Embedded Systems**, **BSP Integration**, and **Hardware Validation Architecture**. Expert in navigating low-level hardware-software interfaces, developing UEFI/BIOS diagnostic suites, and optimizing build infrastructure for massive production scales. Proven track record of leading cross-functional teams to resolve critical hardware blocks and defining department-wide development conventions.",
+            "summary": "專精於 **嵌入式系統** 與 **韌體開發環境** 的工程師。我有豐富的硬體通訊協議、UEFI/BIOS 診斷工具開發經驗，並擅長優化大規模量產時的編譯與刷機流程。我曾主導多項跨部門技術升級，透過建立標準化的開發規範與自動化防呆機制，解決核心的硬體驗證瓶頸。",
             "featured_projects": [
                 "Jetson Orin BSP & Infrastructure Optimization",
                 "Deterministic BIOS OCR Engine",
@@ -28,7 +28,7 @@
         },
         "fullstack": {
             "name": "Full-Stack & Distributed Systems Architect",
-            "summary": "Full Stack Developer and Architect specialized in **Distributed Systems**, **Offline-First Synchronization**, and **Scalable Platform Engineering**. Expertise in designing high-concurrency architectures with rigorous consistency models and idempotent automation pipelines. Skilled in transforming fragmented legacy tools into unified, API-driven portals that systematically resolve organizational bottlenecks and accelerate CI/CD workflows.",
+            "summary": "擅長 **分散式系統** 與 **離線同步架構** 的全端開發者。我專注於設計具備強大容錯能力的高併發後端，並將原本凌亂、手動的作業流程，轉化為易於擴展的 API 服務平台。我認為好的架構不只要能處理高流量，更要能無縫整合進 CI/CD 流程，讓研發週期顯著加速。",
             "featured_projects": [
                 "Offline-First Distributed System (Baby Tracker)",
                 "NVSSVT Enterprise Automation Platform",
@@ -40,16 +40,16 @@
             "output_file": "resume_fullstack.html"
         },
         "tailored": {
-            "name": "Software Engineer III (Performance Infrastructure)",
-            "summary": "Software Engineer with 5+ years of experience specialized in **Performance Infrastructure**, **Test Automation Architecture**, and **Distributed Systems**. Expert in designing high-fidelity measurement tools and automated regression testing pipelines that accelerate **New Product Introduction (NPI)** cycles. Proven ability to architect comprehensive **dashboards** for real-time visibility into system health, systematically isolating components and triaging complex failures in large-scale environments.",
+            "name": "Senior Software Engineer (Google Performance Infrastructure)",
+            "summary": "Senior Software Engineer focused on **Performance Infrastructure** and **Distributed Systems**. I enjoy solving hard reliability problems and optimizing system I/O (like Kernel/Zstd tuning) to boost production throughput. I have a track record of leading technical projects that bridge the gap between hardware and software, building stateless, highly available platforms that improve developer productivity at scale.",
             "featured_projects": [
-                "OpenClaw: Log Matrix & Semantic Diagnostic Platform",
                 "NVSSVT Enterprise Automation Platform",
                 "Jetson Orin BSP & Infrastructure Optimization",
-                "Cross-Interface Consistency Validation Framework",
-                "Unified Engineering Productivity Portal"
+                "Unified Engineering Productivity Portal",
+                "Deterministic BIOS OCR Engine",
+                "Offline-First Distributed System (Baby Tracker)"
             ],
-            "skills_priority": ["infrastructure", "domain", "backend", "frontend"],
+            "skills_priority": ["infrastructure", "backend", "domain", "frontend"],
             "output_file": "resume_tailored.html"
         }
     }

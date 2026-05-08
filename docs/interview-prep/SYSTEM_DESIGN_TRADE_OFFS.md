@@ -1,15 +1,13 @@
-# Google L4 / L5 System Design & Trade-offs (深度系統設計與架構攻防戰)
+# Google 面試：系統設計與技術取捨 (實戰守則)
 
-這份文件專為 **Google L4 (Software Engineer III) 與 L5 (Senior Software Engineer)** 級別的面試所設計。
-在 L4/L5 的面試中，面試官不再只關心「你用了什麼技術」，他們更關心：
-1.  **Ambiguity (模糊性)**：當需求不明確或資源受限時，你如何定義問題？
-2.  **Trade-offs (取捨)**：為什麼選 A 不選 B？A 的致命缺點是什麼？你做了什麼冗餘設計 (Redundancy) 或妥協？
-3.  **Scale & Bottlenecks (規模與瓶頸)**：當流量或資料量放大 10 倍、100 倍時，你的系統最先垮掉的地方在哪？
-4.  **Extensibility (可擴充性)**：你的架構如何適應未來 3-5 年的改變？
+這份文件幫你準備 Google 的架構面試。面試官通常不只看你用了什麼技術，他們更在乎的是：
+1.  **實務取捨 (Trade-offs)**：為什麼選 A 不選 B？如果你選了 A，它最明顯的缺點是什麼？你打算怎麼補救？
+2.  **規模化極限 (Scale)**：如果流量或資料量變大 100 倍，你的系統哪裡會先掛掉？
+3.  **解決問題的思路**：當需求很模糊時，你如何把問題收斂並給出合理的設計。
 
 ---
 
-## 🚀 核心專案深水區 (Deep Dives)
+## 🚀 專案技術細節與實戰內容
 
 ### 1. NVSSVT Enterprise Automation Platform (企業級自動化平台)
 **面試維度：分散式系統、非同步任務排程、併發控制 (Concurrency)、系統解耦**
@@ -18,12 +16,11 @@
     *   **Q:** 「這套系統管理了全球的 Jenkins Agents 和硬體 SUT。如果突然有 200 個工程師發起測試，但目前只有 50 台測試機，你的系統如何防止 Race Condition？如何保證優先順序？」
     *   **A (Trade-off & Design):** 不能讓 API 同步等待 (Synchronous blocking)。我導入了 **Message Broker (如 Redis Queue/RabbitMQ)** 來做非同步排程。API 接收請求後立即回傳 HTTP 202 (Accepted) 和 Job ID。針對硬體競爭，我使用了 **Distributed Lock (如 Redis Redlock)**，以 SUT 的 MAC 或 IP 作為 Key。
     *   **Trade-off:** 犧牲了使用者的「即時結果反饋」，換取系統的高吞吐量 (High Throughput) 與容錯能力。後續透過 WebSockets 解決了前端等待進度的問題。
-*   **[L5 架構題] 服務隔離與單點故障 (Single Point of Failure, SPOF)**
-    *   **Q:** 「如果你的 Go Orchestration Portal 掛了，所有的 Jenkins 測試就會停擺嗎？你的架構有 SPOF 嗎？如何做到 High Availability (高可用性)？」
-    *   **A:** 這是從架構演進的角度來看。初期可能是單體架構 (Monolith)。為了晉升 L5，你需要展示你考慮到了 **Stateless Design (無狀態設計)**。將 Go Portal 進行容器化部署 (Containerization)，搭配 Load Balancer。所有狀態（誰在測什麼機器、測試跑了多久）都卸載 (Offload) 到外部持久化資料庫 (PostgreSQL) 或 Redis 中，這樣 Portal 節點掛了隨時可以重啟/擴展，不會重置測試狀態，原本實體機上的測試也會繼續跑 (No Orphaned Jobs)。
-    *   **進階 Trade-off (狀態同步機制: Webhook vs Polling):**
-        *   **Webhook (Event-Driven / Push):** 讓 Jenkins 跑完主動打回 Go Portal。雖然即時性高，但如果 Go Portal 剛好在那一分鐘重啟，Webhook 送達失敗，這筆測試就會永遠卡在 `RUNNING` 狀態 (Zombie State)。
-        *   **Polling (Pull) + DB State:** 因此我選擇了定時 Polling 的設計。Go 的 Background Worker 會定時去掃 DB 裡標記為 `RUNNING` 的單子去問 Jenkins。這雖然增加了微小的 API Overhead，但它是 **Idempotent (具備冪等性)** 且 **高容錯 (Fault Tolerant)** 的。這賦予了系統極強的 **Self-Healing (自我修復)** 能力，徹底消滅了 Zombie Jobs。
+*   **[進階追問]：如果你的 Portal 伺服器掛了，測試會中斷嗎？**
+    *   **說法**：我的設計是 **無狀態 (Stateless)** 的。我把「誰在測什麼機器、測試跑了多久」這些動態資料都卸載到外部的 PostgreSQL 或 Redis 中。這樣即使後端重啟，原本在實體機上跑的測試也不會受影響，重啟後再去 DB 抓資料繼續追蹤就好。
+    *   **關於資料一致性的取捨 (Webhook vs Polling)**：
+        *   大家可能會覺得 **Webhook** 比較即時，但如果伺服器剛好在重啟，那一分鐘的通知就噴掉了，資料會永遠卡在 `RUNNING`。
+        *   所以我選 **Polling (主動去問)**。雖然這會多一點點 API 負擔，但因為它具有 **冪等性 (Idempotent)**，即使重複問幾次也不會出錯，還能有自動修復 (Self-Healing) 的效果。
     *   **Extensibility:** 採用 OpenAPI compliance，強制前後端與上下游服務合約化 (Contract-first)，方便未來抽換 Jenkins 引擎改用 GitLab Runner 或其他容器化任務 (Containerized Jobs)，而不需要重寫商業邏輯。
 
 ### 2. Offline-First Distributed System (Baby Tracker)
@@ -142,9 +139,27 @@
     *   **Blue-Green Deployment:** 給需要零停機的內部 Portal 升級使用。
     *   **Canary Release:** 將新版的韌體 (OTA) 或測試框架先開放給 5% 的內部機器，確認沒報錯再 roll out 到 100%。
 
-## 💬 行為面試 (Behavioral / Googleyness) 核心精神
+---
 
-L5 以上非常看重這三點：
-*   **Navigating Ambiguity:** 「請告訴我一個你接到的需求非常模糊，你是如何釐清並把它轉化為可用系統的故事？」 -> *用 Unified Portal 來說明，大家抱怨 Context Switch，你主動歸納出了 10 個核心痛點並收斂為單一 UI。*
-*   **Influencing Without Authority:** 「你沒有主管頭銜，如何說服資深工程師照你的架構走？」 -> *用 Jetson BSP Zstd 專案。用具體的效能評測數據與成本試算 (Data-driven approach) 說服他們。*
-*   **Engineering Excellence:** 主動發現流程中的痛點（如 GitLab CI/CD 中缺乏 Conventional Commits 導致的亂象），並主動制定規範與工具去解決它。
+---
+
+## 📈 總結：如果未來要服務更大量的使用者？ (Scaling)
+
+在面試最後，面試官常會問：「如果這個工具現在要給全公司一百萬人用，你會怎麼改？」
+
+### 1. 內部 Portal 的擴充
+*   **目前的瓶頸**：目前的 Redis 鎖跟 Jenkins 都是中心化的，如果併發量太大，單機 I/O 會撐不住。
+*   **解決思路**：
+    *   **鎖分片 (Lock Sharding)**：把 Redis 改成 Cluster 模式，照機器區域分片來減少競爭。
+    *   **去中心化執行**：把任務從 Jenkins 轉向 **容器化 (K8s/Serverless)**，每個任務一個臨時 Container，跑完就釋放資源。
+
+### 2. 育兒 App 的同步
+*   **目前的瓶頸**：同步伺服器在對齊百萬用戶的 Delta 資料時，DB 搜尋會變慢。
+*   **解決思路**：
+    *   **分庫分表 (Sharding)**：照 User ID 切分資料庫壓力。
+    *   **讀寫分離**：把「記奶量 (Write)」跟「看統計報表 (Read)」的庫拆開，才不會因為別人在算這個月來的曲線圖，害你現在記不進去奶量。
+
+---
+
+> [!TIP]
+> **面試絕殺技**：當被問到擴展性，我習慣先回：「我會先去看 **Prometheus/Grafana** 的監控數據，找出目前的瓶頸到底是卡在 CPU、RAM 還是 Database I/O，再來決定優化哪一部分。」—— **這聽起來比直接給一堆架構術語更像是在真實業界解決問題的人。**

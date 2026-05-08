@@ -1,6 +1,6 @@
 ---
 name: Mock Interviewer
-description: Simulates an L6+ Engineering Manager conducting a resume-based interview.
+description: Simulates an L6+ Engineering Manager or Amazon-style Bar Raiser conducting a resume-based interview.
 ---
 
 # Mock Interviewer Skill (L6+ Persona)
@@ -16,8 +16,9 @@ This skill simulates a high-level technical interview with a **Google L6 (Staff 
 
 The agent will operate in a Question-Response loop.
 
-### Step 1: Scan Content
+### Step 1: Scan Content & Principles
 Read `index.html` to find the Projects (Slides 2+). Identify the specific claims made in the "Solution" and "Impact" sections.
+Read `docs/interview-prep/BQ_MASTER_GUIDE.md` and `docs/interview-prep/BQ_STORY_EXAMPLES.md` to understand the target signals.
 
 ### Step 2: Generate Questions
 Ask **ONE** question at a time. Do not overwhelm the user. Wait for their response.
@@ -26,12 +27,22 @@ Ask **ONE** question at a time. Do not overwhelm the user. Wait for their respon
 1.  **Architecture/Trade-offs**: "You chose [Tech A] over [Tech B]. Why? What were the limitations of [Tech A]?"
 2.  **Constraint Handling**: "You mentioned reducing latency by 90%. What happened to memory usage? Did this introduce consistency issues?"
 3.  **Failure Modes**: "How does this system behave if the message queue goes down? Did you implement backpressure?"
-4.  **Behavioral/Leadership**: "Tell me about a time this design was challenged by a peer. How did you resolve the conflict?"
+4.  **Behavioral/Leadership (Generic)**: "Tell me about a time this design was challenged by a peer. How did you resolve the conflict?"
+5.  **Amazon Leadership Principles (Amazon Mode)**: Select a principle from `AMAZON_LEADERSHIP_PRINCIPLES.md` (e.g., *Ownership*, *Dive Deep*) and ask a corresponding sample question related to the candidate's projects.
 
 ### Step 3: Grade the Response (Mental Scratchpad)
 After the user replies, provide brief feedback:
 *   *Strong*: Concrete data, acknowledges trade-offs, clear communication.
 *   *Weak*: Vague, defensive, misses the core technical concept.
+
+**For Google/Amazon BQ Mode:**
+*   Evaluate against the **STAR** method (Situation, Task, Action, Result).
+*   **Signal Detection**:
+    *   **Inner Monologue**: Did they mention what they were thinking/feeling?
+    *   **Future Pacing**: Did they connect it back to Google's mission/value?
+    *   **Performance Infra**: Did they mention technical details like memory, latency, or automation?
+*   Identify which Leadership Principle or G/L signal they are demonstrating.
+*   Ensure results are quantified with metrics.
 
 Then ask the follow-up question.
 

@@ -183,24 +183,18 @@
 
     <script>
         const slides = [
-            { id: 'tailored_openclaw_log', name: 'Log Matrix (Semantic)', tag: 'AI / Diagnostic' },
-            { id: 'tailored_nvssvt_portal', name: 'Orchestration Portal', tag: 'Platform / SDK' },
-            { id: 'tailored_jetson_bsp', name: 'Jetson Orin BSP', tag: 'Embedded / Performance' },
-            { id: 'tailored_redfish_smbios_check', name: 'Redfish Validation', tag: 'Firmware / BMC' },
-            { id: 'tailored_central_dashboard', name: 'Engineering Dashboard', tag: 'Infrastructure / DevOps' },
-            { id: 'openclaw_mr', name: 'OpenClaw: MR Review', tag: 'AI / Automation' },
-            { id: 'openclaw_log', name: 'OpenClaw: Log Diagnosis', tag: 'AI / Diagnostic' },
-            { id: 'jetson_bsp', name: 'Jetson Orin: Boot Flow', tag: 'Embedded / BSP' },
+            { id: 'openclaw_mr', name: 'OpenClaw: MR Automation (GitLab Skill)', tag: 'AI / GitLab Plugin' },
+            { id: 'openclaw_log', name: 'OpenClaw: Log Matrix', tag: 'AI / Semantic Diagnostic' },
+            { id: 'jetson_bsp', name: 'Embedded BSP Factory', tag: 'Embedded / NVIDIA' },
             { id: 'ansible', name: 'Infrastructure as Code', tag: 'DevOps / IaC' },
             { id: 'central_dashboard', name: 'Unified Portal', tag: 'Platform / Full-Stack' },
-            { id: 'bios_preserve_test', name: 'Firmware OCR Engine', tag: 'Image Process / FW' },
-            { id: 'redfish_smbios_check', name: 'Consistency Framework', tag: 'Firmware / BMC' },
-            { id: 'nvssvt_portal', name: 'Automation Engine', tag: 'Orchestration' },
-            { id: 'issue_analytics', name: 'Issue Trend Analytics', tag: 'Data / Python' },
-            { id: 'gitlab_ci', name: 'CI Pipeline Optimization', tag: 'DevOps / CI' },
-            { id: 'gitlab_cd', name: 'CD Release Engineering', tag: 'DevOps / CD' },
+            { id: 'redfish_smbios_check', name: 'Consistency Framework', tag: 'Firmware / Integrity' },
+            { id: 'nvssvt_portal', name: 'Automation Engine', tag: 'Orchestration / Go' },
+            { id: 'issue_analytics', name: 'Governance Hub', tag: 'Automation / KPI' },
+            { id: 'gitlab_ci', name: 'Standardized Gating', tag: 'Quality / Efficiency' },
+            { id: 'gitlab_cd', name: 'Release Engineering', tag: 'IaC / DevOps' },
             { id: 'baby_tracker', name: 'Distributed Sync App', tag: 'Full-Stack / Local-First' },
-            { id: 'pic_transcript', name: 'Document Analysis', tag: 'Data / OCR' }
+            { id: 'pic_transcript', name: 'Pic Transcript (Industrial OCR)', tag: 'OpenCV / Document Engine' }
         ];
 
         const grid = document.getElementById('slide-grid');

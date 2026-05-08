@@ -1,63 +1,62 @@
-# NVSSVT Automation Portal - Architecture Documentation
+# 專案架構：NVSSVT 自動化測試平台
 
-## Project Overview
-
-**Tool Name**: NVSSVT Portal  
-**Stack**: Go (Backend), Vue.js (Frontend), Docker (Deployment)  
-**Users**: QA Testers (Consumers), Automation Engineers (Admins)  
-**Purpose**: Centralized orchestration for NVIDIA System Software Validation Toolkit
+## 1. 專案簡介 (Overview)
+NVSSVT 是一個為了整合各種分散的硬體測試工具而開發的排程平台。它的核心目的是讓原本得靠手動下指令的測試流程，變成可以自動化、且多人同時使用的網頁服務，並將測試結果直接與 CI/CD 串接。
 
 ---
 
-## System Architecture
+## 2. 技術設計與解決方案
 
-### High-Level Design
+### A. 任務排隊與伺服器資源管理 (Concurrency)
+- **問題點**：當 100 個工程師同時想測機器，但實驗室的實體機只有 50 台時，如果沒有管理好，機器會被搶成一團，導致測試失敗。
+- **解決方法**：我把 **後端 (API/Control Plane)** 跟 **執行端 (Jenkins/Agent)** 拆開。
+- **機器鎖機制**：我用 Redis 做了一個「機器領用」的機制。每一台機器都有唯一的 ID，當某個測試任務啟動時，會先去 Redis 拿這台機器的「鑰匙」，測試完才放回去。這樣能確保同一時間，機器不會被兩個人重複操作。
+
+### B. 如何處理當機與任務卡死 (Self-Healing)
+- **問題點**：硬體測試常會遇到斷網或 Agent 突然掛掉，如果剛好機器還被鎖著，那台機器就永遠被卡死（Zombie Job）了。
+- **解決方法**：
+    - **會自動過期的鎖 (Lease/TTL)**：Redis 的鎖都有設逾時時間。
+    - **心跳檢查 (Heartbeat)**：執行端會定期回傳「我還活著」的信息。如果 Agent 真的掛了，鎖會自動過期釋放，系統也會自動發現並把這台機器重新排回可用清單。
+    - **防止重複操作 (Idempotency)**：每個測試任務都有唯一的 ID。即使因為網路問題導致 API 被重複呼叫，系統也會發現這單子已經接過了，不會重複去對硬體下指令，避免把機器跳掉。
+
+### C. 就算伺服器重啟也不會斷線的設計 (Stateless)
+- **狀態卸載**：我把所有「誰在測什麼、目前的進度」等資料都丟到資料庫 (PostgreSQL) 跟 Redis。
+- **好處**：這樣後端伺服器即使要升級改版、需要重啟，大家正在跑的測試也不會中斷，重啟後再去 DB 抓資料繼續跑追蹤就好了。
+
+---
+
+---
+
+## 3. Data Flow
 
 ```mermaid
 graph TD
-    User[QA Tester] -->|HTTPS| Nginx[Nginx Proxy]
-    Admin[Admin User] -->|HTTPS| Nginx
+    Client[Dev/QA Frontend] -->|REST/WS| API[Go API Gateway]
+    API -->|Authenticate| Auth[LDAP/OAuth]
+    API -->|Acquire Lock| Redis[(Redis Lock/Cache)]
+    API -->|Register Job| DB[(PostgreSQL)]
+    API -->|Trigger Job| Jenkins[Jenkins/Agent Cluster]
+    Jenkins -->|Callback/Webhook| API
     
-    subgraph "Docker Compose Service"
-        Nginx --> Frontend[Vue.js SPA]
-        Nginx --> Backend[Go API Server]
-        
-    subgraph "Orchestration Logic"
-        Backend -->|REST API| Jenkins[Jenkins Server]
-        Jenkins -->|SSH| TestHost[NVSSVT Host Machine]
-        TestHost -->|Run| NVSSVT_CLI[NVSSVT Client]
+    subgraph "Failure Recovery"
+        Monitor[Health Monitor] -->|Reclaim| Redis
+        Monitor -->|Audit| DB
     end
-    
-    ExternalApp[Other Services] -->|REST API| Backend
 ```
-
-### Component Breakdown
-
-#### 1. Frontend (Vue.js)
-- **Framework**: Vue 3 + Vite
-- **UI Library**: PrimeVue / Element Plus (Assumed based on screenshot table style)
-- **Key Views**:
-  - **Dashboard**: Real-time status of all running tests.
-  - **Submit Page**: Dynamic form generated from `config.json`. Allows selection of Test Plans (L0/L1/R1).
-  - **Admin Panel**: Upload new tool binaries, update default JSON configurations.
-  - **Report View**: Parse raw NVSSVT logs into human-readable tables.
-
-#### 2. Backend (Go)
-- **Framework**: Gin or Echo (High performance HTTP router)
-- **Core Modules**:
-  - **Job Queue**: Manages concurrent test executions to prevent resource contention.
-  - **Config Manager**: Hot-reloads validation rules without server restart.
-  - **Log Streamer**: Websocket-based real-time log tailing to frontend.
-  - **CLI Wrapper**: Safely constructs complex NVSSVT command strings from API payloads.
-
-#### 3. Containerization (Docker)
-- **Why Docker?** Ensures the execution environment (Python dependencies, distinct NVSSVT versions) is identical dev-vs-prod.
-- **Volume Mounts**: Persists logs and uploaded binaries outside the container.
-- **Multi-Stage Build**: Keeps the final image size small (Go binary + compiled static assets).
 
 ---
 
-## Key Features & Implementation
+## 4. Technical Trade-offs (Interview Ready)
+
+| Option | Decision | Rationale |
+| :--- | :--- | :--- |
+| **Sync vs Async** | **Asynchronous** | Hardware tasks take 30+ mins. Synchronous blocking would exhaust server resources and timeout. |
+| **Webhook vs Polling** | **Hybrid (Polling with Webhook optimization)** | Webhooks are faster but unreliable if the portal reboots. Periodic polling ensures 100% state accuracy (Eventual Consistency). |
+| **File DB vs Central DB** | **Central (Postgres)** | Multi-user concurrency requires ACID transactions to prevent data corruption in machine status records. |
+
+---
+
+## 5. Key Features & Implementation
 
 ### 1. Unified Submission Interface
 **Problem**: NVSSVT CLI has 50+ flags. Testers often forgot `--config` or used wrong paths.

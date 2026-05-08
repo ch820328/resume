@@ -1,56 +1,47 @@
-<section class="slide">
+<section class="slide" id="baby_tracker">
     <div class="content-wrapper">
         <div class="slide-header-row">
-            <h2 class="slide-title">Offline-First Distributed System (Baby Tracker)</h2>
-            <span class="slide-tag">Distributed Systems & Mobile</span>
+            <h2 class="slide-title">Offline-First Baby Activities Tracker</h2>
+            <span class="slide-tag">Full-Stack Integration & Data Sync</span>
         </div>
         <div class="star-grid">
             <div class="star-content">
-                <!-- STAR Item 1: Challenge -->
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            Maintaining <strong>eventual consistency</strong> for caregivers logging activities
-                            (feeding,
-                            medical) in zero-connectivity environments. Managing concurrent updates across multiple
-                            devices without data corruption was a critical <strong>Distributed System</strong>
-                            challenge.
+                            <strong>[EN]</strong> Designing a multi-user sync system where caregivers could log data on spotty networks without version conflicts or UI lag on older devices.<br>
+                            <strong>[TW]</strong> 在網路不穩的環境下，解決多人共同記錄數據時的同步衝突，並確保在舊型手機上操作依然流暢。
                         </span>
                     </div>
                 </div>
-                <!-- STAR Item 2: Solution -->
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            Implemented an <strong>Offline-First architecture</strong> using WatermelonDB. Implemented a
-                            custom sync engine with <strong>Optimistic Locking</strong> (versioning) and <strong>Redis
-                                Hybrid Locks</strong> to handle high-concurrency race conditions.
+                            <strong>[EN]</strong> Selected **WatermelonDB** for its high-performance **JSI adapter** to handle local storage. Developed a **Node.js** backend with **Redis-based locking** and **Prisma** to manage atomic updates and family-level data isolation.<br>
+                            <strong>[TW]</strong> 選用具備 **JSI 同步機制** 的 **WatermelonDB** 提升本地存取效能。後端使用 **Node.js** 配合 **Redis 鎖** 與 **Prisma**，實作原子性更新與家庭數據隔離。
                         </span>
                     </div>
                 </div>
-                <!-- STAR Item 3: Impact -->
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            Achieved <strong>100% perceived uptime</strong> with Optimistic UI. Successfully
-                            synchronized 1,000+ records with <strong>zero data loss</strong>, resolving conflicts via
-                            "Last-Write-Wins" and strict schema validation.
+                            <strong>[EN]</strong> Built a reliable system that guarantees **100% data integrity** across devices. Validated through **Artillery load testing** and **IDOR security audits** to ensure a safe and stable environment for family data.<br>
+                            <strong>[TW]</strong> 建立可靠的同步架構，保證多端數據 100% 一致。並通過 **Artillery 壓測**與防越權審計，確保系統在高負載下的穩定與安全。
                         </span>
                     </div>
                 </div>
                 <div class="tech-footer">
                     <span class="tech-tag">React Native</span>
-                    <span class="tech-tag">Offline-First</span>
-                    <span class="tech-tag">Optimistic Locking</span>
-                    <span class="tech-tag">Distributed Locks</span>
-                    <span class="tech-tag">Eventual Consistency</span>
+                    <span class="tech-tag">WatermelonDB (JSI)</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">Node.js / Prisma</span>
                 </div>
             </div>
             <div class="star-visual">
-                <img src="src/image/baby_tracker_app.svg" alt="Baby Tracker Mobile UI" class="slide-image">
+                <img src="src/image/baby_tracker_app.svg" alt="Baby Tracker Mobile UI Architecture" class="slide-image">
             </div>
         </div>
     </div>

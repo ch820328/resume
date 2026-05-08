@@ -1,40 +1,56 @@
-# Interview Guide: Secure CD & Automated Release Engineering
+# 面試備忘錄：持續佈署與環境一致性治理 (GitLab CD)
 
-## 🎤 Elevator Pitch (1-Minute)
-*   **🇺🇸 English:** "I eliminated high-risk manual SSH deployments from our release engineering process. I designed a zero-trust, Webhook-driven CD pipeline where GitLab can never directly SSH into production. A hardened internal Deployment Agent verifies HMAC signatures and executes atomic symlink swaps for instant rollbacks. Combined with Semantic Versioning enforcement via CHANGELOG parsing, releases now take 30 seconds instead of 15 minutes across 20+ microservices."
-*   **🇹🇼 中文:** 「我從根本上消滅了高風險的手動 SSH 部署流程。我設計了一套零信任、Webhook 驅動的 CD 管線：GitLab 永遠無法直接 SSH 進正式主機。一個經過加固的內部部署 Agent 驗證 HMAC 簽章，並執行原子性的軟連結切換以實現瞬間回滾。搭配從 CHANGELOG 解析驅動的語意版本控制，超過 20 個微服務的發布時間從 15 分鐘縮短到了 30 秒。」
+這張投影片的核心在於：**透過「極致自動化」讓部署成為日常，消除人為干預，實現代碼到生產環境的零摩擦轉化。**
 
-## 🚀 Google L4/L5 Behavioral & Architecture Deep Dive
+---
 
-### [L4/L5 Behavioral] Improving Security Posture Proactively (主動改善安全態勢)
-*   **❓ Question:** "Tell me about a time you identified a significant security risk and took ownership of fixing it."
-*   **🇺🇸 English Response:**
-    *   **Context:** The original deployment process stored SSH private keys as GitLab CI environment variables—a critical vulnerability. If CI was compromised, all production servers were at risk.
-    *   **Action:** I proposed and built a Deployment Agent model from scratch. The agent lives on the server, listens only to a specific internal webhook, and verifies every request with HMAC. GitLab CI holds only the webhook secret—never an SSH key.
-    *   **Impact:** Eliminated persistent privileged credentials from CI entirely, reducing the blast radius of a potential CI compromise from "all servers owned" to "zero servers owned."
-*   **🇹🇼 中文回應:**
-    *   **情境:** 原本的部署流程把 SSH 私鑰存在 GitLab CI 環境變數裡——一個嚴重的漏洞。如果 CI 被攻陷，所有正式主機都會暴露。
-    *   **行動:** 我從零設計並構建了部署 Agent 模型。Agent 常駐在伺服器上，只監聽特定的內部 Webhook，並用 HMAC 驗證每個請求。GitLab CI 只持有 Webhook 密鑰——永遠不持有 SSH 金鑰。
-    *   **影響:** 徹底消除了 CI 中的常駐特權憑證，將潛在 CI 遭攻陷的爆炸半徑從「所有伺服器淪陷」縮小至「零伺服器淪陷」。
+### 1. 💬 口語說明 (Colloquial Explanation)
 
-### [L4 Architecture] Zero-Trust Webhook Security (零信任 Webhook 安全架構)
-*   **❓ Question:** "Your Webhook endpoint is inside the VPN, but if a malicious actor inside the VPN sends a custom HTTP request, can they force a rogue deployment?"
-*   **🇺🇸 English Defense:**
-    *   "**VPN is not trust.** Every request, regardless of origin, must be cryptographically verified."
-    *   "GitLab signs the entire request payload with a **HMAC-SHA256** using a shared secret and includes it in the `X-Gitlab-Token` header. The Agent recomputes the hash using the same secret. If they don't match to the byte, the request is rejected with HTTP 401 before any code executes."
-    *   "**Trade-off:** This adds ~1ms of hashing overhead per request—completely negligible for a deployment trigger that fires a few times a day."
-*   **🇹🇼 中文防禦:**
-    *   「**VPN 不等於信任。** 每個請求，不論來源，都必須通過密碼學驗證。」
-    *   「GitLab 使用共享密鑰對整個請求 Payload 進行 **HMAC-SHA256** 簽章，並包含在 `X-Gitlab-Token` 標頭中。Agent 用相同密鑰重新計算雜湊值。如果對不上，請求在任何程式碼執行之前就被拒絕（HTTP 401）。」
-    *   「**取捨:** 每個請求增加約 1ms 的雜湊計算開銷——對於每天只觸發幾次的部署事件來說，完全可以忽略不計。」
+*   **🇺🇸 English (Simple & Direct):**
+    "I transformed our deployment process so that updating servers is no longer a stressful event. I built a CD pipeline that automatically pushes firmware and service updates to our hardware clusters. By using 'Health Probes' and 'Auto-Rollbacks,' I made sure that if anything goes wrong during a deploy, the system catches it and reverts immediately. This keeps our production environment perfectly synced with our code repository at all times."
+    
+*   **🇹🇼 中文 (口語精簡):**
+    「我改造了我們的部署流程，讓更新伺服器不再是一件壓力很大的事。我建立了一套 CD 流水線，會自動把韌體和服務更新推送到硬體集群。透過『健康檢查』和『自動回滾』機制，我確保了部署過程中如果出錯，系統會立刻發現並自動還原。這讓我們生產環境的狀態能隨時跟 Git 倉庫保持完美同步。」
 
-### [L5 Architecture] Atomic Rollback & Progressive Delivery (原子回滾與漸進式交付)
-*   **❓ Question:** "Your symlink swap is atomic at the filesystem level, but what if the new version deploys successfully and passes health checks, yet still has a subtle bug discovered 10 minutes later by users?"
-*   **🇺🇸 English Defense:**
-    *   "Atomic symlink swap is not a replacement for Progressive Delivery—it's a last-resort protection."
-    *   "The ideal next step is **Canary Deployments**. Route 5% of production traffic to the new version, monitor error rates and latency via Prometheus/Grafana, and only proceed to 100% if metrics stay within SLO bounds."
-    *   "The Deployment Agent can be extended to call the load balancer's API to control traffic weights—enabling automated rollback if the canary's error rate exceeds threshold."
-*   **🇹🇼 中文防禦:**
-    *   「原子性 Symlink 切換不是漸進式交付的替代品——它只是最後一道保護。」
-    *   「理想的下一步是 **金絲雀部署 (Canary Deployments)**。先將 5% 的正式流量導向新版本，透過 Prometheus/Grafana 監控錯誤率與延遲，只有當指標維持在 SLO 範圍內時，才推進到 100%。」
-    *   「部署 Agent 可以擴展為呼叫負載均衡器的 API 來控制流量權重——如果金絲雀的錯誤率超過閾值則自動觸發回滾。」
+---
+
+### 2. ❓ 模擬問答 (Possible Q&A - Google/Amazon Hybrid Strategy)
+
+1.  **問：「為什麼要推行『無人值守』部署？這不會增加風險嗎？」(Ownership / High Standards)**
+    *   **🇺🇸 English**: "Actually, manual deployment IS the risk. Humans make mistakes; automated pipelines don't. I believe in building a system that is **Self-Healing**. By integrating automated smoke tests, we catch issues faster than any human could, which ultimately raises our standard for reliability."
+    *   **🇹🇼 中文**: 「事實上，人工部署才是風險。人會犯錯，但自動化流水線不會。我致力於建立一個具備**自我修復 (Self-Healing)** 能力的系統。透過整合自動化冒煙測試，我們捕捉問題的速度比人工快得多，這最終提升了我們的可靠性標準。」
+
+2.  **問：「當你第一次在生產環境執行自動回滾時，你的感受是什麼？」(Inner Monologue)**
+    *   **🇺🇸 English**: "I felt a mix of anxiety and relief. Anxiety because a deploy failed, but relief because the safety net I built—the auto-rollback—actually worked. It confirmed my belief that as an infra engineer, my job is to build systems that fail gracefully, protecting our users from downtime."
+    *   **🇹🇼 中文**: 「我當時既焦慮又放鬆。焦慮是因為部署失敗了，但放鬆是因為我建立的安全網（自動回滾）真的起作用了。這印證了我的信念：作為 Infra 工程師，我的職責是建立能『優雅失敗』的系統，保護使用者免受停機影響。」
+
+3.  **問：「你是如何處理異質環境（Dev/QA/Prod）之間的變數管理？」(Dive Deep / Performance Awareness)**
+    *   **🇺🇸 English**: "I used **Environment-Agnostic Artifacts**. The same binary is used everywhere, but configurations are injected at runtime via Vault or GitLab variables. This eliminates the 'it works on my machine' problem and ensures that our testing environment is a perfect proxy for production performance."
+    *   **🇹🇼 中文**: 「我採用了**環境無關的產物 (Environment-Agnostic Artifacts)**。同樣的二進位檔跑在所有環境，但配置是在執行時透過 Vault 或 GitLab 變數動態注入。這消除了『在我電腦上可以跑』的問題，確保測試環境能完美模擬生產環境的效能。」
+
+4.  **問：「在實體機環境下，為什麼選 Rolling Update 而非藍綠部署？」(Trade-offs / Decision Making)**
+    *   **🇺🇸 English**: "Cost and hardware constraints. We didn't have double the hardware capacity for blue-green. I chose **Rolling Update** with strict health gating. For L4, it's about making the best technical choice within given constraints—achieving high availability without unnecessary capital expenditure."
+    *   **🇹🇼 中文**: 「成本與硬體限制。我們沒有雙倍的機台資源來做藍綠部署。我選擇了帶有嚴格健康門禁的 **Rolling Update**。對於 L4 來說，重點是在限制下做出最佳技術抉擇——在不增加非必要資本支出的情況下實現高可用性。」
+
+5.  **問：「這種『部署即非事件』的理念如何應用在 Google 的規模上？」(Future Pacing)**
+    *   **🇺🇸 English**: "At Google, deployments happen thousands of times a day. This project taught me the importance of 'Deployment Transparency.' I will bring this focus on visibility and automated safety to Google to ensure that our massive global infrastructure remains stable even during rapid iterations."
+    *   **🇹🇼 中文**: 「在 Google，部署每天發生數千次。這個專案教會我『部署透明度』的重要性。我會將這種對可視化與自動化安全的專注帶到 Google，確保我們龐大的全球基礎設施即使在快速迭代中也能保持穩定。」
+
+6.  **問：「如果 CD 執行時偵測到手動變更，你會怎麼處理？」(Earn Trust / Ownership)**
+    *   **🇺🇸 English**: "Our rule is 'Single Source of Truth.' The CD pipeline will trigger an alert and pause if an **Idempotency Conflict** is detected. I would then work with the person who made the change to understand the 'why' and ensure that the fix is committed to Git, preserving the integrity of our infrastructure-as-code."
+    *   **🇹🇼 中文**: 「我們的原則是『唯一真理源』。如果偵測到**冪等性衝突**，CD 流水線會報警並暫停。我會與進行變更的人員溝通，了解『為什麼』，並確保該修復被提交回 Git，以維護基礎設施即代碼的完整度。」
+
+---
+
+### 3. 📚 技術名詞解析 (Technical Glossary)
+
+*   **🇺🇸 IaC (Infrastructure as Code) / 🇹🇼 基礎設施即代碼**:
+    Managing and provisioning infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools. (透過機器可讀的定義檔來管理與配置基礎設施，而非手動操作。)
+*   **🇺🇸 Health Probes / 🇹🇼 健康檢查**:
+    Automated checks that determine if a service or system is functioning correctly after deployment. (自動化檢查，用以判斷服務或系統在部署後是否正常運作。)
+*   **🇺🇸 Auto-Rollback / 🇹🇼 自動回滾**:
+    A feature that automatically reverts a deployment to a previous stable version if the current one fails health checks. (如果當前部署未通過健康檢查，自動還原至上一個穩定版本的特色。)
+*   **🇺🇸 Single Source of Truth / 🇹🇼 唯一真理源**:
+    The practice of structuring information models such that every data element is mastered in only one place. (確保每個數據元素都只由一個地方掌控的實務作法。)
+*   **🇺🇸 Rolling Update / 🇹🇼 滾動更新**:
+    A deployment strategy that updates a set of servers incrementally to ensure high availability. (逐台更新伺服器以確保高可用性的部署策略。)

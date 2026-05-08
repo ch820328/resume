@@ -5,7 +5,6 @@
     "jetson_bsp.html",
     "ansible.html",
     "central_dashboard.html",
-    "bios_preserve_test.html",
     "redfish_smbios_check.html",
     "pic_transcript.html",
     "nvssvt_portal.html",

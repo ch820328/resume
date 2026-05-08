@@ -1,8 +1,8 @@
-<section class="slide" id="redfish-validation-framework">
+<section class="slide" id="redfish_smbios_check">
     <div class="content-wrapper">
         <div class="slide-header-row">
-            <h2 class="slide-title">Cross-Interface Consistency Validation Framework</h2>
-            <span class="slide-tag">Systems QA & Architecture</span>
+            <h2 class="slide-title">Firmware Consistency & Active Validation Framework</h2>
+            <span class="slide-tag">Firmware & Quality Engineering</span>
         </div>
         <div class="star-grid">
             <div class="star-content">
@@ -10,10 +10,7 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            Data discrepancies between legacy <strong>SMBIOS</strong> and modern <strong>Redfish
-                                API</strong>
-                            frequently caused validation failures. Manual cross-referencing across 3+ BMC generations
-                            (AST2500/2600/OpenBMC) was inefficient and prone to human error.
+                            Hardware telemetry data often suffers from "Data Asymmetry" across Redfish, Web, and OS layers. Passive checks failed to detect propagation bugs during dynamic firmware updates and UI version shifts.
                         </span>
                     </div>
                 </div>
@@ -21,11 +18,7 @@
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            Built a modular Python framework using the <strong>Strategy Pattern</strong> to
-                            decouple data retrieval from validation logic. Integrated <strong>Selenium</strong> for UI
-                            scraping
-                            and <strong>Redfish API</strong> for backend verification, enabling multi-layered
-                            consistency checks (API vs. GUI vs. SMBIOS).
+                            Engineered an <strong>Active Validation Framework</strong> featuring randomized data injection via <strong>SMC SUM</strong> and <strong>CV-driven Interface Adaptation</strong>. Used OpenCV to detect BMC versions and automate 3-way reconciliation.
                         </span>
                     </div>
                 </div>
@@ -33,22 +26,20 @@
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            Reduced end-to-end verification time by <strong>90%</strong>. Established a unified quality
-                            gate
-                            that standardized data auditing across multiple vendor-specific BMC firmware,
-                            identifying several <strong>field-critical data conversion bugs</strong>.
+                            Eliminated 100% of data propagation risks in manufacturing (L10/L11). Established a source-of-truth validation chain that ensures data integrity across all server management interfaces.
                         </span>
                     </div>
                 </div>
                 <div class="tech-footer">
-                    <span class="tech-tag">Python (Strategy Pattern)</span>
-                    <span class="tech-tag">Redfish (RESTful)</span>
-                    <span class="tech-tag">Selenium WebDriver</span>
-                    <span class="tech-tag">Data Reconciliation</span>
+                    <span class="tech-tag">Python / Selenium</span>
+                    <span class="tech-tag">SMC SUM (Active)</span>
+                    <span class="tech-tag">OpenCV (CV)</span>
+                    <span class="tech-tag">Data Integrity</span>
+                    <span class="tech-tag">Firmware Consistency</span>
                 </div>
             </div>
             <div class="star-visual">
-                <img src="src/image/redfish_validation.svg" alt="Strategy Pattern Architecture for Multi-BMC Validation"
+                <img src="src/image/redfish_validation.svg" alt="Consistency Validation Architecture"
                     class="slide-image">
             </div>
         </div>

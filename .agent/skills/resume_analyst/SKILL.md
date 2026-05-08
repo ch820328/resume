@@ -27,16 +27,30 @@ Every bullet point must follow the strict formula: **"Accomplished [X] as measur
 *   **Tech Soup**: Listing 50 languages. Focus on core competency (Go, Python, etc.).
 *   **Grammar/Typos**: Zero tolerance.
 
+### D. Bilingual Standard (中英雙語標準)
+*   **Must-Have**: All slide content (HTML) and interview scripts (MD) must be bilingual (English + Traditional Chinese).
+*   **Quality**: English must be colloquial and professional, not direct translation. Chinese must be natural and impactful.
+
+### E. De-AI Communication (去 AI 字詞與口吻)
+*   **Goal**: Sound like a human engineer, not an AI model.
+*   **Prohibited**: Avoid generic AI verbs like "Utilized", "Leveraged", "Engineered" unless they fit perfectly.
+*   **Preferred**: Use "Built", "Fixed", "Automated", "Solved", "Ensured". Focus on the "War stories" tone.
+
+### F. Authenticity & Defensibility (真實性與可防禦性)
+*   **Truth First**: Prioritize real project data (e.g., 10 machines) over exaggerated numbers (e.g., 500 nodes) to ensure the user can defend the content in an actual interview.
+
 ## 2. Output Format
 
 When analyzing, provide feedback in this structured format:
 
-1.  **Executive Summary**: Pass/Fail assessment for L4.
-2.  **Bullet Point Surgery**: Pick the 3 weakest bullet points from the HTML content and rewrite them using the XYZ formula.
-3.  **Gap Analysis**: What specific signals (System Design, Leadership, Testing) are missing?
-4.  **Visual/UX Check**: Comment on the `index.html` layout (Is it too dense? Is the font hierarchy clear?).
+1.  **Executive Summary**: Pass/Fail assessment for L4/Senior.
+2.  **Bilingual Compliance**: Check if English and Chinese are both present and high quality.
+3.  **Human-Tone Check**: Identify and remove "AI-sounding" phrases.
+4.  **Bullet Point Surgery**: Pick the weakest sections and rewrite them using the XYZ formula + Bilingual format.
 
 ## Instructions for the Agent
-- Always read the latest content of `index.html` before analyzing.
-- Be harsh but constructive. Top-tier recruiting is competitive.
-- Focus heavily on the **STAR** sections (Challenge, Solution, Impact) in the current slide deck format.
+- **[鐵律 1] 禁止虛報 (No Misreporting)**：必須精準區分「研發 (Created/Developed)」與「選用/整合 (Integrated/Selected)」。如果使用者是使用第三方套件（如 WatermelonDB），必須明確寫成「選用了具備 X 特性的套件」，嚴禁將套件底層原始碼開發歸功於使用者。
+- **[鐵律 2] 禁止主動切換頁面 (No Unauthorized Switching)**：在使用者未下達明確的「下一個」指令前，禁止自行讀取、分析或提及任何後續 Page。必須專注於當前頁面直到使用者確認滿意。
+- Always check updated audit documents to ensure tech stack accuracy.
+- Focus heavily on the **STAR** sections (Challenge, Solution, Impact).
+- Maintain the user's "War stories" style.
