@@ -1,85 +1,50 @@
-<div class="slide-content">
-  <div class="slide-header">
-    <div class="title-section">
-      <h1 class="project-title">Pic Transcript: Industrial OCR Engine</h1>
-      <h2 class="project-subtitle">Feature Discovery / OpenCV Precision</h2>
-    </div>
-    <div class="technical-tags">
-      <span class="tag tag-cv">OpenCV / matchTemplate</span>
-      <span class="tag tag-ocr">Tesseract / Repomix</span>
-      <span class="tag tag-algo">Fuzzy Matching</span>
-    </div>
-  </div>
-
-  <div class="slide-body">
-    <div class="main-column">
-      <section class="challenge-section">
-        <h3>Industrial Interface Gaps</h3>
-        <p>Bridged the gap between non-API legacy interfaces (BIOS Setup) and structured data governance by implementing a CV-driven OCR pipeline with <strong>99.9% data fidelity</strong>.</p>
-      </section>
-
-      <section class="solution-grid">
-        <div class="solution-item">
-          <span class="icon">🔍</span>
-          <div class="item-text">
-            <h4>CV Orchestration</h4>
-            <p>Automated UI anchor identification via <strong>OpenCV</strong>, enabling dynamic ROI adaptation and 100% stable transcription across diverse hardware generations.</p>
-          </div>
+<section class="slide" id="pic_transcript">
+    <div class="content-wrapper">
+        <div class="slide-header-row">
+            <h2 class="slide-title">Pic Transcript: Industrial OCR Engine</h2>
+            <span class="slide-tag">OpenCV & Computer Vision</span>
         </div>
-        <div class="solution-item">
-          <span class="icon">📦</span>
-          <div class="item-text">
-            <h4>Deployment Maturity</h4>
-            <p>Utilized <strong>Repomix</strong> for portable code bundling and integrated with <strong>OpenClaw WebService</strong> for scalable manufacturing line integration.</p>
-          </div>
+        <div class="star-grid">
+            <div class="star-content">
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Challenge:</span>
+                        <span class="star-text">
+                            <strong>[EN]</strong> Bridging the gap between non-API legacy interfaces (BIOS Setup) and structured data governance required extreme precision in raw image transcription.<br>
+                            <strong>[TW]</strong> 在缺乏 API 的舊版介面（如 BIOS Setup）與結構化數據治理之間建立橋樑，需要在原始圖像轉錄中達到極高的精確度。
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Solution:</span>
+                        <span class="star-text">
+                            <strong>[EN]</strong> Automated UI anchor identification via <strong>OpenCV</strong>, enabling dynamic ROI adaptation and 100% stable transcription across diverse hardware generations.<br>
+                            <strong>[TW]</strong> 透過 <strong>OpenCV</strong> 自動化 UI 錨點識別，實現了動態感興趣區域 (ROI) 適配，確保跨硬體世代的 100% 穩定轉錄。
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Impact:</span>
+                        <span class="star-text">
+                            <strong>[EN]</strong> Achieved <strong>99.9% data fidelity</strong>, increasing verification efficiency by 4x and reducing baseline error rates from 5% to 0.1%.<br>
+                            <strong>[TW]</strong> 達成了 <strong>99.9% 的數據忠實度</strong>，將驗證效率提升了 4 倍，並將基準錯誤率從 5% 降低至 0.1%。
+                        </span>
+                    </div>
+                </div></div>
+            
+                <div class="tech-footer">
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">Python / C++</span>
+                    <span class="tech-tag">Template Matching vs DL OCR</span>
+                    <span class="tech-tag">Spatial Layout Analysis</span>
+                </div>
+            <div class="star-visual">
+                <div class="process-flow-viz">
+                    <img src="src/image/pic_transcript.svg" alt="Industrial OCR Workflow" class="slide-image">
+                </div>
+            </div>
         </div>
-      </section>
     </div>
-
-    <div class="side-column">
-      <div class="metric-card">
-        <span class="metric-value">4x</span>
-        <span class="metric-label">Verification Efficiency</span>
-      </div>
-      <div class="metric-card highlight">
-        <span class="metric-value">0.1%</span>
-        <span class="metric-label">Error Rate (Baseline 5%)</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<style>
-/* Pic Transcript Specific High-Impact Styles */
-.tag-cv { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
-.tag-ocr { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
-.tag-algo { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
-
-.solution-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.solution-item {
-  display: flex;
-  gap: 1rem;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 1.25rem;
-  border-radius: 12px;
-  border-left: 4px solid var(--accent-primary);
-}
-
-.metric-card.highlight {
-  background: linear-gradient(145deg, rgba(16, 185, 129, 0.2), rgba(0, 0, 0, 0));
-  border: 1px solid rgba(16, 185, 129, 0.3);
-}
-
-.project-title {
-  background: linear-gradient(to right, #fff, #6ee7b7);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-</style>
+</section>

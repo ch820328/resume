@@ -10,7 +10,8 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            Manual Jetson BSP builds faced high SKU fragmentation and 5GB+ image bottlenecks. "Manual BCT edits" for different memory vendors (RAM Code) risked catastrophic hardware bricking during mass deployment.
+                            <strong>[EN]</strong> Manual Jetson BSP builds faced high SKU fragmentation and image bottlenecks. Manual memory vendor edits (RAM Code) risked hardware bricking.<br>
+                            <strong>[TW]</strong> 手動 Jetson BSP 構建面臨嚴重的 SKU 碎片化與鏡像瓶頸。針對不同內存廠商的手動 BCT 修改（RAM Code）在大量部署時存在硬體損壞風險。
                         </span>
                     </div>
                 </div>
@@ -18,7 +19,8 @@
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            Architected a <strong>Full-Stack BSP Factory</strong> using <strong>Go (Gin)</strong> to orchestrate NVIDIA L4T builds. Integrated <strong>Zstd compression</strong> to optimize UPH and implemented <strong>SKU-aware automation</strong> for dynamic RAM Code/BoardID injection.
+                            <strong>[EN]</strong> Architected a <strong>Full-Stack BSP Factory</strong> using <strong>Go (Gin)</strong>. Integrated <strong>Zstd compression</strong> and <strong>SKU-aware automation</strong> for dynamic injection.<br>
+                            <strong>[TW]</strong> 使用 <strong>Go (Gin)</strong> 架構了全棧 <strong>BSP Factory</strong>。整合了 <strong>Zstd 壓縮</strong> 以優化產線效率，並實作了 <strong>SKU 感知自動化</strong> 進行動態參數注入。
                         </span>
                     </div>
                 </div>
@@ -26,21 +28,22 @@
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            Increased <strong>Factory UPH by 25%</strong> via Zstd-accelerated image delivery and parallel MassFlash (MFI) orchestration. Eliminated 100% of bricking risks through automated SKU-validation guardrails.
+                            <strong>[EN]</strong> Increased <strong>Factory UPH by 25%</strong> and eliminated 100% of bricking risks through automated SKU-validation guardrails.<br>
+                            <strong>[TW]</strong> 透過 Zstd 加速鏡像交付與平行燒錄，將 <strong>工廠 UPH 提升了 25%</strong>。並透過自動化 SKU 驗證閘門完全消除了損壞風險。
                         </span>
                     </div>
-                </div>
+                </div></div>
+            
                 <div class="tech-footer">
-                    <span class="tech-tag">Embedded Linux</span>
-                    <span class="tech-tag">Go / Gin</span>
-                    <span class="tech-tag">NVIDIA L4T</span>
-                    <span class="tech-tag">Zstd (Compression)</span>
-                    <span class="tech-tag">MassFlash (MFI)</span>
+                    <span class="tech-tag">Zstd Optimization</span>
+                    <span class="tech-tag">Device Tree (dtsi)</span>
+                    <span class="tech-tag">MassFlash / OTA</span>
+                    <span class="tech-tag">Kernel Tuning</span>
                 </div>
-            </div>
             <div class="star-visual">
-                <img src="src/image/jetson_build.svg" alt="Jetson Build Server Architecture"
-                    class="slide-image">
+                <div class="process-flow-viz">
+                    <img src="src/image/jetson_build.svg" alt="Jetson Build Server Architecture" class="slide-image">
+                </div>
             </div>
         </div>
     </div>

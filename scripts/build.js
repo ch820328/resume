@@ -80,15 +80,28 @@ function build() {
 
     let slidesHtml = '';
     let navDotsHtml = '';
+    let totalSlideCount = 0;
 
-    slideFiles.forEach((file, index) => {
-        const content = fs.readFileSync(path.join(SLIDES_DIR, file), 'utf-8');
-        slidesHtml += content + '\n'; // Add newline for readability
+    slideFiles.forEach((file) => {
+        let content = fs.readFileSync(path.join(SLIDES_DIR, file), 'utf-8');
+        
+        // 1. Robust Bilingual Handling:
+        // Match [EN] block and [TW] block, keeping only the EN part.
+        // This regex handles various tag combinations and newlines.
+        content = content.replace(/(?:<strong>)?\[EN\](?:<\/strong>)?([\s\S]*?)(?:<br\s*\/?>)?\s*(?:<strong>)?\[TW\](?:<\/strong>)?([\s\S]*?)(?=\n\s*<\/?p>|\n\s*<\/div>|\n\s*<\/section>|$)/gi, '$1');
 
-        // Generate Nav Dot
-        const activeClass = index === 0 ? 'active' : '';
-        navDotsHtml += `<div class="nav-dot ${activeClass}" data-slide="${index}"></div>\n`;
+        // 2. Final Cleanup for any stray markers
+        content = content.replace(/\[EN\]/gi, '').replace(/\[TW\][\s\S]*?(?=<br|<\/p|<\/div|$)/gi, '');
+
+        slidesHtml += content + '\n';
+        totalSlideCount++;
     });
+
+    // Generate Nav Dots
+    for (let i = 0; i < totalSlideCount; i++) {
+        const activeClass = i === 0 ? 'active' : '';
+        navDotsHtml += `<div class="nav-dot ${activeClass}" data-slide="${i}"></div>\n`;
+    }
 
     // 2. Inject into Template
     let finalHtml = template
@@ -105,7 +118,7 @@ function build() {
 
     // 4. Write Output
     fs.writeFileSync(OUTPUT_FILE, finalHtml);
-    console.log(`✅ Successfully built ${OUTPUT_FILENAME} with ${slideFiles.length} slides.`);
+    console.log(`✅ Successfully built ${OUTPUT_FILENAME} in English-Only mode (${totalSlideCount} slides).`);
 }
 
 build();

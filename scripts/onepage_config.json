@@ -2,7 +2,7 @@
     "profiles": {
         "master": {
             "name": "Senior Software Engineer (Generalist Portfolio)",
-            "summary": "我是一位專注於 **後端開發**、**分散式平台** 與 **自動化基礎設施** 的工程師。過去 5 年，我致力於打造能解決團隊痛點的工具，從底層的 BSP 優化到支持百萬用戶的同步引擎。我傾向於務實的架構設計，追求能系統性提升效率且穩定可靠的工程方案。",
+            "summary": "I am a software engineer focused on **Backend Development**, **Distributed Platforms**, and **Automated Infrastructure**. Over the past 5 years, I have dedicated myself to building tools that resolve team pain points, ranging from low-level BSP optimization to synchronization engines supporting millions of users. I advocate for pragmatic architectural design and pursue engineering solutions that systematically enhance efficiency while remaining stable and reliable.",
             "featured_projects": [
                 "Jetson Orin BSP & Infrastructure Optimization",
                 "NVSSVT Enterprise Automation Platform",
@@ -15,7 +15,7 @@
         },
         "embedded": {
             "name": "Embedded Systems & Firmware Specialist",
-            "summary": "專精於 **嵌入式系統** 與 **韌體開發環境** 的工程師。我有豐富的硬體通訊協議、UEFI/BIOS 診斷工具開發經驗，並擅長優化大規模量產時的編譯與刷機流程。我曾主導多項跨部門技術升級，透過建立標準化的開發規範與自動化防呆機制，解決核心的硬體驗證瓶頸。",
+            "summary": "A software engineer specializing in **Embedded Systems** and **Firmware Development Environments**. I have extensive experience in hardware communication protocols and UEFI/BIOS diagnostic tool development, with expertise in optimizing compilation and flashing processes for large-scale production. I have led numerous cross-departmental technical upgrades, resolving core hardware validation bottlenecks by establishing standardized development specs and automated error-proofing mechanisms.",
             "featured_projects": [
                 "Jetson Orin BSP & Infrastructure Optimization",
                 "Deterministic BIOS OCR Engine",
@@ -28,7 +28,7 @@
         },
         "fullstack": {
             "name": "Full-Stack & Distributed Systems Architect",
-            "summary": "擅長 **分散式系統** 與 **離線同步架構** 的全端開發者。我專注於設計具備強大容錯能力的高併發後端，並將原本凌亂、手動的作業流程，轉化為易於擴展的 API 服務平台。我認為好的架構不只要能處理高流量，更要能無縫整合進 CI/CD 流程，讓研發週期顯著加速。",
+            "summary": "A full-stack developer specializing in **Distributed Systems** and **Offline-first Synchronization Architectures**. I focus on designing high-concurrency backends with robust fault tolerance, transforming messy, manual workflows into scalable API service platforms. I believe that great architecture should not only handle high traffic but also integrate seamlessly into CI/CD pipelines to significantly accelerate the R&D cycle.",
             "featured_projects": [
                 "Offline-First Distributed System (Baby Tracker)",
                 "NVSSVT Enterprise Automation Platform",

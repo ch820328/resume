@@ -10,7 +10,8 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            Manual release processes were constrained by fragmented versioning and the security risk of storing static SSH keys in CI servers. Lack of metadata-driven audit trails led to frequent environment drift.
+                            <strong>[EN]</strong> Manual release processes were constrained by fragmented versioning and security risks (static SSH keys). Lack of audit trails led to environment drift.<br>
+                            <strong>[TW]</strong> 手動發佈流程受限於碎片化的版本管理與安全風險（靜態 SSH 金鑰）。缺乏審計追蹤導致了環境偏離 (Environment Drift)。
                         </span>
                     </div>
                 </div>
@@ -18,7 +19,8 @@
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            Engineered a <strong>Zero-Trust CD Pipeline</strong>. Developed a <strong>Dynamic Runner Provisioning</strong> system via Python and GitLab API, and implemented a <strong>Metadata-Driven Release Engine</strong> that parses CHANGELOG.md for fully automated tagging and webhook triggers.
+                            <strong>[EN]</strong> Engineered a <strong>Zero-Trust CD Pipeline</strong> with <strong>Dynamic Runner Provisioning</strong> and a <strong>Metadata-Driven Release Engine</strong> for automated tagging.<br>
+                            <strong>[TW]</strong> 架構了 <strong>零信任 CD 流水線</strong>，具備 <strong>動態 Runner 供應</strong> 機制與 <strong>元數據驅動的發佈引擎</strong>，實現自動化標籤與版本管理。
                         </span>
                     </div>
                 </div>
@@ -26,20 +28,22 @@
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            Achieved 100% automated synchronization between documentation and production releases. Reduced credential exposure significantly via short-lived token strategies, achieving instantaneous atomic deployment.
+                            <strong>[EN]</strong> Achieved 100% automated sync between docs and releases. Reduced credential exposure and achieved atomic deployment.<br>
+                            <strong>[TW]</strong> 實現了文檔與正式發佈版本的 100% 自動同步。顯著降低了憑證洩露風險，並實現了瞬時的原子化部署。
                         </span>
                     </div>
-                </div>
+                </div></div>
+            
                 <div class="tech-footer">
-                    <span class="tech-tag">GitLab API</span>
-                    <span class="tech-tag">Infrastructure as Code</span>
-                    <span class="tech-tag">Python (Paramiko)</span>
-                    <span class="tech-tag">Automated Tagging</span>
-                    <span class="tech-tag">Webhook Agent</span>
+                    <span class="tech-tag">GitLab CI/CD</span>
+                    <span class="tech-tag">Semantic Versioning</span>
+                    <span class="tech-tag">API-Driven Deploy</span>
+                    <span class="tech-tag">Security Hardening</span>
                 </div>
-            </div>
             <div class="star-visual">
-                <img src="src/image/gitlab_cd.svg" alt="Automated Release Architecture" class="slide-image">
+                <div class="process-flow-viz">
+                    <img src="src/image/gitlab_cd.svg" alt="Automated Release Architecture" class="slide-image">
+                </div>
             </div>
         </div>
     </div>

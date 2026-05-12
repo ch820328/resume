@@ -1,7 +1,7 @@
 <section class="slide" id="gitlab_ci">
     <div class="content-wrapper">
         <div class="slide-header-row">
-            <h2 class="slide-title">Standardized Gating & Pipeline Acceleration</h2>
+            <h2 class="slide-title">Standardized CI/CD Governance & Quality Gates</h2>
             <span class="slide-tag">Engineering Quality & DevOps</span>
         </div>
         <div class="star-grid">
@@ -10,7 +10,8 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            Developer feedback loops were bottlenecked by lengthy runtime dependency installations, while outdated branch bases caused recurring hidden merge conflicts, compromising system integration stability.
+                            <strong>[EN]</strong> Fragmented development workflows across multiple projects led to messy non-linear Git histories, inconsistent Merge Request documentation, and high technical debt during system integration.<br>
+                            <strong>[TW]</strong> 多專案並行導致開發工作流碎片化，產生混亂的非線性 Git 歷史與不一致的 MR 文件，增加了系統整合時的技術債與風險。
                         </span>
                     </div>
                 </div>
@@ -18,7 +19,8 @@
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            Engineered a <strong>Standardized CI Gating Framework</strong>. Implemented <strong>Enforced Rebase-based workflows</strong> to validate branch-base age and deployed <strong>Pre-baked CI Images</strong> to eliminate runtime setup overhead, achieving near-instant feedback.
+                            <strong>[EN]</strong> Architected a **Centralized CI Gating Framework**. Implemented automated **Linear History Enforcement** (Rebase-only), mandatory **Template Validation** for MR descriptions, and integrated with **OpenClaw AI** for instant code review feedback.<br>
+                            <strong>[TW]</strong> 架構 **中央化 CI 治理框架**。實作自動化 **線性歷史強制校驗 (Rebase-only)**、MR 描述模板強制驗證，並整合 **OpenClaw AI** 實現即時的代碼審核回饋。
                         </span>
                     </div>
                 </div>
@@ -26,20 +28,23 @@
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            Reduced pipeline execution time by over <strong>60%</strong>. Guaranteed zero-tolerance for hidden merge conflicts in staging and achieved a 100% automated enforcement of engineering standards across all repositories.
+                            <strong>[EN]</strong> Achieved **100% linear history** across all repositories, simplifying audits and rollbacks. Reduced manual review overhead by **30%** and established a unified high-standard engineering culture.<br>
+                            <strong>[TW]</strong> 在所有代碼庫中實現 **100% 線性歷史**，簡化了審計與回滾流程。減少 **30% 人工審核負擔**，建立了統一的高標準工程文化。
                         </span>
                     </div>
-                </div>
+                </div></div>
+            
                 <div class="tech-footer">
-                    <span class="tech-tag">Git Gating</span>
-                    <span class="tech-tag">Docker Optimization</span>
-                    <span class="tech-tag">Architecture & Standards</span>
-                    <span class="tech-tag">Pipeline Acceleration</span>
                     <span class="tech-tag">GitLab CI</span>
+                    <span class="tech-tag">Conventional Commits</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Python (Tooling)</span>
+                    <span class="tech-tag">Static Analysis</span>
                 </div>
-            </div>
             <div class="star-visual">
-                <img src="src/image/gitlab_ci.svg" alt="CI Acceleration Architecture" class="slide-image">
+                <div class="process-flow-viz">
+                    <img src="src/image/gitlab_ci.svg" alt="GitLab CI Automated Gating" class="slide-image">
+                </div>
             </div>
         </div>
     </div>
