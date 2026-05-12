@@ -1,58 +1,76 @@
-<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" />
-        </linearGradient>
-        <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <path d="M0,0 L8,4 L0,8" fill="none" stroke="#94a3b8" stroke-width="1"/>
-        </marker>
-    </defs>
+<svg width="400" height="520" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg">
+  <!-- Content Area (No outer frame/dots here, let CSS handle it) -->
 
-    <!-- Canvas -->
-    <rect width="600" height="400" fill="none"/>
+  <!-- Main Title -->
+  <text x="200" y="30" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="18" fill="#1e293b">OpenClaw: AI Review Matrix</text>
+  <text x="200" y="50" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="12" fill="#64748b">Multi-Agent Orchestration Pipeline</text>
 
-    <!-- Source -->
-    <rect x="30" y="160" width="90" height="80" fill="url(#glassGrad)" stroke="#f87171" stroke-width="1" rx="12"/>
-    <text x="42" y="195" font-family="Inter, sans-serif" font-size="10" fill="#991b1b" font-weight="700">GitLab MR</text>
-    <text x="42" y="212" font-family="Inter, sans-serif" font-size="9" fill="#ef4444">Raw Diff</text>
+  <!-- Flow 1: User/Trigger -->
+  <g transform="translate(100, 80)">
+    <rect x="0" y="0" width="200" height="35" rx="17.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="100" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#475569">🚀 GitLab MR Trigger</text>
+  </g>
 
-    <!-- Flow 1 -->
-    <path d="M 120 200 L 170 200" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
+  <!-- Arrow -->
+  <line x1="200" y1="115" x2="200" y2="140" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="196,140 204,140 200,147" fill="#3b82f6"/>
 
-    <!-- Orchestration Layer -->
-    <rect x="180" y="80" width="130" height="240" fill="rgba(255,255,255,0.4)" stroke="#3b82f6" stroke-width="1" rx="16"/>
-    <text x="195" y="105" font-family="Inter, sans-serif" font-size="10" fill="#1e40af" font-weight="700">ORCHESTRATOR</text>
+  <!-- Nested Orchestrator Window -->
+  <g transform="translate(30, 150)">
+    <rect x="0" y="0" width="340" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
     
-    <rect x="195" y="130" width="100" height="40" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="8"/>
-    <text x="205" y="155" font-family="Inter, sans-serif" font-size="9" fill="#334155" font-weight="600">Complexity Analysis</text>
+    <!-- Nested Dots (Keep these for the sub-window look) -->
+    <circle cx="15" cy="15" r="4" fill="#ff5f56"/>
+    <circle cx="27" cy="15" r="4" fill="#ffbd2e"/>
+    <circle cx="39" cy="15" r="4" fill="#27c93f"/>
     
-    <rect x="195" y="180" width="100" height="40" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="8"/>
-    <text x="205" y="205" font-family="Inter, sans-serif" font-size="9" fill="#334155" font-weight="600">Plan Generation</text>
+    <!-- Tab -->
+    <rect x="90" y="5" width="160" height="20" rx="4" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="170" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#1d4ed8">Matrix Orchestrator</text>
 
-    <!-- Parallel Matrix Arrows -->
-    <path d="M 310 160 L 340 100 L 360 100" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-    <path d="M 310 200 L 360 200" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-    <path d="M 310 240 L 340 300 L 360 300" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
+    <!-- Grid -->
+    <g transform="translate(15, 40)">
+        <rect x="0" y="0" width="150" height="60" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+        <text x="75" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#166534">Security Expert</text>
+        <text x="75" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" fill="#15803d">CVE &amp; Pattern Scan</text>
+    </g>
+    <g transform="translate(175, 40)">
+        <rect x="0" y="0" width="150" height="60" rx="6" fill="#fdf2f7" stroke="#fbcfe8" stroke-width="1"/>
+        <text x="75" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#9d174d">Arch Specialist</text>
+        <text x="75" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="8" fill="#831843">Design Consistency</text>
+    </g>
 
-    <!-- Specialists -->
-    <rect x="370" y="70" width="100" height="60" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="10"/>
-    <text x="382" y="95" font-family="Inter, sans-serif" font-size="9" fill="#475569" font-weight="700">Security Exp</text>
-    <text x="382" y="110" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Vuln Scan</text>
+    <g transform="translate(15, 115)">
+        <rect x="0" y="0" width="310" height="60" rx="6" fill="#ffffff" stroke="#1e293b" stroke-width="1"/>
+        <rect x="0" y="0" width="310" height="20" rx="6" fill="#f1f5f9"/>
+        <text x="155" y="14" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#475569">Blackboard Decision Matrix</text>
+        <text x="10" y="40" font-family="'Roboto Mono', monospace" font-size="8" fill="#15803d">$ analyze --experts all</text>
+        <text x="10" y="52" font-family="'Roboto Mono', monospace" font-size="8" fill="#64748b">> synthesizing consensus...</text>
+    </g>
 
-    <rect x="370" y="170" width="100" height="60" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="10"/>
-    <text x="382" y="195" font-family="Inter, sans-serif" font-size="9" fill="#475569" font-weight="700">Logic Exp</text>
-    <text x="382" y="210" font-family="Inter, sans-serif" font-size="8" fill="#64748b">State Logic</text>
+    <g transform="translate(15, 190)">
+        <rect x="0" y="0" width="310" height="55" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1"/>
+        <text x="155" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#1e40af">Actionable Suggestions</text>
+        <text x="155" y="40" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#2563eb">Detailed Review Comments via GitLab API</text>
+    </g>
+  </g>
 
-    <rect x="370" y="270" width="100" height="60" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="10"/>
-    <text x="382" y="295" font-family="Inter, sans-serif" font-size="9" fill="#475569" font-weight="700">Arch Exp</text>
-    <text x="382" y="310" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Consistency</text>
+  <!-- Bottom Arrow -->
+  <line x1="200" y1="415" x2="200" y2="435" stroke="#3b82f6" stroke-width="2"/>
+  <polygon points="196,435 204,435 200,442" fill="#3b82f6"/>
 
-    <!-- Synthesis -->
-    <path d="M 470 100 L 510 180" fill="none" stroke="#cbd5e1" stroke-width="1"/>
-    <path d="M 470 200 L 510 200" fill="none" stroke="#cbd5e1" stroke-width="1"/>
-    <path d="M 470 300 L 510 220" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+  <!-- Target -->
+  <g transform="translate(60, 445)">
+    <rect x="0" y="0" width="280" height="40" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <text x="140" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#0f172a">GitLab CI/CD Integration</text>
+  </g>
 
-    <rect x="520" y="170" width="60" height="60" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1" rx="10"/>
-    <text x="525" y="200" font-family="Inter, sans-serif" font-size="9" fill="#5b21b6" font-weight="700">Aggregator</text>
+  <!-- Impact Badges -->
+  <g transform="translate(30, 495)">
+      <rect x="0" y="0" width="160" height="25" rx="12.5" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+      <text x="80" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#16a34a">⚡ 40% Speedup</text>
+      
+      <rect x="180" y="0" width="160" height="25" rx="12.5" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+      <text x="260" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#2563eb">🛡️ 100% Policy Gating</text>
+  </g>
 </svg>

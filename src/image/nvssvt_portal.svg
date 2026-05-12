@@ -1,46 +1,41 @@
-<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" />
-        </linearGradient>
-        <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <path d="M0,0 L8,4 L0,8" fill="none" stroke="#94a3b8" stroke-width="1"/>
-        </marker>
-    </defs>
-
-    <!-- Source Streams -->
-    <rect x="30" y="80" width="100" height="40" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="8"/>
-    <text x="40" y="105" font-family="Inter, sans-serif" font-size="9" fill="#475569" font-weight="700">Factory A Stream</text>
-    
-    <rect x="30" y="140" width="100" height="40" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="8"/>
-    <text x="40" y="165" font-family="Inter, sans-serif" font-size="9" fill="#475569" font-weight="700">Factory B Stream</text>
-
-    <rect x="30" y="200" width="100" height="40" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="8"/>
-    <text x="40" y="225" font-family="Inter, sans-serif" font-size="9" fill="#475569" font-weight="700">Test Logs</text>
-
-    <!-- Gateway -->
-    <path d="M 130 100 L 180 160" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-    <path d="M 130 160 L 180 170" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-    <path d="M 130 220 L 180 180" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-
-    <rect x="190" y="140" width="140" height="60" fill="url(#glassGrad)" stroke="#2563eb" stroke-width="1" rx="12" style="filter: drop-shadow(0 4px 12px rgba(37,99,235,0.1))"/>
-    <text x="205" y="170" font-family="Inter, sans-serif" font-size="10" fill="#1e40af" font-weight="700">CENTRAL GATEWAY</text>
-    <text x="205" y="185" font-family="Inter, sans-serif" font-size="8" fill="#2563eb">Auth & API Normalization</text>
-
-    <!-- Flow -->
-    <path d="M 330 170 L 380 170" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-
-    <!-- Dashboard -->
-    <rect x="390" y="100" width="160" height="140" fill="rgba(255,255,255,0.4)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="16"/>
-    <text x="405" y="125" font-family="Inter, sans-serif" font-size="10" fill="#475569" font-weight="700">UNIFIED PORTAL</text>
-    
-    <rect x="405" y="145" width="130" height="30" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="4"/>
-    <text x="415" y="165" font-family="Inter, sans-serif" font-size="9" fill="#1e293b">Real-time Yield</text>
-    
-    <rect x="405" y="185" width="130" height="30" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="4"/>
-    <text x="415" y="205" font-family="Inter, sans-serif" font-size="9" fill="#1e293b">Station Status</text>
-
-    <!-- Impact Badge -->
-    <text x="400" y="300" font-family="Inter, sans-serif" font-size="11" fill="#166534" font-weight="700">📈 Centralized Visibility</text>
+<svg width="400" height="520" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg">
+  <text x="200" y="30" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="18" fill="#1e293b">NVSSVT: Automation Portal</text>
+  <text x="200" y="50" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="12" fill="#64748b">Unified Orchestration for Hardware Validation</text>
+  <g transform="translate(100, 80)">
+    <rect x="0" y="0" width="200" height="35" rx="17.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="100" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#475569">⚙️ Validation Tasks</text>
+  </g>
+  <line x1="200" y1="115" x2="200" y2="140" stroke="#3b82f6" stroke-width="2"/><polygon points="196,140 204,140 200,147" fill="#3b82f6"/>
+  <g transform="translate(30, 150)">
+    <rect x="0" y="0" width="340" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <circle cx="15" cy="15" r="4" fill="#ff5f56"/><circle cx="27" cy="15" r="4" fill="#ffbd2e"/><circle cx="39" cy="15" r="4" fill="#27c93f"/>
+    <rect x="90" y="5" width="160" height="20" rx="4" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="170" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#1d4ed8">Orchestration Hub</text>
+    <g transform="translate(15, 40)">
+        <rect x="0" y="0" width="310" height="60" rx="8" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1"/>
+        <text x="155" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#0369a1">Job Scheduling &amp; Dispatch</text>
+        <text x="155" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#075985">Async Execution with Redis/BullMQ</text>
+    </g>
+    <g transform="translate(15, 115)">
+        <rect x="0" y="0" width="310" height="60" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+        <text x="155" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#15803d">Real-time SUT Status</text>
+        <text x="155" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#166534">WebSockets for Live Feedback</text>
+    </g>
+    <g transform="translate(15, 190)">
+        <rect x="0" y="0" width="310" height="55" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="155" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#1e40af">Unified HW Management API</text>
+        <text x="155" y="40" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#2563eb">Seamless control for hardware fleet</text>
+    </g>
+  </g>
+  <line x1="200" y1="415" x2="200" y2="435" stroke="#3b82f6" stroke-width="2"/><polygon points="196,435 204,435 200,442" fill="#3b82f6"/>
+  <g transform="translate(60, 445)">
+    <rect x="0" y="0" width="280" height="40" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <text x="140" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#0f172a">Validated Hardware Fleet</text>
+  </g>
+  <g transform="translate(30, 495)">
+      <rect x="0" y="0" width="160" height="25" rx="12.5" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="80" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#15803d">⚡ 90% Efficiency</text>
+      <rect x="180" y="0" width="160" height="25" rx="12.5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="260" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#1e40af">🚀 Centralized Hub</text>
+  </g>
 </svg>

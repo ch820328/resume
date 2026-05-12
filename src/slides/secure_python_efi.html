@@ -1,8 +1,8 @@
-<section class="slide" id="secure-python-efi">
+<section class="slide" id="secure_python_efi">
     <div class="content-wrapper">
         <div class="slide-header-row">
-            <h2 class="slide-title">Secure Python Execution in UEFI (Python.efi)</h2>
-            <span class="slide-tag">Firmware Security</span>
+            <h2 class="slide-title">Secure Python EFI Environment</h2>
+            <span class="slide-tag">Firmware Security & UEFI</span>
         </div>
         <div class="star-grid">
             <div class="star-content">
@@ -10,38 +10,34 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> Distributing automated test scripts across global factory sites posed a significant risk of unauthorized execution and logic tampering. Standard Python interpreters lacked a secure loading mechanism for encrypted assets in the pre-boot environment.<br>
-                            <strong>[TW]</strong> 全球工廠分發自動化測試腳本時，面臨腳本被未授權執行或篡改的風險。標準 Python 解釋器在 UEFI Pre-boot 環境中缺乏對加密資產的安全加載機制。
-                        </span>
+                             The unauthorized distribution of proprietary diagnostic code by former employees posed a critical IP risk. Existing tools lacked execution control, allowing sensitive logic to run on unauthorized third-party hardware.</span>
                     </div>
                 </div>
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> Developed a **Secure Decryption Pipeline**. Modified the **EDK II Python.efi** C source to integrate an RSA-AES decryption engine. Encrypted scripts are decrypted directly in memory before execution, ensuring the source never touches the disk in plaintext.<br>
-                            <strong>[TW]</strong> 開發 **安全解密流水線**。修改 **EDK II Python.efi** 源碼，整合 RSA-AES 解密引擎。加密腳本在執行前直接於內存中解密，確保源碼全程不以明文形式落地。
-                        </span>
+                             Engineered an **Encrypted Python Runtime** by modifying the core `PyImport_ImportModule` mechanism. Implemented **RSA Asymmetric Encryption** to ensure scripts remain encrypted on disk and can only be decrypted and executed by the authorized runtime.</span>
                     </div>
                 </div>
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> Established a **Zero-Trust execution environment** for all firmware validation tools. Prevented unauthorized script usage with millisecond decryption latency, ensuring 100% testing integrity across the global supply chain.<br>
-                            <strong>[TW]</strong> 為全球供應鏈建立 **零信任執行環境**。以毫秒級的解密延遲，徹底杜絕了測試工具的非法使用，確保 100% 的測試完整性。
-                        </span>
+                             Effectively secured core intellectual property against unauthorized access and reverse engineering. Established a robust security standard that neutralized the risk of source code theft.</span>
                     </div>
-                </div></div>
-            
-                <div class="tech-footer">
-                    <span class="tech-tag">EDK II / UEFI</span>
-                    <span class="tech-tag">C / Python</span>
-                    <span class="tech-tag">RSA & AES</span>
                 </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">C / C++</span>
+                    <span class="tech-tag">Python C-API</span>
+                    <span class="tech-tag">UEFI Shell</span>
+                    <span class="tech-tag">EDK2</span>
+                    <span class="tech-tag">Cryptography</span>
+                </div>
+            </div>
             <div class="star-visual">
                 <div class="process-flow-viz">
-                    <img src="src/image/secure_python_efi.png" alt="Secure Python EFI Architecture" class="slide-image">
+                    <img src="src/image/secure_python_efi.svg" alt="Secure EFI Python Environment" class="slide-image">
                 </div>
             </div>
         </div>

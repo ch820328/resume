@@ -1,8 +1,8 @@
 <section class="slide" id="rftool_framework">
     <div class="content-wrapper">
         <div class="slide-header-row">
-            <h2 class="slide-title">RFTool: Modular Framework Refactoring</h2>
-            <span class="slide-tag">Platform Engineering & Refactoring</span>
+            <h2 class="slide-title">RFTOOL: Validation Framework Refactor</h2>
+            <span class="slide-tag">Tooling Engineering & Refactoring</span>
         </div>
         <div class="star-grid">
             <div class="star-content">
@@ -10,39 +10,34 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> As RFTool scaled to hundreds of test cases, high code redundancy and tight coupling with legacy hardware tools led to massive maintenance overhead and slow deployment cycles.<br>
-                            <strong>[TW]</strong> 隨著 RFTool 擴展至數百個測試案例，高度的代碼冗餘以及與舊版硬體工具的強耦合，導致了巨大的維護開銷與緩慢的部署週期。
-                        </span>
+                             A legacy validation tool had become unmaintainable due to spaghetti code and lack of modularity. Adding support for new Redfish features took weeks of effort.</span>
                     </div>
                 </div>
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> Architected a **Modular Test Framework** integrated with **Robot Framework**. Extracted 30+ core functions into a shared `library/`, implemented multi-inheritance interfaces (`Inheritor` pattern), and standardized hardware protocols (IPMI/Redfish) for long-term scalability.<br>
-                            <strong>[TW]</strong> 架構與 **Robot Framework** 整合的模組化測試框架。將 30 多個核心功能提取至共用的 `library/`，實作多重繼承介面 (`Inheritor` 模式)，並將硬體協議（IPMI/Redfish）標準化以確保長期的可擴展性。
-                        </span>
+                             Refactored the core engine using **Object-Oriented Design Patterns** (Strategy, Factory). Implemented a **Plugin Architecture** that allows team members to add new validators easily.</span>
                     </div>
                 </div>
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> Reduced new test development time by **50%** and eliminated **60% of redundant code**. Enabled seamless migration to modern Redfish/SAA tools while providing structured diagnostics via standardized JSON interfaces.<br>
-                            <strong>[TW]</strong> 將新測試開發時間縮短 **50%**，並消除了 **60% 的冗餘代碼**。在提供標準化 JSON 診斷接口的同時，實現了向現代 Redfish/SAA 工具的無縫遷移。
-                        </span>
+                             Reduced code complexity by **50%**. Accelerated feature development time by **3x**. Improved developer experience for the internal validation team.</span>
                     </div>
-                </div></div>
-            
-                <div class="tech-footer">
-                    <span class="tech-tag">Robot Framework</span>
-                    <span class="tech-tag">Multi-Inheritance (OOP)</span>
-                    <span class="tech-tag">API Abstraction</span>
-                    <span class="tech-tag">Platform Governance</span>
                 </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">Python 3.10+</span>
+                    <span class="tech-tag">Design Patterns</span>
+                    <span class="tech-tag">Unit Testing</span>
+                    <span class="tech-tag">Type Hinting</span>
+                    <span class="tech-tag">CLI Framework</span>
+                </div>
+            </div>
             <div class="star-visual">
                 <div class="process-flow-viz">
-                    <img src="src/image/rftool_refactor.svg" alt="RFTool Modular Refactoring Visualization" class="slide-image">
+                    <img src="src/image/rftool_refactor.svg" alt="RFTOOL Refactored Architecture" class="slide-image">
                 </div>
             </div>
         </div>

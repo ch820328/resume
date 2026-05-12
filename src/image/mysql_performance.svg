@@ -1,44 +1,41 @@
-<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:rgba(255,255,255,0.9);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:rgba(255,255,255,0.5);stop-opacity:1" />
-        </linearGradient>
-        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
-            <path d="M0,0 L10,5 L0,10" fill="none" stroke="#94a3b8" stroke-width="1"/>
-        </marker>
-    </defs>
-
-    <!-- Canvas -->
-    <rect width="600" height="400" fill="none"/>
-
-    <!-- Load Generator -->
-    <rect x="40" y="160" width="110" height="80" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.06)" stroke-width="1" rx="14"/>
-    <text x="55" y="195" font-family="Inter, sans-serif" font-size="11" fill="#475569" font-weight="700">Sysbench</text>
-    <text x="55" y="212" font-family="Inter, sans-serif" font-size="10" fill="#64748b">Stress Load</text>
-
-    <!-- Arrow 1 -->
-    <path d="M 150 200 L 210 200" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-
-    <!-- Database Core Box -->
-    <rect x="220" y="80" width="180" height="240" fill="rgba(255,255,255,0.2)" stroke="#e2e8f0" stroke-width="1" rx="20"/>
-    <text x="235" y="105" font-family="Inter, sans-serif" font-size="10" fill="#94a3b8" font-weight="600">MYSQL 8.X CORE</text>
-
-    <!-- Internal Modules -->
-    <rect x="235" y="130" width="150" height="45" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.04)" stroke-width="1" rx="10"/>
-    <text x="250" y="157" font-family="Inter, sans-serif" font-size="10" fill="#1e293b" font-weight="600">Lock Manager</text>
-
-    <rect x="235" y="190" width="150" height="45" fill="url(#glassGrad)" stroke="#2563eb" stroke-width="1" rx="10" style="filter: drop-shadow(0 4px 10px rgba(37,99,235,0.1))"/>
-    <text x="250" y="217" font-family="Inter, sans-serif" font-size="10" fill="#1e40af" font-weight="700">Log Writer Opt</text>
-
-    <rect x="235" y="250" width="150" height="45" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.04)" stroke-width="1" rx="10"/>
-    <text x="250" y="277" font-family="Inter, sans-serif" font-size="10" fill="#1e293b" font-weight="600">Thread Scaler</text>
-
-    <!-- Feedback Loop -->
-    <path d="M 400 212 L 460 212 Q 500 212 500 280 L 500 320 L 310 320 L 310 330" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
-    <text x="440" y="200" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Monitoring Feedback</text>
-
-    <!-- Optimized Output -->
-    <path d="M 400 110 L 460 110" fill="none" stroke="#22c55e" stroke-width="1" marker-end="url(#arrow)"/>
-    <text x="470" y="115" font-family="Inter, sans-serif" font-size="11" fill="#166534" font-weight="700">99.9% Stability</text>
+<svg width="400" height="520" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg">
+  <text x="200" y="30" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="18" fill="#1e293b">MySQL Performance Cluster</text>
+  <text x="200" y="50" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="12" fill="#64748b">Scalable DB Infrastructure &amp; Monitoring</text>
+  <g transform="translate(100, 80)">
+    <rect x="0" y="0" width="200" height="35" rx="17.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="100" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#475569">📊 High Traffic Loads</text>
+  </g>
+  <line x1="200" y1="115" x2="200" y2="140" stroke="#3b82f6" stroke-width="2"/><polygon points="196,140 204,140 200,147" fill="#3b82f6"/>
+  <g transform="translate(30, 150)">
+    <rect x="0" y="0" width="340" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <circle cx="15" cy="15" r="4" fill="#ff5f56"/><circle cx="27" cy="15" r="4" fill="#ffbd2e"/><circle cx="39" cy="15" r="4" fill="#27c93f"/>
+    <rect x="90" y="5" width="160" height="20" rx="4" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="170" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#1d4ed8">DB Management Layer</text>
+    <g transform="translate(15, 40)">
+        <rect x="0" y="0" width="310" height="60" rx="8" fill="#fff7ed" stroke="#ffedd5" stroke-width="1"/>
+        <text x="155" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#9a3412">Performance Tuning</text>
+        <text x="155" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#c2410c">Index Optimization &amp; Query Refactor</text>
+    </g>
+    <g transform="translate(15, 115)">
+        <rect x="0" y="0" width="310" height="60" rx="8" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1"/>
+        <text x="155" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#0369a1">High Availability Cluster</text>
+        <text x="155" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#075985">Master-Slave Replication &amp; Failover</text>
+    </g>
+    <g transform="translate(15, 190)">
+        <rect x="0" y="0" width="310" height="55" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="155" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#1e40af">Monitoring Stack</text>
+        <text x="155" y="40" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#2563eb">Prometheus &amp; Grafana Dashboards</text>
+    </g>
+  </g>
+  <line x1="200" y1="415" x2="200" y2="435" stroke="#3b82f6" stroke-width="2"/><polygon points="196,435 204,435 200,442" fill="#3b82f6"/>
+  <g transform="translate(60, 445)">
+    <rect x="0" y="0" width="280" height="40" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <text x="140" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#0f172a">Stable Production Database</text>
+  </g>
+  <g transform="translate(30, 495)">
+      <rect x="0" y="0" width="160" height="25" rx="12.5" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="80" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#15803d">⚡ 99.9% Uptime</text>
+      <rect x="180" y="0" width="160" height="25" rx="12.5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="260" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#1e40af">🚀 No Bottlenecks</text>
+  </g>
 </svg>

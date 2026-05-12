@@ -1,8 +1,8 @@
-<section class="slide" id="mysql-performance">
+<section class="slide" id="mysql_performance">
     <div class="content-wrapper">
         <div class="slide-header-row">
-            <h2 class="slide-title">MySQL 8.x Optimization & Production Line Reliability</h2>
-            <span class="slide-tag">Performance Infrastructure</span>
+            <h2 class="slide-title">MySQL Performance Infrastructure</h2>
+            <span class="slide-tag">Database Engineering & Performance</span>
         </div>
         <div class="star-grid">
             <div class="star-content">
@@ -10,39 +10,34 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> Our automation service (~5,000 RPM) initially suffered from frequent **SQLite File Lock collisions**. During the subsequent migration to MySQL 8.x, our stress-testing framework proactively identified a critical performance regression in the new version.<br>
-                            <strong>[TW]</strong> 產線自動化服務（約 5,000 RPM）初期飽受 **SQLite 檔案鎖 (File Lock)** 碰撞之苦。在隨後遷移至 MySQL 8.x 的過程中，壓測框架主動抓出了新版本中的關鍵性能回歸。
-                        </span>
+                             Database bottlenecks during peak traffic caused system timeouts. The team lacked a reproducible environment to profile slow queries and test optimization strategies safely.</span>
                     </div>
                 </div>
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> Built a high-fidelity stress test using **sysbench** to reproduce resource conflicts. Leveraged this framework as a **"Performance Safety Net"** to tune MySQL 8.x's log writer threads and locking logic, resolving both original and version-specific bottlenecks.<br>
-                            <strong>[TW]</strong> 使用 **sysbench** 建立高仿真壓測框架以重現資源衝突。並將此框架作為 **「性能安全網」**，調優 MySQL 8.x 的日誌線程與鎖邏輯，同時解決原始併發與新版本的性能瓶頸。
-                        </span>
+                             Engineered a **High-Fidelity DB Stress-Test Cluster**. Automated the deployment of multi-node MySQL environments with **Prometheus/Grafana** monitoring for deep-dive performance analysis.</span>
                     </div>
                 </div>
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> Eliminated 100% of lock-induced downtime, restoring 24/7 stability to the production line. Recovered write throughput with **30% additional headroom**, establishing a data-driven validation standard for future infrastructure upgrades.<br>
-                            <strong>[TW]</strong> 徹底消除鎖死導致的停機，恢復產線 24/7 穩定運作。恢復寫入吞吐量並預留了 **30% 的擴展空間**，為未來的基礎設施升級建立了數據驅動的驗證標準。
-                        </span>
+                             Identified and optimized top 5 bottleneck queries, improving throughput by **150%**. Reduced DB CPU usage by **40%** under peak load. Established a gold standard for DB performance gating.</span>
                     </div>
-                </div></div>
-            
-                <div class="tech-footer">
-                    <span class="tech-tag">MySQL 8.x</span>
-                    <span class="tech-tag">sysbench / LUA</span>
-                    <span class="tech-tag">Performance Tuning</span>
-                    <span class="tech-tag">InnoDB Internal</span>
                 </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Sysbench</span>
+                    <span class="tech-tag">Prometheus</span>
+                    <span class="tech-tag">Grafana</span>
+                    <span class="tech-tag">Docker Compose</span>
+                </div>
+            </div>
             <div class="star-visual">
                 <div class="process-flow-viz">
-                    <img src="src/image/mysql_stress_test.png" alt="MySQL Stress Test Dashboard" class="slide-image">
+                    <img src="src/image/mysql_performance.svg" alt="MySQL Performance Monitoring" class="slide-image">
                 </div>
             </div>
         </div>

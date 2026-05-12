@@ -1,44 +1,41 @@
-<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" />
-        </linearGradient>
-        <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <path d="M0,0 L8,4 L0,8" fill="none" stroke="#94a3b8" stroke-width="1"/>
-        </marker>
-    </defs>
-
-    <!-- Stage 1 -->
-    <rect x="30" y="160" width="100" height="80" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="12"/>
-    <text x="45" y="195" font-family="Inter, sans-serif" font-size="10" fill="#475569" font-weight="700">OOB Image</text>
-    <text x="45" y="210" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">Raw BIOS UI</text>
-
-    <!-- Flow -->
-    <path d="M 130 200 L 180 200" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-
-    <!-- CV Logic -->
-    <rect x="190" y="80" width="160" height="240" fill="rgba(255,255,255,0.4)" stroke="#0ea5e9" stroke-width="1" rx="16"/>
-    <text x="205" y="105" font-family="Inter, sans-serif" font-size="10" fill="#0369a1" font-weight="700">CV ORCHESTRATOR</text>
-    
-    <rect x="205" y="130" width="130" height="40" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="8"/>
-    <text x="215" y="155" font-family="Inter, sans-serif" font-size="9" fill="#334155" font-weight="600">Anchor Detection</text>
-    
-    <rect x="205" y="190" width="130" height="40" fill="url(#glassGrad)" stroke="#0ea5e9" stroke-width="1" rx="8"/>
-    <text x="215" y="215" font-family="Inter, sans-serif" font-size="9" fill="#0369a1" font-weight="600">Dynamic ROI Adapt</text>
-
-    <rect x="205" y="250" width="130" height="40" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="8"/>
-    <text x="215" y="275" font-family="Inter, sans-serif" font-size="9" fill="#334155" font-weight="600">Normalization</text>
-
-    <!-- Flow -->
-    <path d="M 350 200 L 400 200" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-
-    <!-- Transcription -->
-    <rect x="410" y="140" width="130" height="120" fill="url(#glassGrad)" stroke="#10b981" stroke-width="1" rx="14" style="filter: drop-shadow(0 4px 12px rgba(16,185,129,0.1))"/>
-    <text x="425" y="170" font-family="Inter, sans-serif" font-size="10" fill="#065f46" font-weight="700">TRANSCRIPTION</text>
-    <text x="425" y="195" font-family="Inter, sans-serif" font-size="9" fill="#059669">Tesseract Engine</text>
-    <text x="425" y="215" font-family="Inter, sans-serif" font-size="9" fill="#059669">Fuzzy Matching</text>
-
-    <!-- Fidelity Badge -->
-    <text x="430" y="320" font-family="Inter, sans-serif" font-size="11" fill="#166534" font-weight="700">🎯 99.9% Fidelity</text>
+<svg width="400" height="520" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg">
+  <text x="200" y="30" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="18" fill="#1e293b">Pic Transcript: OCR Engine</text>
+  <text x="200" y="50" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="12" fill="#64748b">Computer Vision &amp; Document Digitization</text>
+  <g transform="translate(100, 80)">
+    <rect x="0" y="0" width="200" height="35" rx="17.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="100" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#475569">📷 Image / PDF Input</text>
+  </g>
+  <line x1="200" y1="115" x2="200" y2="140" stroke="#3b82f6" stroke-width="2"/><polygon points="196,140 204,140 200,147" fill="#3b82f6"/>
+  <g transform="translate(30, 150)">
+    <rect x="0" y="0" width="340" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <circle cx="15" cy="15" r="4" fill="#ff5f56"/><circle cx="27" cy="15" r="4" fill="#ffbd2e"/><circle cx="39" cy="15" r="4" fill="#27c93f"/>
+    <rect x="90" y="5" width="160" height="20" rx="4" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="170" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#1d4ed8">Vision Processor</text>
+    <g transform="translate(15, 40)">
+        <rect x="0" y="0" width="310" height="60" rx="8" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1"/>
+        <text x="155" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#0f766e">Image Pre-processing</text>
+        <text x="155" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#0d9488">Noise Reduction &amp; Deskew (OpenCV)</text>
+    </g>
+    <g transform="translate(15, 115)">
+        <rect x="0" y="0" width="310" height="60" rx="8" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
+        <text x="155" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#5b21b6">OCR Recognition Layer</text>
+        <text x="155" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#6d28d9">Tesseract / Deep Learning Engine</text>
+    </g>
+    <g transform="translate(15, 190)">
+        <rect x="0" y="0" width="310" height="55" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="155" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#1e40af">Structured Output</text>
+        <text x="155" y="40" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#2563eb">Clean JSON for ERP Integration</text>
+    </g>
+  </g>
+  <line x1="200" y1="415" x2="200" y2="435" stroke="#3b82f6" stroke-width="2"/><polygon points="196,435 204,435 200,442" fill="#3b82f6"/>
+  <g transform="translate(60, 445)">
+    <rect x="0" y="0" width="280" height="40" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <text x="140" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#0f172a">Digitized Business Data</text>
+  </g>
+  <g transform="translate(30, 495)">
+      <rect x="0" y="0" width="160" height="25" rx="12.5" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="80" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#15803d">⚡ 95%+ Accuracy</text>
+      <rect x="180" y="0" width="160" height="25" rx="12.5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="260" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#1e40af">📈 Scale Ready</text>
+  </g>
 </svg>
