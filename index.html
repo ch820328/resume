@@ -103,12 +103,73 @@
 
         .modal-slide-view .slide {
             opacity: 1 !important; transform: none !important; position: relative !important; top: 0 !important; left: 0 !important;
-            height: 100% !important; width: 100% !important; padding: 3rem 4rem !important; background: #fff !important;
-            display: flex !important; flex-direction: column !important; justify-content: center !important; overflow: hidden !important;
+            height: 100% !important; width: 100% !important; padding: 2rem 4rem !important; 
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.05) 0%, #ffffff 40%),
+                        radial-gradient(circle at bottom left, rgba(79, 70, 229, 0.05) 0%, #ffffff 40%) !important;
+            display: flex !important; flex-direction: column !important; justify-content: flex-start !important; overflow: hidden !important;
             color: #1e293b !important;
         }
         .modal-slide-view .slide h1, .modal-slide-view .slide h2, .modal-slide-view .slide p, .modal-slide-view .slide .star-text { color: #1e293b !important; }
-        .modal-slide-view .content-wrapper { margin: 0 auto !important; width: 100% !important; max-width: 90% !important; padding: 0 !important; }
+        .modal-slide-view .slide-header-row { 
+            margin-bottom: 1.5rem !important; 
+            padding-bottom: 0.75rem !important;
+            flex-shrink: 0 !important;
+        }
+        .modal-slide-view .slide-title { font-size: 2rem !important; line-height: 1.2 !important; }
+        
+        .modal-slide-view .content-wrapper { margin: 0 auto !important; width: 100% !important; max-width: 1200px !important; padding: 0 !important; height: 100% !important; display: flex !important; flex-direction: column !important; }
+        
+        /* Fixed Split Layout for Modal */
+        .modal-slide-view .star-grid { 
+            flex: 1 !important; 
+            display: flex !important; 
+            flex-direction: row !important; 
+            gap: 3rem !important; 
+            min-height: 0 !important; 
+            align-items: center !important;
+            padding-bottom: 2rem !important;
+        }
+        .modal-slide-view .star-content { 
+            display: flex !important; 
+            flex-direction: column !important; 
+            gap: 1rem !important; 
+            width: 38% !important;
+            justify-content: center !important;
+        }
+        .modal-slide-view .star-card {
+            background: rgba(255, 255, 255, 0.8) !important;
+            border-radius: 12px !important;
+            padding: 1.25rem !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+            border: 1px solid rgba(0,0,0,0.05) !important;
+        }
+        .modal-slide-view .star-visual { 
+            flex: 1 !important; 
+            display: flex !important; 
+            align-items: center !important; 
+            justify-content: center !important;
+            min-height: 0 !important;
+        }
+        .modal-slide-view .process-flow-viz {
+            width: 100% !important;
+            height: 100% !important;
+            max-height: 600px !important;
+            background: transparent !important;
+            border-radius: 16px !important;
+            padding: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            position: relative !important;
+        }
+        /* Removed Mac Window Buttons Simulation from CSS as it's now in the SVGs */
+        
+        .modal-slide-view .process-flow-viz img {
+            max-width: 100% !important;
+            max-height: 100% !important;
+            object-fit: contain !important;
+        }
     </style>
 </head>
 <body>
@@ -183,18 +244,19 @@
 
     <script>
         const slides = [
-            { id: 'openclaw_mr', name: 'OpenClaw: MR Automation (GitLab Skill)', tag: 'AI / GitLab Plugin' },
-            { id: 'openclaw_log', name: 'OpenClaw: Log Matrix', tag: 'AI / Semantic Diagnostic' },
-            { id: 'jetson_bsp', name: 'Embedded BSP Factory', tag: 'Embedded / NVIDIA' },
-            { id: 'ansible', name: 'Infrastructure as Code', tag: 'DevOps / IaC' },
-            { id: 'central_dashboard', name: 'Unified Portal', tag: 'Platform / Full-Stack' },
-            { id: 'redfish_smbios_check', name: 'Consistency Framework', tag: 'Firmware / Integrity' },
-            { id: 'nvssvt_portal', name: 'Automation Engine', tag: 'Orchestration / Go' },
-            { id: 'issue_analytics', name: 'Governance Hub', tag: 'Automation / KPI' },
-            { id: 'gitlab_ci', name: 'Standardized Gating', tag: 'Quality / Efficiency' },
-            { id: 'gitlab_cd', name: 'Release Engineering', tag: 'IaC / DevOps' },
-            { id: 'baby_tracker', name: 'Distributed Sync App', tag: 'Full-Stack / Local-First' },
-            { id: 'pic_transcript', name: 'Pic Transcript (Industrial OCR)', tag: 'OpenCV / Document Engine' }
+            { id: 'openclaw_mr', name: 'OpenClaw: MR Automation', tag: 'AI / GitLab' },
+            { id: 'openclaw_log', name: 'OpenClaw: Log Matrix', tag: 'AI / Diagnostic' },
+            { id: 'jetson_bsp', name: 'Embedded BSP Factory', tag: 'NVIDIA / Docker' },
+            { id: 'secure_python_efi', name: 'Secure EFI Python', tag: 'Security / C' },
+            { id: 'mysql_performance', name: 'MySQL Perf Cluster', tag: 'DB / Monitoring' },
+            { id: 'ansible', name: 'Infrastructure as Code', tag: 'IaC / Ansible' },
+            { id: 'central_dashboard', name: 'Unified Console', tag: 'Full-Stack / Go' },
+            { id: 'nvssvt_portal', name: 'Automation Engine', tag: 'Go / Platform' },
+            { id: 'gitlab_ci', name: 'Quality Gating', tag: 'QA / CI' },
+            { id: 'gitlab_cd', name: 'GitOps Pipeline', tag: 'CD / Terraform' },
+            { id: 'rftool_framework', name: 'RFTOOL Refactor', tag: 'Tooling / Patterns' },
+            { id: 'baby_tracker', name: 'Local-First App', tag: 'Sync / React' },
+            { id: 'pic_transcript', name: 'OCR Document Engine', tag: 'CV / Python' }
         ];
 
         const grid = document.getElementById('slide-grid');

@@ -1,8 +1,8 @@
 <section class="slide" id="jetson_bsp">
     <div class="content-wrapper">
         <div class="slide-header-row">
-            <h2 class="slide-title">Embedded BSP Factory (NVIDIA Edge AI)</h2>
-            <span class="slide-tag">Embedded Systems & Manufacturing</span>
+            <h2 class="slide-title">Embedded BSP Factory (NVIDIA Jetson)</h2>
+            <span class="slide-tag">Embedded System Engineering</span>
         </div>
         <div class="star-grid">
             <div class="star-content">
@@ -10,39 +10,33 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> Manual Jetson BSP builds faced high SKU fragmentation and image bottlenecks. Manual memory vendor edits (RAM Code) risked hardware bricking.<br>
-                            <strong>[TW]</strong> 手動 Jetson BSP 構建面臨嚴重的 SKU 碎片化與鏡像瓶頸。針對不同內存廠商的手動 BCT 修改（RAM Code）在大量部署時存在硬體損壞風險。
-                        </span>
+                             Developers faced fragmented environments and complex manual CLI steps for NVIDIA BSP builds, leading to inconsistent images and high failure rates during environment setup.</span>
                     </div>
                 </div>
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> Architected a <strong>Full-Stack BSP Factory</strong> using <strong>Go (Gin)</strong>. Integrated <strong>Zstd compression</strong> and <strong>SKU-aware automation</strong> for dynamic injection.<br>
-                            <strong>[TW]</strong> 使用 <strong>Go (Gin)</strong> 架構了全棧 <strong>BSP Factory</strong>。整合了 <strong>Zstd 壓縮</strong> 以優化產線效率，並實作了 <strong>SKU 感知自動化</strong> 進行動態參數注入。
-                        </span>
+                             Architected a **Dockerized Build Service** to encapsulate all BSP dependencies and toolchains. Developed a **Unified Portal** that replaces manual commands with a streamlined API, ensuring a standardized build process.</span>
                     </div>
                 </div>
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            <strong>[EN]</strong> Increased <strong>Factory UPH by 25%</strong> and eliminated 100% of bricking risks through automated SKU-validation guardrails.<br>
-                            <strong>[TW]</strong> 透過 Zstd 加速鏡像交付與平行燒錄，將 <strong>工廠 UPH 提升了 25%</strong>。並透過自動化 SKU 驗證閘門完全消除了損壞風險。
-                        </span>
+                             Eliminated **manual monitoring and environment setup overhead**. Achieved **100% build reproducibility** via isolated Docker containers. Freed up developer resources to focus on core feature development.</span>
                     </div>
-                </div></div>
-            
+                </div>
                 <div class="tech-footer">
                     <span class="tech-tag">Zstd Optimization</span>
                     <span class="tech-tag">Device Tree (dtsi)</span>
                     <span class="tech-tag">MassFlash / OTA</span>
                     <span class="tech-tag">Kernel Tuning</span>
                 </div>
+            </div>
             <div class="star-visual">
                 <div class="process-flow-viz">
-                    <img src="src/image/jetson_build.svg" alt="Jetson Build Server Architecture" class="slide-image">
+                    <img src="src/image/jetson_build.svg" alt="Jetson BSP Factory Flow" class="slide-image">
                 </div>
             </div>
         </div>

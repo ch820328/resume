@@ -1,8 +1,8 @@
-<section class="slide" id="secure-python-efi">
+<section class="slide" id="secure_python_efi">
     <div class="content-wrapper">
         <div class="slide-header-row">
-            <h2 class="slide-title">Secure Python Execution in UEFI (Python.efi)</h2>
-            <span class="slide-tag">Firmware Security</span>
+            <h2 class="slide-title">Secure Python EFI Environment</h2>
+            <span class="slide-tag">Firmware Security & UEFI</span>
         </div>
         <div class="star-grid">
             <div class="star-content">
@@ -10,38 +10,52 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
+<<<<<<< HEAD
                             <strong>[EN]</strong> Intellectual property (IP) risk in the <strong>EFI Shell environment</strong>. Python scripts were exposed as <strong>plain-text</strong>, and standard .pyc files were easily decompiled, leading to high exposure of proprietary logic.<br>
                             <strong>[TW]</strong> <strong>EFI Shell 環境</strong>中的智財權 (IP) 風險。Python 腳本以<strong>明碼</strong>暴露，且標準的 .pyc 檔案極易被反編譯，導致核心邏輯面臨外洩風險。
                         </span>
+=======
+                             The unauthorized distribution of proprietary diagnostic code by former employees posed a critical IP risk. Existing tools lacked execution control, allowing sensitive logic to run on unauthorized third-party hardware.</span>
+>>>>>>> 6ac877e57a8770d1d1af3a6f87271899d375fc71
                     </div>
                 </div>
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
+<<<<<<< HEAD
                             <strong>[EN]</strong> Engineered a <strong>Secure In-Memory Decryption</strong> pipeline. Implemented a custom encryption tool for the shell and modified the <strong>python.efi</strong> interpreter to decrypt and execute source code directly in RAM.<br>
                             <strong>[TW]</strong> 實作了<strong>安全記憶體解密</strong>流水線。開發了 Shell 環境下的自定義加密工具，並修改 <strong>python.efi</strong> 直譯器，使其能直接在 RAM 中解密並執行源碼。
                         </span>
+=======
+                             Engineered an **Encrypted Python Runtime** by modifying the core `PyImport_ImportModule` mechanism. Implemented **RSA Asymmetric Encryption** to ensure scripts remain encrypted on disk and can only be decrypted and executed by the authorized runtime.</span>
+>>>>>>> 6ac877e57a8770d1d1af3a6f87271899d375fc71
                     </div>
                 </div>
                 <div class="star-card">
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
+<<<<<<< HEAD
                             <strong>[EN]</strong> Successfully secured critical engineering IP without compromising automation flexibility. Prevented unauthorized logic modification and reverse engineering in the pre-boot stage.<br>
                             <strong>[TW]</strong> 在不犧牲自動化靈活性的前提下，成功保護了關鍵工程 IP。防止了 Pre-boot 階段的未授權邏輯修改與反編譯。
                         </span>
+=======
+                             Effectively secured core intellectual property against unauthorized access and reverse engineering. Established a robust security standard that neutralized the risk of source code theft.</span>
+>>>>>>> 6ac877e57a8770d1d1af3a6f87271899d375fc71
                     </div>
-                </div></div>
-            
-                <div class="tech-footer">
-                    <span class="tech-tag">EDK II / UEFI</span>
-                    <span class="tech-tag">C / Python</span>
-                    <span class="tech-tag">RSA & AES</span>
                 </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">C / C++</span>
+                    <span class="tech-tag">Python C-API</span>
+                    <span class="tech-tag">UEFI Shell</span>
+                    <span class="tech-tag">EDK2</span>
+                    <span class="tech-tag">Cryptography</span>
+                </div>
+            </div>
             <div class="star-visual">
                 <div class="process-flow-viz">
-                    <img src="src/image/secure_python_efi.png" alt="Secure Python EFI Architecture" class="slide-image">
+                    <img src="src/image/secure_python_efi.svg" alt="Secure EFI Python Environment" class="slide-image">
                 </div>
             </div>
         </div>

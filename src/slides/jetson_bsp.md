@@ -7,30 +7,30 @@
 ### 1. 💬 口語說明 (Colloquial Explanation)
 
 *   **🇺🇸 English (Simple & Direct):**
-    "Flashing NVIDIA Jetson modules manually is slow and prone to errors. I built an 'Embedded BSP Factory'—an automated server that handles everything from custom OS builds to mass flashing. I decoupled the specific drivers from the core system so we could reuse the same code for different hardware. This reduced configuration errors by 90% and allowed us to ship high-quality AI edge devices much faster."
+    "NVIDIA Jetson builds are notoriously complex, with many manual CLI steps that often lead to 'it works on my machine' problems. I built a **Dockerized Build Service** to solve this. I replaced those fragmented manual commands with a **Unified Portal and API**. Now, developers don't have to worry about dependencies or manual monitoring; they just trigger the build, ensuring **100% environment parity** and freeing them up for other development tasks."
     
 *   **🇹🇼 中文 (口語精簡):**
-    「手動燒錄 NVIDIA Jetson 模組既慢又容易出錯。我做了一套『嵌入式 BSP 工廠』，把從客製化系統編譯到大規模燒錄全部自動化。我把驅動程式跟系統核心解耦，讓同一套代碼能跑在不同型號的硬體上。這減少了 90% 的配置錯誤，讓我們能更快、更穩地出貨高品質的 AI 邊緣設備。」
+    「NVIDIA Jetson 的建置流程非常複雜，有很多手動指令，常常導致環境不一致。我開發了一個 **Docker 化的建置服務**，用一個**統一的 Portal 和 API** 取代了那些零散的手動指令。現在，開發者不需要再手動處理依賴環境或盯著編譯進度；他們只需要觸發建置，系統就會在背景自動完成，確保了 **100% 的環境一致性**。」
 
 ---
 
 ### 2. ❓ 模擬問答 (Possible Q&A - Google/Amazon Hybrid Strategy)
 
-1.  **問：「為什麼不直接用 NVIDIA 官方的 SDK Manager？」(Invent and Simplify)**
-    *   **🇺🇸 English**: "SDK Manager is a GUI tool for developers, not for a factory floor. It's not reproducible. I built the build server to ensure every flash is driven by version-controlled scripts (Git), which is the foundation of industrial-scale automation."
-    *   **🇹🇼 中文**: 「SDK Manager 是給開發者用的圖形工具，不適合產線。它無法保證『可重複性』。我自建編譯伺服器是為了確保每一次燒錄都是由受版本控制 (Git) 的腳本驅動，這才是工業級自動化的基礎。」
+1.  **問：「為什麼要特地把建置流程搬到 Docker 裡？」(Invent and Simplify)**
+    *   **🇺🇸 English**: "NVIDIA's toolchains are sensitive to the host environment. By containerizing it, we achieve **Environment as Code**. This ensures that every developer is using the exact same validated environment, eliminating the 'Dependency Hell' and build drift entirely."
+    *   **🇹🇼 中文**: 「NVIDIA 的 Toolchain 對主機環境非常敏感。透過容器化，我們實現了 **『環境即代碼 (Environment as Code)』**。這確保了每個開發者使用的都是同一份經過驗證的環境，徹底解決了『相依性地獄』與建置不一致的問題。」
 
-2.  **問：「在開發這套系統時，你遇到的最大壓力是什麼？」(Inner Monologue)**
-    *   **🇺🇸 English**: "The production deadline was looming, and a single failed flash could stall the entire assembly line. I felt the weight of that responsibility. I realized that 'reliability' was more important than 'speed,' so I spent extra time building the automated hardware self-test to catch failures early."
-    *   **🇹🇼 中文**: 「當時面臨出貨期限，任何一次燒錄失敗都可能讓產線停擺，壓力很大。我意識到『可靠性』比『速度』更重要，所以我花了額外時間實作自動化硬體自檢 (Self-test)，確保問題在出廠前就能被抓到。」
+2.  **問：「你的系統如何具體『消除人為錯誤』？」(Dive Deep / Ownership)**
+    *   **🇺🇸 English**: "Previously, a full build required sequential manual commands. One typo or missing flag would fail the build after hours of waiting. I abstracted this into a **Single-Entry API**. This 'Unattended Build' approach ensures the process is executed correctly every time without human intervention."
+    *   **🇹🇼 中文**: 「以前一個完整的建置需要按順序輸入手動指令，輸錯一個參數可能在等待幾小時後才發現失敗。我將這些抽象化為一個**單一入口的 API**。這種『無人值守建置』確保了流程在不需要人為干預的情況下，每次都能正確執行。」
 
-3.  **問：「你是如何處理數十台機器併發燒錄時的硬體衝突？」(Dive Deep / Error Handling)**
-    *   **🇺🇸 English**: "Mass flashing can crash the USB bus due to bandwidth limits or current spikes. I implemented an **Isolated Process Model**. Each module has its own monitoring process. If one node fails or times out, the system isolates that specific USB port without interrupting the others."
-    *   **🇹🇼 中文**: 「大規模燒錄會因為頻寬限制或電流突波導致 USB 匯流排崩潰。我實作了**隔離式進程模型**，每個模組都有獨立監控。如果某個節點失敗或超時，系統會自動隔離該 USB 埠，不影響其他機器繼續燒錄。」
+3.  **問：「推行這套自動化工具時，你如何贏得團隊的信任？」(Earn Trust / Customer Obsession)**
+    *   **🇺🇸 English**: "I focused on eliminating their most tedious task: manual monitoring. When they saw that they no longer had to spend hours troubleshooting environment setup or waiting to input the next command, the adoption was easy. It wasn't just about speed; it was about **Developer Focus**."
+    *   **🇹🇼 中文**: 「我專注於消除最繁瑣的任務：手動監控。當他們發現不需要再花好幾個小時處理環境報錯，或守在螢幕前輸入下一條指令時，推廣就很順利。這不只是速度的問題，而是關於**讓開發者保持專注**。」
 
-4.  **問：「你在技術選型上做了什麼取捨？」(Trade-offs / Decision Making)**
-    *   **🇺🇸 English**: "I chose **Full Image Flashing** instead of delta patches for the initial production. Even though it's slower, it guarantees a clean state. For a L4 Performance role, I prioritize 'Zero Drift' over saving a few minutes per unit if it prevents unpredictable bugs in the field."
-    *   **🇹🇼 中文**: 「在生產初期我選擇了 **Full Image Flash** 而非增量補丁。雖然慢一點，但能保證環境是絕對純淨的。對於 L4 的職位，我認為確保『零漂移』比節省幾分鐘更重要，因為這能防止出貨後出現不可預測的 Bug。」
+4.  **問：「為什麼不考慮用 DTB 指令進行快速修改，而是堅持整包刷錄？」(Trade-offs / Reliability)**
+    *   **🇺🇸 English**: "While it's possible to use DTB (Device Tree Blob) commands for quick patches, I enforced **Full Image Flashing** as the standard. Partial updates in an embedded context often lead to a **'Dirty State'** that is extremely difficult to debug. I prioritized **Reliability and Zero Drift** over the convenience of quick patches to ensure every build is 100% clean and consistent."
+    *   **🇹🇼 中文**: 「雖然可以透過 DTB 指令進行快速的局部修改，但我堅持將 **Full Image Flashing** 作為標準流程。在嵌入式環境中，局部更新往往會導致**『髒狀態 (Dirty State)』**，這會讓後續的除錯變得極其困難。我認為確保 **『可靠性與零漂移 (Zero Drift)』** 比局部修改的便利性更重要，這能保證每一次建置都是 100% 純淨且一致的。」
 
 5.  **問：「這套系統對 Google 的基礎設施建設有什麼啟發？」(Future Pacing)**
     *   **🇺🇸 English**: "At Google, we manage massive fleets of servers. This project taught me how to scale the 'Root of Trust' from one device to thousands. I will apply this automated provisioning mindset to ensure Google's edge nodes are always secure and consistent."

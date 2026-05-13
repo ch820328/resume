@@ -1,49 +1,42 @@
-<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" />
-        </linearGradient>
-        <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <path d="M0,0 L8,4 L0,8" fill="none" stroke="#94a3b8" stroke-width="1"/>
-        </marker>
-    </defs>
-
-    <!-- Canvas -->
-    <rect width="600" height="400" fill="none"/>
-
-    <!-- Input Column -->
-    <rect x="40" y="100" width="110" height="60" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="10"/>
-    <text x="55" y="130" font-family="Inter, sans-serif" font-size="10" fill="#475569" font-weight="700">L4T Source</text>
-    <text x="55" y="145" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">NVIDIA BSP</text>
-
-    <rect x="40" y="180" width="110" height="60" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="10"/>
-    <text x="55" y="210" font-family="Inter, sans-serif" font-size="10" fill="#475569" font-weight="700">SKU Specs</text>
-    <text x="55" y="225" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">RAM / Carrier</text>
-
-    <!-- Arrow Connectors -->
-    <path d="M 150 130 L 200 160" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-    <path d="M 150 210 L 200 180" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-
-    <!-- Main Factory App -->
-    <rect x="210" y="80" width="180" height="240" fill="rgba(255,255,255,0.4)" stroke="#2563eb" stroke-width="1" rx="20" style="filter: drop-shadow(0 8px 24px rgba(37,99,235,0.08))"/>
-    <text x="230" y="105" font-family="Inter, sans-serif" font-size="11" fill="#1e40af" font-weight="700">BSP FACTORY (Go)</text>
-
-    <!-- Sub-Tasks -->
-    <rect x="225" y="130" width="150" height="40" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="8"/>
-    <text x="240" y="155" font-family="Inter, sans-serif" font-size="10" fill="#334155" font-weight="600">Auto-Patching</text>
-
-    <rect x="225" y="180" width="150" height="40" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="8"/>
-    <text x="240" y="205" font-family="Inter, sans-serif" font-size="10" fill="#334155" font-weight="600">Zstd Optimization</text>
-
-    <rect x="225" y="230" width="150" height="40" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="8"/>
-    <text x="240" y="255" font-family="Inter, sans-serif" font-size="10" fill="#334155" font-weight="600">Image Build</text>
-
-    <!-- Output Arrow -->
-    <path d="M 390 170 L 450 170" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-
-    <!-- Result Box -->
-    <rect x="460" y="130" width="100" height="80" fill="#f0fdf4" stroke="#22c55e" stroke-width="1" rx="12"/>
-    <text x="475" y="165" font-family="Inter, sans-serif" font-size="11" fill="#166534" font-weight="700">Ready MFI</text>
-    <text x="475" y="185" font-family="Inter, sans-serif" font-size="9" fill="#166534">UPH +25%</text>
+<svg width="400" height="520" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg">
+  <text x="200" y="30" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="18" fill="#1e293b">Jetson BSP Build Factory</text>
+  <text x="200" y="50" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="12" fill="#64748b">Dockerized Embedded Build Service</text>
+  <g transform="translate(100, 80)">
+    <rect x="0" y="0" width="200" height="35" rx="17.5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="100" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#1e40af">📦 Build Request (API)</text>
+  </g>
+  <line x1="200" y1="115" x2="200" y2="140" stroke="#3b82f6" stroke-width="2"/><polygon points="196,140 204,140 200,147" fill="#3b82f6"/>
+  <g transform="translate(30, 150)">
+    <rect x="0" y="0" width="340" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <circle cx="15" cy="15" r="4" fill="#ff5f56"/><circle cx="27" cy="15" r="4" fill="#ffbd2e"/><circle cx="39" cy="15" r="4" fill="#27c93f"/>
+    <rect x="90" y="5" width="160" height="20" rx="4" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="170" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#166534">NVIDIA BSP Build Engine</text>
+    <g transform="translate(15, 40)">
+        <rect x="0" y="0" width="310" height="60" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+        <text x="155" y="28" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#15803d">Docker Isolation Layer</text>
+        <text x="155" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#166534">Multi-Platform Toolchain Support</text>
+    </g>
+    <g transform="translate(15, 115)">
+        <rect x="0" y="0" width="310" height="65" rx="6" fill="#1e293b" stroke="#1e293b" stroke-width="1"/>
+        <rect x="0" y="0" width="310" height="20" rx="6" fill="#334155"/>
+        <text x="155" y="14" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#f1f5f9">Build Log Stream</text>
+        <text x="10" y="40" font-family="'Roboto Mono', monospace" font-size="8" fill="#4ade80">$ ./build_bsp.sh --target jetson_agx</text>
+        <text x="10" y="52" font-family="'Roboto Mono', monospace" font-size="8" fill="#94a3b8">SUCCESS: image ready at /build/out</text>
+    </g>
+    <g transform="translate(15, 195)">
+        <rect x="0" y="0" width="310" height="55" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1"/>
+        <text x="155" y="30" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#1e40af">Automatic Artifact Upload</text>
+    </g>
+  </g>
+  <line x1="200" y1="415" x2="200" y2="435" stroke="#3b82f6" stroke-width="2"/><polygon points="196,435 204,435 200,442" fill="#3b82f6"/>
+  <g transform="translate(60, 445)">
+    <rect x="0" y="0" width="280" height="40" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <text x="140" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#0f172a">Embedded Hardware Fleet</text>
+  </g>
+  <g transform="translate(30, 495)">
+      <rect x="0" y="0" width="160" height="25" rx="12.5" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="80" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#15803d">⚡ 100% Reproducible</text>
+      <rect x="180" y="0" width="160" height="25" rx="12.5" fill="#f0f9ff" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="260" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#1e40af">✅ Automated Service</text>
+  </g>
 </svg>

@@ -1,47 +1,41 @@
-<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:rgba(255,255,255,1);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" />
-        </linearGradient>
-        <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <path d="M0,0 L8,4 L0,8" fill="none" stroke="#94a3b8" stroke-width="1"/>
-        </marker>
-    </defs>
-
-    <!-- Client Node -->
-    <rect x="40" y="140" width="120" height="120" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="20"/>
-    <text x="55" y="175" font-family="Inter, sans-serif" font-size="10" fill="#475569" font-weight="700">MOBILE CLIENT</text>
-    
-    <rect x="55" y="190" width="90" height="40" fill="rgba(0,0,0,0.02)" stroke="#e2e8f0" rx="8"/>
-    <text x="65" y="215" font-family="Inter, sans-serif" font-size="9" fill="#1e293b">Local SQLite</text>
-    <text x="55" y="250" font-family="Inter, sans-serif" font-size="8" fill="#16a34a">✓ Offline Ready</text>
-
-    <!-- Sync Link -->
-    <path d="M 160 200 L 220 200" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow)"/>
-    <text x="165" y="190" font-family="Inter, sans-serif" font-size="8" fill="#3b82f6">Auth Sync</text>
-
-    <!-- Cloud Engine -->
-    <rect x="230" y="100" width="160" height="200" fill="rgba(255,255,255,0.4)" stroke="#f59e0b" stroke-width="1" rx="24" style="filter: drop-shadow(0 8px 24px rgba(245,158,11,0.08))"/>
-    <text x="250" y="130" font-family="Inter, sans-serif" font-size="10" fill="#92400e" font-weight="700">CLOUD SYNC ENGINE</text>
-    
-    <rect x="245" y="160" width="130" height="30" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="6"/>
-    <text x="255" y="180" font-family="Inter, sans-serif" font-size="9" fill="#1e293b">Real-time Pub/Sub</text>
-    
-    <rect x="245" y="200" width="130" height="30" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="6"/>
-    <text x="255" y="220" font-family="Inter, sans-serif" font-size="9" fill="#1e293b">Conflict Resolution</text>
-
-    <!-- Outward Sync -->
-    <path d="M 390 180 L 450 140" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-    <path d="M 390 220 L 450 260" fill="none" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arrow)"/>
-
-    <!-- Other Clients -->
-    <rect x="460" y="100" width="80" height="60" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="10"/>
-    <text x="470" y="135" font-family="Inter, sans-serif" font-size="9" fill="#475569" font-weight="600">Client B</text>
-
-    <rect x="460" y="240" width="80" height="60" fill="url(#glassGrad)" stroke="rgba(0,0,0,0.05)" stroke-width="1" rx="10"/>
-    <text x="470" y="275" font-family="Inter, sans-serif" font-size="9" fill="#475569" font-weight="600">Web Dashboard</text>
-
-    <!-- Tag -->
-    <text x="400" y="340" font-family="Inter, sans-serif" font-size="11" fill="#166534" font-weight="700">📱 Seamless Persistence</text>
+<svg width="400" height="520" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg">
+  <text x="200" y="30" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="18" fill="#1e293b">Baby Tracker: Distributed Sync</text>
+  <text x="200" y="50" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="12" fill="#64748b">Local-First PWA with Real-time Sync</text>
+  <g transform="translate(100, 80)">
+    <rect x="0" y="0" width="200" height="35" rx="17.5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="100" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#475569">📱 Mobile / Web App</text>
+  </g>
+  <line x1="200" y1="115" x2="200" y2="140" stroke="#3b82f6" stroke-width="2"/><polygon points="196,140 204,140 200,147" fill="#3b82f6"/>
+  <g transform="translate(30, 150)">
+    <rect x="0" y="0" width="340" height="260" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <circle cx="15" cy="15" r="4" fill="#ff5f56"/><circle cx="27" cy="15" r="4" fill="#ffbd2e"/><circle cx="39" cy="15" r="4" fill="#27c93f"/>
+    <rect x="90" y="5" width="160" height="20" rx="4" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="170" y="19" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#1d4ed8">Sync Architecture</text>
+    <g transform="translate(15, 40)">
+        <rect x="0" y="0" width="310" height="60" rx="8" fill="#fffbeb" stroke="#fef3c7" stroke-width="1"/>
+        <text x="155" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#92400e">Offline-First Engine</text>
+        <text x="155" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#b45309">IndexedDB Storage &amp; Conflict Resolution</text>
+    </g>
+    <g transform="translate(15, 115)">
+        <rect x="0" y="0" width="310" height="60" rx="8" fill="#f0fdf4" stroke="#99f6e4" stroke-width="1"/>
+        <text x="155" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#0f766e">WebSocket / P2P Sync</text>
+        <text x="155" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#0d9488">Multi-device real-time state consistency</text>
+    </g>
+    <g transform="translate(15, 190)">
+        <rect x="0" y="0" width="310" height="55" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="155" y="22" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#1e40af">E2E Encryption</text>
+        <text x="155" y="40" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" fill="#2563eb">Privacy-first data synchronization</text>
+    </g>
+  </g>
+  <line x1="200" y1="415" x2="200" y2="435" stroke="#3b82f6" stroke-width="2"/><polygon points="196,435 204,435 200,442" fill="#3b82f6"/>
+  <g transform="translate(60, 445)">
+    <rect x="0" y="0" width="280" height="40" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <text x="140" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#0f172a">Seamless Multi-User Exp</text>
+  </g>
+  <g transform="translate(30, 495)">
+      <rect x="0" y="0" width="160" height="25" rx="12.5" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="80" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#15803d">⚡ Sub-Second</text>
+      <rect x="180" y="0" width="160" height="25" rx="12.5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="260" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#1e40af">🛡️ Private &amp; Secure</text>
+  </g>
 </svg>
