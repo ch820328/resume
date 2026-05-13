@@ -5,7 +5,6 @@
             "summary": "I am a software engineer focused on **Backend Development**, **Distributed Platforms**, and **Automated Infrastructure**. Over the past 5 years, I have dedicated myself to building tools that resolve team pain points, ranging from low-level BSP optimization to synchronization engines supporting millions of users. I advocate for pragmatic architectural design and pursue engineering solutions that systematically enhance efficiency while remaining stable and reliable.",
             "featured_projects": [
                 "Jetson Orin BSP & Infrastructure Optimization",
-                "NVSSVT Enterprise Automation Platform",
                 "Unified Engineering Productivity Portal",
                 "Offline-First Distributed System (Baby Tracker)",
                 "Deterministic BIOS OCR Engine"
@@ -31,7 +30,6 @@
             "summary": "A full-stack developer specializing in **Distributed Systems** and **Offline-first Synchronization Architectures**. I focus on designing high-concurrency backends with robust fault tolerance, transforming messy, manual workflows into scalable API service platforms. I believe that great architecture should not only handle high traffic but also integrate seamlessly into CI/CD pipelines to significantly accelerate the R&D cycle.",
             "featured_projects": [
                 "Offline-First Distributed System (Baby Tracker)",
-                "NVSSVT Enterprise Automation Platform",
                 "Unified Engineering Productivity Portal",
                 "Test-Driven Infrastructure as Code (Ansible)",
                 "OpenClaw AI Merge Request Review Service"
@@ -43,7 +41,6 @@
             "name": "Senior Software Engineer (Google Performance Infrastructure)",
             "summary": "Senior Software Engineer focused on **Performance Infrastructure** and **Distributed Systems**. I enjoy solving hard reliability problems and optimizing system I/O (like Kernel/Zstd tuning) to boost production throughput. I have a track record of leading technical projects that bridge the gap between hardware and software, building stateless, highly available platforms that improve developer productivity at scale.",
             "featured_projects": [
-                "NVSSVT Enterprise Automation Platform",
                 "Jetson Orin BSP & Infrastructure Optimization",
                 "Unified Engineering Productivity Portal",
                 "Deterministic BIOS OCR Engine",

@@ -1,56 +1,34 @@
-# 面試備忘錄：持續佈署與環境一致性治理 (GitLab CD)
+# 面試備忘錄：自動化版本引擎與 Jenkins 整合
 
-這張投影片的核心在於：**透過「極致自動化」讓部署成為日常，消除人為干預，實現代碼到生產環境的零摩擦轉化。**
+這張投影片的核心在於：**自動化版本管理 (Auto-Versioning)——如何透過自動建議 Tag 來消除人為失誤並實現連續部署。**
 
 ---
 
 ### 1. 💬 口語說明 (Colloquial Explanation)
 
 *   **🇺🇸 English (Simple & Direct):**
-    "I transformed our deployment process so that updating servers is no longer a stressful event. I built a CD pipeline that automatically pushes firmware and service updates to our hardware clusters. By using 'Health Probes' and 'Auto-Rollbacks,' I made sure that if anything goes wrong during a deploy, the system catches it and reverts immediately. This keeps our production environment perfectly synced with our code repository at all times."
+    "To achieve a truly hands-off release process, I engineered an **Automated Tagging Engine**. After a Merge Request is merged, our GitLab pipeline doesn't just wait; it automatically **suggests and updates the Semantic Version (Tag)** based on the commit history. This Tag then acts as a verified trigger for our **Jenkins** deployment orchestration. This system ensures that our versioning is 100% consistent and eliminates the risk of human error in the release cycle, creating a perfect link between the code state and the production environment."
     
 *   **🇹🇼 中文 (口語精簡):**
-    「我改造了我們的部署流程，讓更新伺服器不再是一件壓力很大的事。我建立了一套 CD 流水線，會自動把韌體和服務更新推送到硬體集群。透過『健康檢查』和『自動回滾』機制，我確保了部署過程中如果出錯，系統會立刻發現並自動還原。這讓我們生產環境的狀態能隨時跟 Git 倉庫保持完美同步。」
+    「為了實現真正的自動化發佈，我開發了 **自動化標籤引擎**。在 Merge Request 合併後，我們的 GitLab 流水線不僅僅是等待，它會根據提交歷史自動 **建議並更新語義化版本 (Tag)**。這個標籤隨後作為我們 **Jenkins** 部署編排的驗證觸發點。這套系統確保了我們的版本控制 100% 一致，並消除了發佈週期中的人為錯誤風險，在代碼狀態與生產環境之間建立了完美的連結。」
 
 ---
 
 ### 2. ❓ 模擬問答 (Possible Q&A - Google/Amazon Hybrid Strategy)
 
-1.  **問：「為什麼要推行『無人值守』部署？這不會增加風險嗎？」(Ownership / High Standards)**
-    *   **🇺🇸 English**: "Actually, manual deployment IS the risk. Humans make mistakes; automated pipelines don't. I believe in building a system that is **Self-Healing**. By integrating automated smoke tests, we catch issues faster than any human could, which ultimately raises our standard for reliability."
-    *   **🇹🇼 中文**: 「事實上，人工部署才是風險。人會犯錯，但自動化流水線不會。我致力於建立一個具備**自我修復 (Self-Healing)** 能力的系統。透過整合自動化冒煙測試，我們捕捉問題的速度比人工快得多，這最終提升了我們的可靠性標準。」
+1.  **問：「你的流水線是如何『建議』正確的版本號的？」(Technical Depth)**
+    *   **🇺🇸 English**: "I implemented a logic that parses **Conventional Commits**. By analyzing the prefixes like `feat:`, `fix:`, or `breaking change:`, the pipeline can determine whether to bump the Major, Minor, or Patch version. This ensures that our versioning follows standard industry practices automatically."
+    *   **🇹🇼 中文**: 「我實作了一套解析 **規範化提交 (Conventional Commits)** 的邏輯。透過分析如 `feat:`、`fix:` 或 `breaking change:` 等前綴，流水線可以自動判定是要增加主版本號、次版本號還是修補版本號。這確保了我們的版本控制自動遵循業界標準規範。」
 
-2.  **問：「當你第一次在生產環境執行自動回滾時，你的感受是什麼？」(Inner Monologue)**
-    *   **🇺🇸 English**: "I felt a mix of anxiety and relief. Anxiety because a deploy failed, but relief because the safety net I built—the auto-rollback—actually worked. It confirmed my belief that as an infra engineer, my job is to build systems that fail gracefully, protecting our users from downtime."
-    *   **🇹🇼 中文**: 「我當時既焦慮又放鬆。焦慮是因為部署失敗了，但放鬆是因為我建立的安全網（自動回滾）真的起作用了。這印證了我的信念：作為 Infra 工程師，我的職責是建立能『優雅失敗』的系統，保護使用者免受停機影響。」
-
-3.  **問：「你是如何處理異質環境（Dev/QA/Prod）之間的變數管理？」(Dive Deep / Performance Awareness)**
-    *   **🇺🇸 English**: "I used **Environment-Agnostic Artifacts**. The same binary is used everywhere, but configurations are injected at runtime via Vault or GitLab variables. This eliminates the 'it works on my machine' problem and ensures that our testing environment is a perfect proxy for production performance."
-    *   **🇹🇼 中文**: 「我採用了**環境無關的產物 (Environment-Agnostic Artifacts)**。同樣的二進位檔跑在所有環境，但配置是在執行時透過 Vault 或 GitLab 變數動態注入。這消除了『在我電腦上可以跑』的問題，確保測試環境能完美模擬生產環境的效能。」
-
-4.  **問：「在實體機環境下，為什麼選 Rolling Update 而非藍綠部署？」(Trade-offs / Decision Making)**
-    *   **🇺🇸 English**: "Cost and hardware constraints. We didn't have double the hardware capacity for blue-green. I chose **Rolling Update** with strict health gating. For L4, it's about making the best technical choice within given constraints—achieving high availability without unnecessary capital expenditure."
-    *   **🇹🇼 中文**: 「成本與硬體限制。我們沒有雙倍的機台資源來做藍綠部署。我選擇了帶有嚴格健康門禁的 **Rolling Update**。對於 L4 來說，重點是在限制下做出最佳技術抉擇——在不增加非必要資本支出的情況下實現高可用性。」
-
-5.  **問：「這種『部署即非事件』的理念如何應用在 Google 的規模上？」(Future Pacing)**
-    *   **🇺🇸 English**: "At Google, deployments happen thousands of times a day. This project taught me the importance of 'Deployment Transparency.' I will bring this focus on visibility and automated safety to Google to ensure that our massive global infrastructure remains stable even during rapid iterations."
-    *   **🇹🇼 中文**: 「在 Google，部署每天發生數千次。這個專案教會我『部署透明度』的重要性。我會將這種對可視化與自動化安全的專注帶到 Google，確保我們龐大的全球基礎設施即使在快速迭代中也能保持穩定。」
-
-6.  **問：「如果 CD 執行時偵測到手動變更，你會怎麼處理？」(Earn Trust / Ownership)**
-    *   **🇺🇸 English**: "Our rule is 'Single Source of Truth.' The CD pipeline will trigger an alert and pause if an **Idempotency Conflict** is detected. I would then work with the person who made the change to understand the 'why' and ensure that the fix is committed to Git, preserving the integrity of our infrastructure-as-code."
-    *   **🇹🇼 中文**: 「我們的原則是『唯一真理源』。如果偵測到**冪等性衝突**，CD 流水線會報警並暫停。我會與進行變更的人員溝通，了解『為什麼』，並確保該修復被提交回 Git，以維護基礎設施即代碼的完整度。」
+2.  **問：「如果自動生成的標籤不符合預期怎麼辦？」(Reliability & Fallback)**
+    *   **🇺🇸 English**: "While the engine is 99% accurate, I built in a **Manual Override** option. Before the actual Jenkins deployment starts, the suggested Tag is visible in the GitLab environment. If a lead engineer sees a need for a specific version number, they can override it, but 95% of our releases now run on the fully automated path."
+    *   **🇹🇼 中文**: 「雖然引擎有 99% 的準確率，但我內建了 **手動覆蓋 (Manual Override)** 選項。在實際的 Jenkins 部署開始前，建議的標籤在 GitLab 環境中是可見的。如果主導工程師認為有特定版本號的需求，他們可以進行覆蓋，但目前我們 95% 的發佈都走全自動化路徑。」
 
 ---
 
 ### 3. 📚 技術名詞解析 (Technical Glossary)
 
-*   **🇺🇸 IaC (Infrastructure as Code) / 🇹🇼 基礎設施即代碼**:
-    Managing and provisioning infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools. (透過機器可讀的定義檔來管理與配置基礎設施，而非手動操作。)
-*   **🇺🇸 Health Probes / 🇹🇼 健康檢查**:
-    Automated checks that determine if a service or system is functioning correctly after deployment. (自動化檢查，用以判斷服務或系統在部署後是否正常運作。)
-*   **🇺🇸 Auto-Rollback / 🇹🇼 自動回滾**:
-    A feature that automatically reverts a deployment to a previous stable version if the current one fails health checks. (如果當前部署未通過健康檢查，自動還原至上一個穩定版本的特色。)
-*   **🇺🇸 Single Source of Truth / 🇹🇼 唯一真理源**:
-    The practice of structuring information models such that every data element is mastered in only one place. (確保每個數據元素都只由一個地方掌控的實務作法。)
-*   **🇺🇸 Rolling Update / 🇹🇼 滾動更新**:
-    A deployment strategy that updates a set of servers incrementally to ensure high availability. (逐台更新伺服器以確保高可用性的部署策略。)
+*   **🇺🇸 Semantic Versioning (SemVer) / 🇹🇼 語義化版本**:
+    A versioning schema that uses a three-part number (MAJOR.MINOR.PATCH) to convey meaning about the underlying changes. (使用三部分數字來傳達底層變更含義的版本控制架構。)
+*   **🇺🇸 Conventional Commits / 🇹🇼 規範化提交**:
+    A lightweight convention on top of commit messages that provides an easy set of rules for creating an explicit commit history. (在提交訊息之上的輕量級慣例，為建立明確的提交歷史提供了一套簡單規則。)

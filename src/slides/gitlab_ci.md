@@ -36,9 +36,9 @@
     *   **🇺🇸 English**: "I didn't just guess which step was slow. I used GitLab CI's metrics to profile the pipeline. I found that dependency installation was 70% of the time, which led to the Pre-baking strategy. At Google, I will continue to use profiling to find and eliminate bottlenecks in our build systems."
     *   **🇹🇼 中文**: 「我不是靠猜測哪一動變慢，而是利用指標來進行效能剖析 (Profile)。我發現依賴安裝佔了 70% 的時間，這才促成了預建構策略。在 Google，我會持續利用剖析技術來找出並消除構建系統中的瓶頸。」
 
-6.  **問：「如果開發者對你的 Gating 規則有強烈意見，你如何處理？」(Disagree and Commit / Earn Trust)**
-    *   **🇺🇸 English**: "I would show them the data—specifically, how many 'broken master' incidents were prevented by this rule. I listen to their concerns about friction, and I work to simplify the Rebase process (e.g., via automation scripts), but I don't compromise on the quality standard."
-    *   **🇹🇼 中文**: 「我會讓數據說話，展示這條規則攔截了多少次『Master 被弄掛』的事故。我會傾聽他們對流程摩擦的疑慮，並致力於簡化 Rebase 流程（例如提供腳本），但在品質標準上我不會妥協。」
+6.  **問：「你是如何大規模維護這些 CI 品質門禁的？」(Scalable Governance / Ownership)**
+    *   **🇺🇸 English**: "I built a **Centralized CI Framework**. Instead of managing 50 different CI files, I used GitLab's 'include' feature to create a master template. This allowed me to enforce the same quality gates—like MR template validation and AI reviews—across all projects. It turned CI from a local script into a company-wide engineering standard."
+    *   **🇹🇼 中文**: 「我建立了一個 **中央化 CI 框架**。與其管理 50 個不同的 CI 檔案，我利用 GitLab 的『include』功能建立了一個主模板。這讓我能在所有專案中強制執行相同的品質門禁——例如 MR 模板驗證和 AI 審核。這將 CI 從一個局部腳本轉變為全公司統一的工程標準。」
 
 ---
 

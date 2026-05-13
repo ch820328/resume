@@ -1,56 +1,34 @@
-# 面試備忘錄：統一數位指揮中心與全棧門戶 (Central Dashboard)
+# 面試備忘錄：統一工程入口網與研發效能提升
 
-這張投影片的核心在於：**將碎片化的運維工具整合為單一窗口體驗，透過架構設計降低開發者的認知負荷。**
+這張投影片的核心在於：**研發產能優化 (Engineering Velocity)——如何透過消除隱形浪費，讓工程師回歸核心創造力。**
 
 ---
 
 ### 1. 💬 口語說明 (Colloquial Explanation)
 
 *   **🇺🇸 English (Simple & Direct):**
-    "Our engineering tools were scattered everywhere, making it hard for teams to focus. I architected a 'Central Dashboard' as a single entry point for everything—from logs to deployment status. I used a Micro-Frontend approach so teams could update their own tools without breaking the whole site. This reduced cognitive load by 40% and made it much easier for everyone to stay on top of their systems."
+    "I noticed our RDs and Testers were losing about 20% of their time just fighting with fragmented tools. I wanted to build a 'Unified Engineering Hub' to solve this, but I needed to prove its value first. I quantified the **Time Waste**—collecting data that showed we were losing 200+ engineering hours every month to manual log searches and tool switching. I built a prototype to show that we could reduce a 15-minute task to just 3 seconds. Management immediately saw the potential for **Recovering Capacity**, and they backed the project. Today, it’s the primary portal for our whole department."
     
 *   **🇹🇼 中文 (口語精簡):**
-    「我們的開發工具散落在各處，讓團隊很難專注。我設計了一個『統一數位指揮中心』作為所有工具（從日誌到部署狀態）的單一入口。我採用了類微前端架構，讓各團隊可以獨立更新自己的工具而不影響整個平台。這減少了 40% 的認知負擔，讓每個人都能更輕鬆地掌控自己的系統狀態。」
+    「我注意到我們的研發與測試人員大約浪費了 20% 的時間在跟碎片化的工具周旋。我想建立一個『統一工程入口網』來解決這個問題，但我需要先證明它的價值。我量化了 **時間浪費**——收集數據證明我們每個月在手動搜尋日誌與切換工具上損失了超過 200 個工時。我做了一個原型展示我們能將 15 分鐘的任務縮短到 3 秒。主管們立即看到了 **回收產能** 的潛力並全力支持。現在，這已經成為我們整個部門的主要入口網站。」
 
 ---
 
 ### 2. ❓ 模擬問答 (Possible Q&A - Google/Amazon Hybrid Strategy)
 
-1.  **問：「為什麼要花力氣做整合，而不直接給各服務獨立網址？」(Customer Obsession / Invent and Simplify)**
-    *   **🇺🇸 English**: "To reduce **Context Switching**. Jumping between tabs with different styles and logins is exhausting. A unified portal enforces a single security policy and provides a cohesive UX. For a developer, simplicity is a feature that directly boosts productivity."
-    *   **🇹🇼 中文**: 「為了減少**上下文切換 (Context Switching)**。在不同風格與登入機制的頁面跳轉是很累人的。統一門戶能強制推行安全性策略並提供一致的體驗。對開發者來說，『簡潔』就是直接提升生產力的功能。」
+1.  **問：「在推動這個專案時，你如何量化你所說的『損失的工時』？」(Data-Driven Decision)**
+    *   **🇺🇸 English**: "I took a sample of 10 representative engineers and tracked their daily workflows for a week. I focused on 'Context Switching Cost'—the time it takes to find a log, download it, and map it back to a Redmine ticket. By multiplying these individual losses across the whole department, I was able to present a clear picture of how much **Strategic Capacity** we were leaking every month."
+    *   **🇹🇼 中文**: 「我抽樣了 10 位具代表性的工程師，並追蹤了他們一週的日常工作流。我專注於『上下文切換成本』——即尋找日誌、下載並將其對應回 Redmine 議題所需的時間。透過將這些個人損失乘以整個部門的人數，我成功描繪出一幅清晰的圖像，展示我們每個月流失了多少 **戰略產能**。」
 
-2.  **問：「當初要整合這麼多異質系統時，你擔心的點是什麼？」(Inner Monologue)**
-    *   **🇺🇸 English**: "I was worried about creating a **Monolithic Bottleneck**. If the dashboard goes down, I didn't want it to take everything else with it. I felt that 'Availability' was the biggest risk. This pushed me to implement an asynchronous loading pattern and ensure that the backend services remained decoupled."
-    *   **🇹🇼 中文**: 「我擔心會造成**單體瓶頸**。如果門戶掛掉，我不希望它連累到其他服務。我意識到『可用性』是最大風險，這促使我實作了非同步載入模式，並確保後台服務保持解耦。」
-
-3.  **問：「你是如何處理不同專案組之間的權限隔離？」(Dive Deep / Security)**
-    *   **🇺🇸 English**: "I implemented **RBAC (Role-Based Access Control)** integrated with our LDAP. The system dynamically renders the UI based on the user's role. If you don't have access to a specific tool, it's either hidden or disabled in the navigation logic, ensuring zero unauthorized exposure."
-    *   **🇹🇼 中文**: 「我實作了與 LDAP 整合的 **RBAC (角色存取控制)**。系統會根據角色動態渲染 UI。如果你沒有特定工具的權限，它在導航選單中就會被隱藏或禁用，確保沒有未經授權的暴露。」
-
-4.  **問：「類微前端架構在這個專案中解決了什麼具體技術問題？」(Dive Deep / Performance Awareness)**
-    *   **🇺🇸 English**: "It solved the **Build Time and Dependency Conflict** issues. Different tools use different versions of libraries (e.g., React vs Vue). By using a micro-frontend style, we can load individual modules as separate bundles, preventing global namespace pollution and keeping initial page loads light."
-    *   **🇹🇼 中文**: 「它解決了**構建時間與依賴衝突**的問題。不同工具有不同版本的庫。透過微前端風格，我們可以將各模組作為獨立 Bundle 載入，防止全局命名空間污染，並保持初始頁面加載的輕量化。」
-
-5.  **問：「這項工作體現了你對 Google 產品價值的什麼理解？」(Future Pacing)**
-    *   **🇺🇸 English**: "Google excels at organizing information. This project was about organizing 'Engineering Information.' I will bring this focus on UX and information architecture to Google's internal infra, making our complex systems feel intuitive for every engineer."
-    *   **🇹🇼 中文**: 「Google 擅長組織資訊，而這個專案就是在組織『研發資訊』。我會將這種對 UX 與資訊架構的專注帶到 Google 的內部基礎設施，讓複雜的系統對每位工程師來說都顯得直覺。」
-
-6.  **問：「整合後的 40% 效率提升是怎麼計算出來的？」(Data-Driven / Deliver Results)**
-    *   **🇺🇸 English**: "We measured the **Time-to-Action**. Before, an engineer took an average of 5 minutes to find and log into three different tools during an incident. Now, it takes less than 3 minutes. This reduction in 'friction' translates directly to a faster MTTR (Mean Time To Recovery)."
-    *   **🇹🇼 中文**: 「我們測量了 **Time-to-Action (行動耗時)**。以前工程師在處理事故時，平均要花 5 分鐘來尋找並登入三個不同工具。現在只要不到 3 分鐘。這種『摩擦力』的減少直接轉化為更快的 MTTR (平均修復時間)。」
+2.  **問：「除了節省時間，這個工具對團隊文化有什麼影響？」(Earn Trust / Leadership)**
+    *   **🇺🇸 English**: "It significantly **Lowered the Barrier to Entry**. New team members used to take weeks to learn all our internal tools. Now, with everything behind one simple UI, they can start contributing on day one. It shifted the team culture from 'fighting with tools' to 'solving engineering problems,' which greatly improved morale."
+    *   **🇹🇼 中文**: 「它顯著地 **降低了進入門檻**。新成員過去需要好幾週才能學會我們所有的內部工具。現在，所有功能都整合在一個簡單的 UI 後面，他們從第一天就能開始貢獻。這將團隊文化從『與工具博鬥』轉向了『解決工程問題』，大幅提升了士氣。」
 
 ---
 
 ### 3. 📚 技術名詞解析 (Technical Glossary)
 
-*   **🇺🇸 Single-pane-of-glass / 🇹🇼 單一窗口/玻璃**:
-    A management console that integrates data from multiple sources into a single display. (將來自多個來源的數據整合進單一顯示界面的管理主機。)
-*   **🇺🇸 Micro-Frontend / 🇹🇼 微前端**:
-    An architectural style where a frontend app is decomposed into individual, semi-independent micro-apps. (將前端應用分解成多個獨立微應用的架構風格。)
-*   **🇺🇸 RBAC (Role-Based Access Control) / 🇹🇼 角色存取控制**:
-    A method of regulating access to computer or network resources based on the roles of individual users. (根據使用者角色來管制電腦或網路資源存取權的方法。)
-*   **🇺🇸 Token Propagation / 🇹🇼 令牌傳遞**:
-    Passing identity tokens across different services to maintain a user's session without re-authenticating. (在不同服務間傳遞身份令牌，以維持連線而不需要重複登入。)
-*   **🇺🇸 Context Switching / 🇹🇼 上下文切換**:
-    The time and cognitive effort required to move from one task or environment to another. (從一個任務或環境移至另一個時所需的時間與心理開銷。)
+*   **🇺🇸 Recovering Capacity / 🇹🇼 回收產能**:
+    The process of reclaiming time spent on low-value tasks so that it can be reinvested into high-value development. (回收花在低價值任務上的時間，以便將其重新投資於高價值開發的過程。)
+*   **🇺🇸 Toolchain Fragmentation / 🇹🇼 工具鏈碎片化**:
+    The inefficiency caused by using multiple disconnected software tools that require constant switching and manual data movement. (因使用多個不連貫的軟體工具，導致需要不斷切換與手動移動數據所造成的低效率。)
