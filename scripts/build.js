@@ -84,15 +84,6 @@ function build() {
 
     slideFiles.forEach((file) => {
         let content = fs.readFileSync(path.join(SLIDES_DIR, file), 'utf-8');
-        
-        // 1. Robust Bilingual Handling:
-        // Match [EN] block and [TW] block, keeping only the EN part.
-        // This regex handles various tag combinations and newlines.
-        content = content.replace(/(?:<strong>)?\[EN\](?:<\/strong>)?([\s\S]*?)(?:<br\s*\/?>)?\s*(?:<strong>)?\[TW\](?:<\/strong>)?([\s\S]*?)(?=\n\s*<\/?p>|\n\s*<\/div>|\n\s*<\/section>|$)/gi, '$1');
-
-        // 2. Final Cleanup for any stray markers
-        content = content.replace(/\[EN\]/gi, '').replace(/\[TW\][\s\S]*?(?=<br|<\/p|<\/div|$)/gi, '');
-
         slidesHtml += content + '\n';
         totalSlideCount++;
     });
