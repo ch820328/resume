@@ -48,6 +48,30 @@
             ],
             "skills_priority": ["infrastructure", "backend", "domain", "frontend"],
             "output_file": "resume_tailored.html"
+        },
+        "google_manufacturing_swe": {
+            "name": "Software Engineer (Web Platforms & Smart Manufacturing)",
+            "summary": "A full-stack software engineer specializing in **Web Platforms**, **Smart Manufacturing**, and **AI Integration**. I build scalable web applications and backend services (Angular/Python/Go) that drive hardware automation and aggregate complex manufacturing data. I have a proven track record of integrating LLMs for anomaly detection and diagnostic analysis, bridging the gap between software development and factory operations to deliver robust, high-performance solutions.",
+            "featured_projects": [
+                "Unified Engineering Productivity Portal",
+                "NVSSVT Enterprise Automation Platform",
+                "OpenClaw: Log Matrix & Semantic Diagnostic Platform",
+                "Deterministic BIOS OCR Engine"
+            ],
+            "skills_priority": ["backend", "frontend", "domain", "infrastructure"],
+            "output_file": "resume_google_manufacturing.html"
+        },
+        "google_fuchsia_infra_swe": {
+            "name": "Software Engineer (Infrastructure & CI/CD)",
+            "summary": "Software Engineer specializing in **Build Systems**, **CI/CD Pipelines**, and **Cloud Infrastructure**. I have extensive experience in Python and Go, designing centralized automation tools and quality gates that bridge development and infrastructure. With a strong focus on secure release engineering, test-driven infrastructure, and resolving technical debt, I build scalable CI/CD solutions that optimize developer productivity and enforce strict governance across complex cross-functional teams.",
+            "featured_projects": [
+                "Secure CD & Automated Release Engineering",
+                "GitLab CI Automated Quality Gate",
+                "Test-Driven Infrastructure as Code (Ansible)",
+                "Unified Engineering Productivity Portal"
+            ],
+            "skills_priority": ["infrastructure", "backend", "domain", "frontend"],
+            "output_file": "resume_google_fuchsia.html"
         }
     }
 }
