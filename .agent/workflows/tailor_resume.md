@@ -24,7 +24,7 @@ This workflow guides the process of creating a custom version of your resume and
 
 ### 3. Update Configurations
 - **One-Page**: Update `scripts/onepage_config.json` with a `tailored` profile containing the new summary and featured projects list.
-- **Slides**: Create/Update `slides_order_tailored.json` to include:
+- **Slides**: Create/Update `config/slides/slides_order_tailored.json` to include:
   - `00_profile.html` (with JD keywords)
   - The list of `tailored_[slug].html` files.
   - `99_end.html`.
@@ -37,7 +37,7 @@ This workflow guides the process of creating a custom version of your resume and
   node scripts/build_onepage.js --profile=tailored
   
   # Build Slides
-  node scripts/build.js --config slides_order_tailored.json
+  node scripts/build.js --config config/slides/slides_order_tailored.json
   
   # Export to PDF
   node export_pdf.js resume_tailored.html resume_onepage_tailored.pdf

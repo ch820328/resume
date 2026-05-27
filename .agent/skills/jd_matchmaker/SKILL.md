@@ -19,7 +19,7 @@ description: 互動式的履歷媒合助理。當使用者提供 Job Description
 👉 **強制規則 (CRITICAL RULE)**：在此階段，Agent **絕對不能**修改任何檔案或產生 HTML。必須先向使用者提出一份「戰略企劃書」。
 
 企劃書內容必須包含：
-1. **Slide 篩選清單**：從現有的 12 個黃金專案 (`slides_order.json`) 中，精挑細選出能**在 5 分鐘內口頭報告完畢**的專案組合（強烈建議只挑選 **3~4 個**最符合 JD 的核心專案）。
+1. **Slide 篩選清單**：從現有的 12 個黃金專案 (`config/slides/slides_order.json`) 中，精挑細選出能**在 5 分鐘內口頭報告完畢**的專案組合（強烈建議只挑選 **3~4 個**最符合 JD 的核心專案）。
 2. **媒合原因 (Why it matches)**：具體且精準地說明挑選每個專案的原因（例如：JD 要求 CI/CD 與自動化，因此挑選 `gitlab_ci` 展現 DevOps 實力）。
 3. **客製化建議 (Tailoring Suggestions)**：針對挑選出的專案，建議應如何微調標題、Tech Tags 或是 Impact 數據來迎合 JD 的關鍵字。
 
@@ -29,7 +29,7 @@ description: 互動式的履歷媒合助理。當使用者提供 Job Description
 
 👉 **強制規則**：只有在獲得使用者明確的「同意」或「核准」後，Agent 才能進入此階段。
 
-1. 修改 `slides_order_tailored.json` (或類似的設定檔)，寫入選定的 3-4 個 HTML 檔案。
+1. 修改 `config/slides/slides_order_tailored.json` (或類似的設定檔)，寫入選定的 3-4 個 HTML 檔案。
 2. 若有客製化需求，請將該 HTML 複製一份（例如 `tailored_gitlab_ci.html`）並寫入對應的 JD 關鍵字。
 3. 自動執行終端機指令 `./run.sh release`，觸發自動化腳本打包出專屬於該 JD 的 PDF。
 4. 提醒使用者檔案已經產出完畢。

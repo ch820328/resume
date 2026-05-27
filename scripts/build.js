@@ -12,7 +12,7 @@ const DIST_DIR = path.join(__dirname, '../'); // We decided to keep index.html i
 const OUTPUT_DIR = path.join(__dirname, '../output'); 
 
 const templatePath = path.join(SRC_DIR, 'template.html');
-const DEFAULT_ORDER_FILE = path.join(__dirname, '../slides_order.json');
+const DEFAULT_ORDER_FILE = path.join(__dirname, '../config/slides/slides_order.json');
 
 function build() {
     console.log('🏗️  Building Resume...');
@@ -101,10 +101,10 @@ function build() {
 
     // 3. Adjust Paths for Output Subdirectory
     finalHtml = finalHtml
-        .replace(/href="styles\.css"/g, 'href="../styles.css"')
-        .replace(/href="chat_widget\.css"/g, 'href="../chat_widget.css"')
-        .replace(/src="script\.js"/g, 'src="../script.js"')
-        .replace(/src="chat_widget\.js"/g, 'src="../chat_widget.js"')
+        .replace(/href="styles\.css"/g, 'href="../src/assets/styles.css"')
+        .replace(/href="chat_widget\.css"/g, 'href="../src/assets/chat_widget.css"')
+        .replace(/src="script\.js"/g, 'src="../src/assets/script.js"')
+        .replace(/src="chat_widget\.js"/g, 'src="../src/assets/chat_widget.js"')
         .replace(/src="src\/image\//g, 'src="../src/image/');
 
     // 4. Write Output

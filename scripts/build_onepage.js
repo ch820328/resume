@@ -5,7 +5,7 @@ const PROJECTS_PATH = path.join(__dirname, '../.agent/skills/project_archivist/d
 const PROFILE_PATH = path.join(__dirname, '../.agent/skills/project_archivist/data/user_profile.json');
 const PROFILE_SLIDE_PATH = path.join(__dirname, '../src/slides/00_profile.html');
 const TEMPLATE_PATH = path.join(__dirname, '../src/resume_onepage.html');
-const CONFIG_PATH = path.join(__dirname, 'onepage_config.json');
+const CONFIG_PATH = path.join(__dirname, '../config/onepage_config.json');
 
 function loadProjects() {
     if (!fs.existsSync(PROJECTS_PATH)) return { project_categories: {} };
@@ -170,10 +170,10 @@ function generateResume(profileKey, profileCfg, masterProjectData, masterProfile
 
     // 6. Adjust Paths for Output Subdirectory
     html = html
-        .replace(/href="styles\.css"/g, 'href="../styles.css"')
-        .replace(/href="chat_widget\.css"/g, 'href="../chat_widget.css"')
-        .replace(/src="script\.js"/g, 'src="../script.js"')
-        .replace(/src="chat_widget\.js"/g, 'src="../chat_widget.js"')
+        .replace(/href="styles\.css"/g, 'href="../src/assets/styles.css"')
+        .replace(/href="chat_widget\.css"/g, 'href="../src/assets/chat_widget.css"')
+        .replace(/src="script\.js"/g, 'src="../src/assets/script.js"')
+        .replace(/src="chat_widget\.js"/g, 'src="../src/assets/chat_widget.js"')
         .replace(/src="src\/image\//g, 'src="../src/image/');
 
     const outputPath = path.join(OUTPUT_DIR, profileCfg.output_file || `resume_${profileKey}.html`);

@@ -12,10 +12,10 @@ try {
     // 1a. Build Slide Decks
     const slideTargets = [
         '', // Master (default)
-        '--config slides_order_embedded.json',
-        '--config slides_order_fullstack.json',
-        '--config slides_order_tailored.json',
-        '--config slides_order_google_mfg.json'
+        '--config config/slides/slides_order_embedded.json',
+        '--config config/slides/slides_order_fullstack.json',
+        '--config config/slides/slides_order_tailored.json',
+        '--config config/slides/slides_order_google_mfg.json'
     ];
     
     slideTargets.forEach(target => {

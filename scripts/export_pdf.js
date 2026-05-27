@@ -36,7 +36,7 @@ async function exportPDF(inputFile, outputFile, landscapeOverride) {
     try {
         console.log('🚀 Starting PDF Export Process...');
 
-        const OUTPUT_DIR = path.join(__dirname, 'output');
+        const OUTPUT_DIR = path.join(__dirname, '../output');
         const arg1 = process.argv[2];
         const arg2 = process.argv[3];
 
