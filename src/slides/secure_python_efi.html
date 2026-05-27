@@ -10,7 +10,10 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            The unauthorized distribution of proprietary diagnostic code by former employees posed a critical IP risk. Existing tools lacked execution control, allowing sensitive logic to run on unauthorized third-party hardware.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Distributing diagnostic scripts across departments exposed proprietary IP to severe leak risks</li>
+                                <li>Standard CPython runtime lacked execution control and hardware-level DRM</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
@@ -18,7 +21,10 @@
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            Engineered an <strong>Encrypted Python Runtime</strong> by modifying the core <code>PyImport_ImportModule</code> mechanism. Implemented <strong>RSA Asymmetric Encryption</strong> to ensure scripts remain encrypted on disk and can only be decrypted and executed by the authorized runtime.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Hacked the Python C-API to engineer a custom <strong>Just-In-Time (JIT) Decryption Runtime</strong></li>
+                                <li>Intercepted import mechanisms to temporarily decrypt and instantly wipe plaintext post-load</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
@@ -26,16 +32,17 @@
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            Effectively secured core intellectual property against unauthorized access and reverse engineering. Established a robust security standard that neutralized the risk of source code theft.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Neutralized reverse-engineering and source code leak risks across diverse execution environments</li>
+                                <li>Secured core IP by establishing a zero-trust execution model for cross-departmental diagnostics</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
                 <div class="tech-footer">
-                    <span class="tech-tag">C / C++</span>
                     <span class="tech-tag">Python C-API</span>
-                    <span class="tech-tag">UEFI Shell</span>
-                    <span class="tech-tag">EDK2</span>
-                    <span class="tech-tag">Cryptography</span>
+                    <span class="tech-tag">JIT Decryption</span>
+                    <span class="tech-tag">Zero-Trust Security</span>
                 </div>
             </div>
             <div class="star-visual">

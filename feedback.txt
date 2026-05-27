@@ -1,0 +1,49 @@
+
+# BQ: Leadership, not enough? how to choice when project stuck, why dicision, trade-off, clear speak
+# 協作中的feedback, 怎麼處理合作，
+# 可能在project 過程中，跟stick holder , partner，在項目前中後的feedback
+
+更細節的呈現，linking process怎麼講的更清楚
+關心團隊相關的問題
+
+敘述的有點tier and layer. 不連貫
+leader ship要多準備好 google leadyness還好
+通常想看怎麼管裡porject，然後risk怎麼管理
+manage communication怎麼做，對內對外
+
+
+Leadership
+Leadership question 1 - https://biginterview.com/leadership-interview-questions/
+Leadership question 2 - https://www.roberthalf.com.au/career-advice/interview/common-questions/administration/leadership-management
+Leadership question 3 - https://theinterviewguys.com/leadership-interview-questions/
+
+Googleyness
+Teamwork Questions - https://biginterview.com/teamwork-interview-questions/
+Conflict Questions - https://biginterview.com/behavioral-interview-questions-conflict/
+Conflict Management Questions - https://resources.workable.com/conflict-management-interview-questions
+Leadership
+Leadership question 1 - https://biginterview.com/leadership-interview-questions/
+Leadership question 2 - https://www.roberthalf.com.au/career-advice/interview/common-questions/administration/leadership-management
+Leadership question 3 - https://theinterviewguys.com/leadership-interview-questions/
+
+Googleyness
+Teamwork Questions - https://biginterview.com/teamwork-interview-questions/
+Conflict Questions - https://biginterview.com/behavioral-interview-questions-conflict/
+Conflict Management Questions - https://resources.workable.com/conflict-management-interview-questions
+
+去年的評價
+
+
+
+
+
+
+
+我為你將這些 URL 中的核心題目進行了分類與整理。這些題目是 Google 面試中 G&L (Googliness & Leadership) 關卡的精華，你可以直接將它們對應到你預計準備的 「8 大 Power Slides」。🏗️ 第一部分：Leadership (領導力與決策)這部分的題目主要在考察你如何在模糊中前進、承擔責任以及影響他人。核心行為面試題：決策與權衡 (Decision Making & Trade-offs):請描述一次你必須在資訊不足的情況下做出重大決策的經驗。如果你發現自己做了一個錯誤的決定，你會如何處理？請分享一個你做出「困難且不受歡迎」決策的案例，你如何執行它？解決問題與瓶頸 (Project Stuck & Crisis):當專案進度嚴重落後或卡住時，你採取了什麼行動？描述一次你預見到潛在風險並提前採取預防措施的經驗。帶領與激勵 (Motivation & Delegation):你如何定義你的領導風格？當團隊士氣低落時，你如何激勵成員？請描述一次你主動承擔起原本不屬於你職責範圍內的領導任務的經驗。 (對應 Emergent Leadership)🤝 第二部分：Googleyness & Teamwork (團隊協作與特質)這部分著重於你的溝通風格、對團隊的貢獻以及學習態度。核心行為面試題：團隊貢獻與角色 (Team Dynamics):請描述一次你為了達成團隊目標而做出個人犧牲的經驗。當團隊成員沒有達成預期表現（不給力）時，你會如何處理？請分享一個你幫助同事成長或解決技術難題的故事。 (對應 Mentoring)適應力與學習 (Ambiguity & Learning):請描述一次你必須在極短時間內學習全新技術並解決問題的經驗。當專案需求不斷變更時，你如何保持效率？⚡ 第三部分：Conflict Management (衝突管理與回饋)這是你反饋筆記中最需要強化的部分，HM 會非常關注你如何處理負面情緒與分歧。核心行為面試題：處理分歧 (Disagreement):請描述一次你與主管或資深同事意見不合的經驗，你如何處理？當你的提案被拒絕時，你的反應是什麼？你如何說服一個對你的技術方案持懷疑態度的人？ (對應 Influence without Authority)面對負面回饋 (Negative Feedback):請分享一次你收到嚴厲批評或負面回饋的經驗，你從中學到了什麼？當合作夥伴（Stakeholder）對你的專案產出不滿意時，你如何修正？跨部門溝通 (Stakeholder Management):描述一次你必須與性格迥異或溝通風格完全不同的人合作的經驗。當不同部門的優先順序（Priority）發生衝突時，你如何協調？💡 備戰建議：如何利用「8 大 Power Slides」接招？你可以將上述題目整理成一張「反射表」，放在你的備忘錄中：投影片 (Slide)專案名稱可對付的題目 (Questions Covered)Slide 2OpenClaw處理分歧、創新與簡化、技術決策。Slide 3Secure Python專案卡住 (Stuck)、危機處理、高標準要求。Slide 4Engineering Hub主動性 (Initiative)、跨部門溝通、影響力。Slide 5Database/MySQL數據驅動決策、從錯誤中學習、模糊問題解決。Slide 7Issue Analytics面對負面回饋、解決衝突、幫助他人。🎯 接下來的行動：既然改成中文面試，你可以先挑出 Slide 3 (Secure Python) 或 Slide 7 (Issue Analytics)，這兩頁對應到你目前最嚴重的「Leadership」和「回饋管理」標籤。你要不要試著針對其中一個題目，用中文寫一段 300 字左右的 STAR 回答，我來幫你看看「邏輯連貫性」是否達到了 L4 的水平？
+
+
+
+
+
+
+請描述一次你必須在資訊不足的情況下做出重大決策的經驗。

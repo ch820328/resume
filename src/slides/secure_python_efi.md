@@ -1,36 +1,12 @@
-# Interview Prep: Encrypted Python Runtime & Source Protection (Secure Python EFI)
+# Secure Python EFI Environment
 
-The core focus of this slide is: **Implementing robust encryption in extremely constrained Pre-OS environments to protect company IP, demonstrating deep expertise in security and low-level system design.**
+### 💬 口語講稿 (Pitch Script)
+「過去我們將 Python 診斷腳本發布給其他部門使用時，面臨著嚴重被流出與逆向工程的資安風險。為了解決這問題，我直接從底層著手。**我魔改了 Python C-API 的 import 機制，打造了一個客製化的『JIT (即時) 解密執行環境』**。當腳本即將被載入的那一瞬間，程式才會在本地短暫解密檔案，並且在載入完成後『立刻抹除 (Wipe) 明文』。透過這種攔截底層的機制，我為跨部門的診斷工具建立了一套 **Zero-Trust (零信任) 模型**，成功防堵了源碼外流的風險，保護了公司的核心 IP。」
 
----
-
-### 1. 💬 Colloquial Explanation
-
-*   **English:**
-    "We had a serious security incident where a former engineer took our proprietary diagnostic tools to a competitor. To prevent this, I developed an **Encrypted Python Runtime** by modifying the **`PyImport_ImportModule`** function. This solution uses **RSA Asymmetric Encryption** to keep the code encrypted on the disk. Since the decryption only happens within our authorized runtime, the code is effectively protected against unauthorized usage or reverse-engineering."
-
----
-
-### 2. ❓ Possible Q&A (Google/Amazon Hybrid Strategy)
-
-1.  **Q: "Why did you choose a technical encryption solution over a simple legal agreement?"**
-    *   **Answer**: "Legal contracts are reactive; technical enforcement is proactive. After the theft incident, we realized that our most valuable intellectual property—the diagnostic logic—needed a physical safeguard. By implementing **RSA Encryption and an authorized runtime**, we ensured that the IP is technically 'non-portable' even if the files are copied."
-
-2.  **Q: "What was the biggest challenge you faced when implementing decryption in a constrained EFI environment?"**
-    *   **Answer**: "The biggest challenge was navigating an unfamiliar and massive architecture. I had to trace the entire module-loading execution flow within the **Python C-API** to find the exact point where the import happens. Once I identified **`PyImport_ImportModule`**, I implemented a custom decryption hook to ensure the sensitive logic remains secure until execution."
-
-3.  **Q: "How did you secure the RSA Private Key itself?"**
-    *   **Answer**: "We follow strict operational security. The **Private Key is stored on a secure server**, accessible only to designated maintainers. The encryption process is centralized on the server side; this ensures that the secret key never exists on general developer machines or end devices, significantly reducing the attack surface."
-
----
-
-### 3. 📚 Technical Glossary
-
-*   **AES Encryption**:
-    A symmetric block cipher used globally to protect sensitive data.
-*   **Bytecode**:
-    Program code that has been compiled from source code into an intermediate software-compatible code (e.g., `.pyc` files in Python).
-*   **In-Memory Decryption**:
-    A security technique where data is decrypted only within the RAM during execution, leaving no traces of unencrypted data on the storage device.
-*   **Root of Trust**:
-    A source that is always trusted within a computer system, often implemented in hardware like a TPM.
+### ❓ 面試必殺題預覽
+- **Q: 為什麼不直接把整個檔案在記憶體中解密並讀取？**
+  *A: 這是個好問題！一開始的確想過完全不落地 (In-Memory)，但受限於 UEFI 環境與 Python C-API 的底層讀取限制，直接從記憶體掛載模組非常困難且容易破壞相容性。因此，我採用了更 Pragmatic 的做法：JIT Decryption。攔截 `import` 行為，在瞬間解密、載入，然後立即抹除 (Wipe)。這樣既保證了極高的安全性，也維持了 Python 腳本的高度相容性。*
+- **Q: 請問你的解密金鑰 (Key) 是存在哪裡的？不怕被提取出來嗎？**
+  *A: (您可以根據實際情況回答：例如金鑰被編譯並混淆進了 C 的 Binary 中，或是結合 TPM / 硬體層級的保護，來展現您對密碼學落地實務的理解。)*
+- **Q: 為什麼要用 Python？不乾脆全部寫成 C 就好？**
+  *A: 為了維持開發彈性與速度。硬體檢測邏輯經常需要迭代，如果全用 C 寫並編譯成 Binary，更新與除錯會非常痛苦。保留 Python 作為腳本語言，並在執行層加上這層資安防護，完美兼顧了『開發速度』與『智財保護』。*

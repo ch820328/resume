@@ -1,40 +1,12 @@
-# 面試備忘錄：Baby Tracker (家庭共享照護平台)
+# Baby Tracker: Distributed Sync App
 
-這張投影片的核心在於：**用戶至上 (User First) 與產品思維——如何透過技術解決家庭成員間的溝通摩擦與資訊不對稱。**
+### 💬 口語講稿 (Pitch Script)
+「這是我為了解決痛點而發起的 Side Project。當時我發現市面上所有記錄寶寶作息的 App，在網路微弱的情況下體驗都極差，而且當爸爸和媽媽同時記錄同一筆資料時，經常會發生 Race Conditions (競爭危害) 或是直接覆蓋掉對方的紀錄。為了解決這個問題，我決定採用前衛的『Local-First (本地優先)』架構。我實作了 Optimistic UI (樂觀 UI)，讓使用者點擊儲存的瞬間，畫面就能立即更新，達到體感零延遲。而在後端同步機制上，我設計了基於 Optimistic Locking (樂觀鎖) 的同步協議，即使兩台裝置在離線時修改了同一筆紀錄，連上網路後也能優雅地解決衝突，不會遺失任何資料。這套系統把同步延遲壓到了 100 毫秒以內，完美解決了不穩定網路下的多人協作問題。」
 
----
-
-### 1. 💬 口語說明 (Colloquial Explanation)
-
-*   **🇺🇸 English (Simple & Direct):**
-    "When my family was taking care of our newborn, we faced a major 'communication friction' problem. With multiple caregivers like parents and grandparents, we were constantly asking each other: 'When was the last feeding?' or 'Did he nap already?' I built **Baby Tracker** as a **Real-time Shared Platform** to solve this. I integrated daily activity logging with a **Future Planning** module. By creating this single source of truth, we eliminated 100% of the verbal overhead and communication gaps. Now, every family member knows exactly what the baby needs and what the plan is for the day, even when they are not in the same room."
-    
-*   **🇹🇼 中文 (口語精簡):**
-    「當我的家人在照顧新生兒時，我們面臨嚴重的『溝通摩擦』。因為有多位照顧者（父母與長輩），我們常要互相詢問：『上次什麼時候餵奶？』或『他睡過了嗎？』我開發了 **Baby Tracker** 實時共享平台來解決這個問題。我將日常記錄與 **未來計畫模組** 整合在一起。透過建立這個單一的事實來源，我們徹底消除了口頭溝通的成本和資訊差。現在，每位家人都能精確掌握嬰兒的需求與當天的計畫，即使人不在現場也能無縫銜接。」
-
----
-
-### 2. ❓ 模擬問答 (Possible Q&A - Google/Amazon Hybrid Strategy)
-
-1.  **問：「你是如何確保數據在多個家人裝置間即時同步且不衝突的？」(Technical Depth)**
-    *   **🇺🇸 English**: "I implemented an **Offline-First** architecture using **WatermelonDB** and a Firebase/Node.js sync backend. By using **Optimistic Locking** and timestamp-based conflict resolution, I ensured that if two parents logged a feeding simultaneously, the system would merge the data accurately without losing any records."
-    *   **🇹🇼 中文**: 「我使用了 **WatermelonDB** 配合 Firebase/Node.js 後端實作了 **Offline-First** 架構。透過 **樂觀鎖 (Optimistic Locking)** 與基於時間戳的衝突解決機制，我確保即使兩位家長同時記錄餵奶，系統也能準確合併數據而不遺失任何記錄。」
-
-2.  **問：「『計畫規劃』功能在你的 App 中是如何體現的？」(Product Design)**
-    *   **🇺🇸 English**: "It's not just a log; it's a **Shared Calendar for Care**. I added a module where we can plan upcoming vaccinations, nap schedules, and medication times. This allowed us to move from 'recording what happened' to 'aligning on what will happen,' which is where most family friction actually occurs."
-    *   **🇹🇼 中文**: 「它不僅是記錄，更是 **『照護共享行事曆』**。我加入了一個模組來規劃未來的疫苗接種、小睡時間與用藥時間。這讓我們能從『記錄發生過的事』轉向『對未來計畫達成共識』，而這正是家庭摩擦最常發生的地方。」
-
-3.  **問：「這個專案如何體現你『用戶至上』的理念？」(User First)**
-    *   **🇺🇸 English**: "I spent time observing how my family actually used the App. I realized that grand-parents struggled with complex menus, so I optimized for **'One-Handed, High-Contrast UI.'** But the ultimate 'User First' realization was that the 'User' isn't just one person—it's the **family ecosystem**. By reducing the verbal overhead of constant status-checking, the App improved the emotional well-being of the whole family."
-    *   **🇹🇼 中文**: 「我花時間觀察家人如何使用這個 App。我發現長輩對於複雜選單感到吃力，所以我優化了 **『單手操作與高對比 UI』**。但最終的『用戶至上』體現是——用戶不只是個人，而是 **家庭生態系**。透過減少頻繁詢問狀態的口頭負擔，App 改善了全家人的情緒福祉。」
-
----
-
-### 3. 📚 技術名詞解析 (Technical Glossary)
-
-*   **🇺🇸 Single Source of Truth / 🇹🇼 單一事實來源**:
-    The practice of structuring information models such that every data element is mastered in only one place. (確保所有家人看到的數據都是最新且一致的唯一標準。)
-*   **🇺🇸 Offline-First / 🇹🇼 離線優先**:
-    A development mindset that ensures the application is fully functional without an active internet connection, syncing data once back online. (確保在沒有網路的情況下也能記錄，並在恢復連線後同步。)
-*   **🇺🇸 Optimistic Locking / 🇹🇼 樂觀鎖**:
-    A strategy where multiple users can attempt to update the same record at the same time, resolving conflicts only when a clash is detected. (允許多人同時編輯，僅在衝突發生時才進行處理的同步策略。)
+### ❓ 面試必殺題預覽
+- **Q: 什麼是 Local-First (本地優先)？這跟傳統的 Client-Server 架構有什麼不同？**
+  *A: 傳統架構是把資料庫放在雲端，Client 每次讀寫都要等 Network I/O，斷線就不能用。Local-First 則是把「本地端的 Database」視為主資料庫，App 的讀寫都是直接對本地操作 (因此延遲是 0)，然後系統會在背景默默地透過 WebSocket 把資料同步到雲端以及其他設備上。*
+- **Q: 你是如何用 Optimistic Locking 解決 Race Condition 衝突的？**
+  *A: 每筆資料都會帶有一個 Version Number (版本號)。當爸爸在離線時修改了 Version 1 的資料，準備送上雲端時，如果發現雲端的版本已經被媽媽更新成 Version 2 了，系統就會退回爸爸的請求 (Conflict)。這時 App 會把兩邊的狀態拉回來進行比對或是提示使用者，確保任何一方的辛苦紀錄都不會被無聲無息地覆蓋掉 (Lost Update)。*
+- **Q: 什麼是 Optimistic UI (樂觀 UI)？**
+  *A: 這是前端 UX 的一種技巧。「樂觀地」假設伺服器一定會成功接受請求，所以在使用者按下按鈕的瞬間，不等待 Server Response 就直接更新前端畫面。萬一背景同步失敗，再把畫面 Rollback 並顯示錯誤提示。這大幅提升了使用者的操作流暢度。*

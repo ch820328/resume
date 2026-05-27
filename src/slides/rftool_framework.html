@@ -10,7 +10,10 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            A legacy validation tool had become unmaintainable due to spaghetti code and lack of modularity. Adding support for new Redfish features took weeks of effort.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Legacy Python test tool lacked architecture, making new hardware support take weeks</li>
+                                <li>Tests frequently left the system in a dirty state, causing subsequent test failures</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
@@ -18,7 +21,10 @@
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            Elevated RFTool from a simple reporting wrapper to a <strong>Full-Lifecycle Automation Framework</strong>. Integrated <strong>Robot Framework Built-in libraries</strong> for robust resource cleanup and implemented custom <strong>Listeners</strong> for real-time test monitoring and error recovery.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Refactored the core engine using <strong>Python Object-Oriented Design</strong> and <strong>Type Hinting</strong></li>
+                                <li>Integrated <strong>Robot Framework</strong> to enforce strict Setup/Teardown protocols for resource cleanup</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
@@ -26,16 +32,17 @@
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            Achieved a <strong>50% reduction</strong> in test development time and eliminated 60% of redundant code. Transformed "Post-mortem" reports into "Active" lifecycle management, significantly improving hardware testing reliability.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Deleted 60% of redundant code and reduced new test development time by <strong>50%</strong></li>
+                                <li>Eliminated state-related false failures, stabilizing the automated testing pipeline</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
                 <div class="tech-footer">
-                    <span class="tech-tag">Python 3.10+</span>
-                    <span class="tech-tag">Design Patterns</span>
-                    <span class="tech-tag">Unit Testing</span>
-                    <span class="tech-tag">Type Hinting</span>
-                    <span class="tech-tag">CLI Framework</span>
+                    <span class="tech-tag">Python OOP</span>
+                    <span class="tech-tag">Robot Framework</span>
+                    <span class="tech-tag">Refactoring</span>
                 </div>
             </div>
             <div class="star-visual">

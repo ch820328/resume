@@ -7,10 +7,10 @@
 ### 1. 💬 核心定位 (Core Positioning)
 
 *   **🇺🇸 English:**
-    "I am a Senior Software Engineer specializing in **Engineering Productivity**. My unique value lies in the intersection of high-level web platforms and low-level firmware automation. I don't just write code; I build the tools and platforms that enable hundreds of other engineers to work faster and more reliably. I have a proven track record of reducing manual processes by 90% and building scalable internal services from scratch."
+    "I am a Senior Software Engineer specializing in **Engineering Productivity**. My unique value lies in the intersection of high-level web platforms and low-level firmware automation. I don't just write code; I build the tools and platforms that enable dozens of other engineers to work faster and more reliably. I have a proven track record of reducing manual processes by 90% and building scalable internal services from scratch."
     
 *   **🇹🇼 中文:**
-    「我是一位專注於 **工程生產力 (Engineering Productivity)** 的資深軟體工程師。我的核心價值在於銜接高階 Web 平台與底層韌體自動化的跨領域能力。我不僅僅是撰寫代碼，我更擅長構建那些能讓數百名工程師工作得更快、更可靠的工具與平台。我擁有將手動流程減少 90% 並從零開始構建可擴展內部服務的成功經驗。」
+    「我是一位專注於 **工程生產力 (Engineering Productivity)** 的資深軟體工程師。我的核心價值在於銜接高階 Web 平台與底層韌體自動化的跨領域能力。我不僅僅是撰寫代碼，我更擅長構建那些能讓數十名工程師工作得更快、更可靠的工具與平台。我擁有將手動流程減少 90% 並從零開始構建可擴展內部服務的成功經驗。」
 
 ---
 

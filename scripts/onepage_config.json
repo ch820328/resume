@@ -72,6 +72,18 @@
             ],
             "skills_priority": ["infrastructure", "backend", "domain", "frontend"],
             "output_file": "resume_google_fuchsia.html"
+        },
+        "google_mfg": {
+            "name": "Software Engineer (Web Platforms for Smart Manufacturing)",
+            "summary": "Full-Stack Software Engineer specializing in **Angular**, **Go**, and **Distributed Systems**. I have a strong track record of independently driving cross-functional projects from prototype to production. My expertise lies in designing scalable RPC backend services and integrating Artificial Intelligence (AI) to automate and optimize smart manufacturing workflows.",
+            "featured_projects": [
+                "Unified Engineering Productivity Portal",
+                "OpenClaw: Log Matrix & Semantic Diagnostic Platform",
+                "Deterministic BIOS OCR Engine",
+                "GitLab CI Automated Quality Gate"
+            ],
+            "skills_priority": ["backend", "frontend", "infrastructure", "domain"],
+            "output_file": "resume_google_mfg.html"
         }
     }
 }

@@ -1,0 +1,11 @@
+{
+    "suffix": "google_mfg",
+    "slides": [
+        "00_profile.html",
+        "tailored_central_dashboard.html",
+        "tailored_openclaw_log.html",
+        "tailored_pic_transcript.html",
+        "tailored_gitlab_ci.html",
+        "99_end.html"
+    ]
+}

@@ -10,7 +10,10 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            Developers faced fragmented environments and complex manual CLI steps for NVIDIA BSP builds, leading to inconsistent images and high failure rates during environment setup.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Complex CLI parameters caused frequent build failures for non-experts</li>
+                                <li>Hard to tweak build steps; highly dependent on local environments</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
@@ -18,7 +21,10 @@
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            Architected a <strong>Dockerized Build Service</strong> to encapsulate all BSP dependencies and toolchains. Developed a <strong>Unified Portal</strong> that replaces manual commands with a streamlined API, ensuring a standardized build process.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Co-developed a <strong>Web-based Build Portal</strong> to democratize the process</li>
+                                <li>Implemented step-selection UI with isolated <strong>Dockerized backends</strong></li>
+                            </ul>
                         </span>
                     </div>
                 </div>
@@ -26,15 +32,17 @@
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            Eliminated <strong>manual monitoring and environment setup overhead</strong>. Achieved <strong>100% build reproducibility</strong> via isolated Docker containers. Freed up developer resources to focus on core feature development.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Empowered QA teams to generate custom OTA images via UI clicks</li>
+                                <li>Achieved <strong>100% build reproducibility</strong>, eliminating setup overhead</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
                 <div class="tech-footer">
-                    <span class="tech-tag">Zstd Optimization</span>
-                    <span class="tech-tag">Device Tree (dtsi)</span>
-                    <span class="tech-tag">MassFlash / OTA</span>
+                    <span class="tech-tag">Embedded BSP</span>
                     <span class="tech-tag">Kernel Tuning</span>
+                    <span class="tech-tag">OTA Optimization</span>
                 </div>
             </div>
             <div class="star-visual">

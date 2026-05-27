@@ -59,10 +59,11 @@ body {
 
 .content-wrapper {
     width: 100%;
-    max-width: 1100px;
+    max-width: 960px;
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 /* Header Section */
@@ -126,7 +127,7 @@ body {
 }
 
 .slide-title {
-    font-size: 2.5rem;
+    font-size: 2.1rem;
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--text-primary);
@@ -135,11 +136,18 @@ body {
 
 .slide-tag {
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-secondary);
-    background: rgba(0, 0, 0, 0.05);
+    background: transparent;
     padding: 0.4rem 1rem;
-    border-radius: 20px;
+    border: 2px dashed var(--text-secondary);
+    border-radius: 4px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.6;
 }
 
 /* =============================================
@@ -442,15 +450,16 @@ body {
     gap: 3.5rem;
     flex: 1;
     min-height: 0;
-    align-items: center;
+    align-items: flex-start;
+    padding-top: 2rem;
 }
 
 .star-content {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
     width: 55%;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .star-card {
@@ -497,10 +506,9 @@ body {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 0;
     width: 40%;
-    height: 100%;
 }
 
 .process-flow-viz {
@@ -509,7 +517,7 @@ body {
     max-height: 550px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .process-flow-viz img, .process-flow-viz svg {
@@ -607,6 +615,10 @@ body {
         justify-content: center;
     }
 
+    .slide:last-child {
+        page-break-after: auto;
+    }
+
     /* Hide UI Elements */
     .nav-bar, #chat-widget, .chat-widget, [class*="chat"], .laser-pointer, .nav-dot, #chat-toggle-btn, #chat-window {
         display: none !important;
@@ -630,6 +642,19 @@ body {
 
     .star-text {
         font-size: 10pt;
+    }
+
+    /* Disable animations for PDF generation to prevent faint/invisible text */
+    * {
+        -webkit-transition: none !important;
+        transition: none !important;
+        -webkit-animation: none !important;
+        animation: none !important;
+    }
+
+    .animate-in {
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
 

@@ -1,34 +1,12 @@
-# 面試備忘錄：RFTool 框架轉型與自動化深度優化
+# RFTOOL: Validation Framework Refactor
 
-這張投影片的核心在於：**框架演進 (Framework Evolution)——如何透過深度挖掘工具潛力（從 Reporting 到 Automation），達成工程效率的質變。**
+### 💬 口語講稿 (Pitch Script)
+「原本團隊內有一套舊的 Python 驗證工具，但因為長年缺乏架構規劃，已經變成一團難以維護的義大利麵程式碼 (Spaghetti code)。當時最嚴重的問題是『狀態殘留 (Dirty State)』——如果某個硬體測試失敗，它不會把環境復原，這會直接導致後面的十幾個測試也跟著失敗，造成嚴重的連鎖誤判。為了根本解決這個問題，我接手進行了底層重構。我導入了明確的物件導向設計 (OOP) 和 Type Hinting 來規範程式碼，並把核心接上了 Robot Framework。這麼做的唯一目的，就是要利用它內建強大的 Setup 和 Teardown 機制，確保每一次測試結束後，資源一定會被正確釋放 (Clean up)。這次重構我不但幫專案刪減了 60% 的冗餘舊 Code，更徹底消除了環境髒掉導致的誤判問題，讓自動化流水線終於能穩定運作。」
 
----
-
-### 1. 💬 口語說明 (Colloquial Explanation)
-
-*   **🇺🇸 English (Simple & Direct):**
-    "We were already using Robot Framework, but we were treating it just as a 'Reporting Tool.' The real logic was disconnected and redundant. I took the initiative to elevate it into a **Full-Featured Automation Framework**. I integrated **RF's Built-in libraries** to handle complex cleanup and setup tasks automatically. I also implemented custom **Listeners** to gain real-time visibility into the test lifecycle. This move from 'just reports' to 'full lifecycle management' reduced our development time by 50% and made our hardware testing much more resilient."
-    
-*   **🇹🇼 中文 (口語精簡):**
-    「我們原本就在用 Robot Framework，但當時只把它當成生 Report 的工具，實際邏輯很零散且冗餘。我主動將其提升為 **全功能自動化框架**。我整合了 **RF 的 Built-in 函式庫** 來自動處理複雜的清理 (Clear) 與初始化任務。我還實作了自定義的 **Listeners**，以獲取測試生命週期的即時可視化。這種從『只看報告』到『全生命週期管理』的轉變，讓我們的開發時間縮短了 50%，並使硬體測試更具韌性。」
-
----
-
-### 2. ❓ 模擬問答 (Possible Q&A - Google/Amazon Hybrid Strategy)
-
-1.  **問：「你提到的 Robot Framework Listeners 具体解決了什麼問題？」(Technical Depth)**
-    *   **🇺🇸 English**: "The Listeners allowed us to inject logic at specific events, like `start_test` or `end_test`. This was crucial for **Real-time Monitoring** and **Auto-recovery**. If a hardware connection dropped during a test, the Listener could catch it immediately and trigger a reset, instead of just letting the test fail and wait for the report. It moved us from 'Post-mortem' analysis to 'Active' management."
-    *   **🇹🇼 中文**: 「Listener 讓我們能在特定事件（如 `start_test` 或 `end_test`）注入邏輯。這對於 **即時監控** 與 **自動恢復** 至關重要。如果測試中硬體連線斷開，Listener 能立即捕獲並觸發重置，而不是讓測試直接失敗後才看報告。這讓我們從『死後驗屍』轉向了『主動管理』。」
-
-2.  **問：「為什麼要強調 Built-in 函式庫的使用？」(Efficiency & Standardization)**
-    *   **🇺🇸 English**: "Using Built-ins like `Run Keyword If` or `BuiltIn().get_variable_value` within our library ensures that we are using the framework's native, optimized path. It's about **Standardization**. By using these instead of writing custom Python logic for every small check, I made the framework more maintainable and reduced the code footprint by 60%."
-    *   **🇹🇼 中文**: 「在我們的庫中使用像 `Run Keyword If` 或 `get_variable_value` 這樣的 Built-ins，可以確保我們使用的是框架原生、經過優化的路徑。這關乎 **標準化**。透過使用這些功能，而不是為每個細小的檢查都撰寫自定義 Python 邏輯，我讓框架更易於維護，並減少了 60% 的代碼量。」
-
----
-
-### 3. 📚 技術名詞解析 (Technical Glossary)
-
-*   **🇺🇸 Robot Framework Listeners / 🇹🇼 RF 監聽器**:
-    An interface that allows external code to receive notifications about test execution events (e.g., test start, suite end). (一個允許外部代碼接收測試執行事件通知（如測試開始、Suite 結束）的介面。)
-*   **🇺🇸 Built-in Library / 🇹🇼 內建函式庫**:
-    Standard libraries provided by Robot Framework that offer common keywords for control flow, variable handling, and system interaction. (Robot Framework 提供的標準庫，包含用於控制流、變量處理與系統交互的常用關鍵字。)
+### ❓ 面試必殺題預覽
+- **Q: 什麼是 Setup / Teardown 機制？為什麼它對測試很重要？**
+  *A: Setup 是在測試前準備環境 (例如建立連線)，Teardown 是在測試後清理環境 (例如關閉連線或重啟硬體)。這非常重要，因為這保證了每個測試案例 (Test Case) 都是獨立且具備「冪等性 (Idempotent)」的，不會被前一個失敗的測試給污染。*
+- **Q: 在重構 (Refactoring) 如此龐大且混亂的 Legacy Code 時，你的第一步是什麼？**
+  *A: 我的第一步絕對不是直接改 Code，而是先寫 Test。我會先針對既有的行為補齊 Unit Test (或黑箱測試)，建立一層保護網 (Safety Net) 後，才開始動手把底層抽換成 OOP 架構，這樣才能保證重構沒有破壞原有的商業邏輯。*
+- **Q: 為什麼特別提到 Type Hinting？Python 不是動態型別嗎？**
+  *A: 因為這套工具是給整個團隊 (包含新進人員) 使用的。導入 Type Hinting 加上 MyPy 這類的靜態檢查工具，能大幅降低團隊在使用 API 時傳錯參數的機率，這也是將腳本 (Script) 升級為框架 (Framework) 的關鍵一步。*

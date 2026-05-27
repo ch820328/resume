@@ -10,7 +10,10 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            In distributed stress testing, we needed 10 machines to fire requests simultaneously. However, inconsistent tool versions and library drift led to messy performance data, making it impossible to identify real system bottlenecks.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Severe environment drift corrupted distributed stress-test data</li>
+                                <li>Manual provisioning across diverse OS (Ubuntu/CentOS) was error-prone</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
@@ -18,7 +21,10 @@
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            Developed an <strong>Ansible-based automation script</strong> to manage all 10 load generators. Every node undergoes an identical setup—from OS variables to Python environments—guaranteeing perfect consistency for every test run.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Engineered a modular, idempotent <strong>Ansible IaC framework</strong> to standardize baselines</li>
+                                <li>Implemented <strong>Test-Driven Infrastructure</strong> using Molecule and Testinfra</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
@@ -26,16 +32,17 @@
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            Shrunk environment setup time from <strong>1 hour to 5 minutes</strong>. Achieved high-reliability test data, enabling the successful identification of performance regressions in high-concurrency scenarios.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Completely eliminated configuration drift, guaranteeing 100% data reproducibility</li>
+                                <li>Slashed provisioning time by 90% and established an automated scaling pipeline</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
                 <div class="tech-footer">
-                    <span class="tech-tag">Ansible</span>
-                    <span class="tech-tag">Molecule</span>
-                    <span class="tech-tag">Testinfra</span>
-                    <span class="tech-tag">Docker</span>
-                    <span class="tech-tag">CI/CD</span>
+                    <span class="tech-tag">Ansible IaC</span>
+                    <span class="tech-tag">Test-Driven Infra</span>
+                    <span class="tech-tag">Docker CI/CD</span>
                 </div>
             </div>
             <div class="star-visual">

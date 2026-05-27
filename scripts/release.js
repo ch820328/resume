@@ -14,7 +14,8 @@ try {
         '', // Master (default)
         '--config slides_order_embedded.json',
         '--config slides_order_fullstack.json',
-        '--config slides_order_tailored.json'
+        '--config slides_order_tailored.json',
+        '--config slides_order_google_mfg.json'
     ];
     
     slideTargets.forEach(target => {

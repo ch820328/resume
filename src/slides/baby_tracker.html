@@ -10,7 +10,10 @@
                     <div class="star-item">
                         <span class="star-label">Challenge:</span>
                         <span class="star-text">
-                            Real-time synchronization of baby activity data across multiple caregiver devices with offline support and conflict resolution. Existing apps had high latency and poor offline UX.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>High latency and sync conflicts occurred when caregivers logged data simultaneously</li>
+                                <li>Existing apps suffered from poor offline UX and race conditions in weak networks</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
@@ -18,7 +21,10 @@
                     <div class="star-item">
                         <span class="star-label">Solution:</span>
                         <span class="star-text">
-                            Developed a <strong>Local-First architecture</strong> using <strong>SQLite/IndexedDB</strong> and a custom <strong>Sync Protocol</strong>. Implemented <strong>WebSockets</strong> for instant updates and <strong>Optimistic UI</strong> for zero-latency interactions.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Built a <strong>Local-First architecture</strong> with an <strong>Optimistic UI</strong> for zero-latency interactions</li>
+                                <li>Engineered a custom Sync Protocol using <strong>Optimistic Locking</strong> to handle concurrent offline edits</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
@@ -26,16 +32,17 @@
                     <div class="star-item">
                         <span class="star-label">Impact:</span>
                         <span class="star-text">
-                            Reduced data sync latency to <strong>&lt;100ms</strong>. Achieved <strong>100% data integrity</strong> during network intermittent periods. High user satisfaction for seamless caregiver collaboration.
+                            <ul style="padding-left: 1.2rem; margin: 0; padding-top: 0;">
+                                <li>Eliminated sync conflicts and data loss during intermittent network drops</li>
+                                <li>Reduced data sync latency to <strong>&lt;100ms</strong>, guaranteeing a consistent real-time view across devices</li>
+                            </ul>
                         </span>
                     </div>
                 </div>
                 <div class="tech-footer">
-                    <span class="tech-tag">React Native</span>
-                    <span class="tech-tag">Offline-First</span>
+                    <span class="tech-tag">Offline-First Sync</span>
                     <span class="tech-tag">Optimistic Locking</span>
-                    <span class="tech-tag">Distributed Locks</span>
-                    <span class="tech-tag">Eventual Consistency</span>
+                    <span class="tech-tag">Distributed Redis</span>
                 </div>
             </div>
             <div class="star-visual">

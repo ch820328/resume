@@ -10,9 +10,8 @@
                     "company": "Supermicro",
                     "date": "2024 - Present",
                     "tags": [
-                        "Go / Gin",
-                        "OpenAPI (REST)",
-                        "Jenkins Remote API",
+                        "Go / OpenAPI",
+                        "Container Orchestration",
                         "Distributed Systems"
                     ],
                     "details": {
@@ -28,10 +27,9 @@
                     "company": "Supermicro",
                     "date": "2023 - 2024",
                     "tags": [
-                        "OpenCV",
-                        "Python / C++",
-                        "Template Matching vs DL OCR",
-                        "Spatial Layout Analysis"
+                        "OpenCV & C++",
+                        "Spatial Layout Analysis",
+                        "Computer Vision OCR"
                     ],
                     "details": {
                         "challenge": "Validating BIOS menus required high precision, but industry-standard ML OCR (Tesseract) achieved only 85% accuracy on low-res fonts and lacked critical **spatial context**.",
@@ -44,10 +42,9 @@
                     "name": "Jetson Build Service & Automation Portal",
                     "role": "Full Stack Developer (Internal Tool)",
                     "tags": [
-                        "Vue.js",
-                        "Python",
-                        "Flask",
-                        "Shell"
+                        "Vue.js & Flask",
+                        "Build Automation",
+                        "OTA Firmware"
                     ],
                     "details": {
                         "challenge": "Developers struggled with complex manual CLI parameters for creating MassFlash/OTA images, leading to frequent build failures and dependency on specific SUT (System Under Test) states.",
@@ -67,10 +64,9 @@
                     "company": "Supermicro",
                     "date": "2023 - Present",
                     "tags": [
-                        "Zstd Optimization",
-                        "Device Tree (dtsi)",
-                        "MassFlash / OTA",
-                        "Kernel Tuning"
+                        "Embedded BSP",
+                        "Kernel Tuning",
+                        "OTA Optimization"
                     ],
                     "details": {
                         "challenge": "Adapting Jetson Orin BSP faced blocking hardware conflicts and a bloated deployment process that hindered mass production scalability.",
@@ -92,9 +88,8 @@
                     "date": "2026 - Present",
                     "tags": [
                         "UEFI Shell (C)",
-                        "NVRAM Logic",
-                        "BMC Redfish (OOB)",
-                        "Self-Healing Test-bed"
+                        "Out-of-Band Redfish",
+                        "Automated Recovery"
                     ],
                     "details": {
                         "challenge": "Validating BIOS settings (Boot Options, Setup configurations) across firmware updates. Traditional UI-based testing was too slow and impossible to apply for In-Band flash validation.",
@@ -109,9 +104,8 @@
                     "company": "Supermicro",
                     "date": "2024 - Present",
                     "tags": [
-                        "Python (Strategy Pattern)",
-                        "Redfish (RESTful)",
-                        "Selenium WebDriver",
+                        "Python (Strategy)",
+                        "Selenium & Redfish",
                         "Data Reconciliation"
                     ],
                     "details": {
@@ -133,11 +127,9 @@
                     "company": "Supermicro",
                     "date": "2024 - Present",
                     "tags": [
-                        "Go (Gin)",
-                        "Angular",
-                        "WebSockets (Socket.io)",
-                        "Redfish/IPMI API",
-                        "Data Aggregation"
+                        "Go & Angular",
+                        "WebSockets",
+                        "API Data Aggregation"
                     ],
                     "details": {
                         "challenge": "Engineers suffered from high cognitive load due to context-switching between SSH terminals, fragmented CLI tools (IPMI/Redfish), and disparate project management platforms (Redmine/Project Board).",
@@ -152,11 +144,9 @@
                     "company": "Supermicro",
                     "date": "2023 - Present",
                     "tags": [
-                        "Ansible",
-                        "Molecule",
-                        "Testinfra",
-                        "Docker",
-                        "CI/CD"
+                        "Ansible IaC",
+                        "Test-Driven Infra",
+                        "Docker CI/CD"
                     ],
                     "details": {
                         "challenge": "Faced significant environment drift during distributed stress testing (4 VMs vs. 1 Host), where version mismatches in tools like sysbench caused critical syntax errors and inconsistent performance metrics. Manual provisioning across diverse OS (Ubuntu/CentOS) was error-prone and unscalable.",
@@ -176,10 +166,8 @@
                     "company": "Supermicro",
                     "date": "2023 - Present",
                     "tags": [
-                        "GitLab CI",
-                        "Conventional Commits",
-                        "Docker",
-                        "Python (Tooling)",
+                        "GitLab CI Pipelines",
+                        "Dockerized Runners",
                         "Static Analysis"
                     ],
                     "details": {
@@ -195,9 +183,8 @@
                     "company": "Supermicro",
                     "date": "2023 - Present",
                     "tags": [
-                        "GitLab CI/CD",
+                        "API-Driven CD",
                         "Semantic Versioning",
-                        "API-Driven Deploy",
                         "Security Hardening"
                     ],
                     "details": {
@@ -219,11 +206,9 @@
                     "company": "Personal Project",
                     "date": "2025 - Present",
                     "tags": [
-                        "React Native",
-                        "Offline-First",
+                        "Offline-First Sync",
                         "Optimistic Locking",
-                        "Distributed Locks",
-                        "Eventual Consistency"
+                        "Distributed Redis"
                     ],
                     "details": {
                         "challenge": "Caregivers in unstable network environments require zero-latency logging, while concurrent multi-device writes risk data races, duplicate records, and silent overwrite of family health data.",
@@ -243,11 +228,9 @@
                     "company": "Personal Project / Open Source",
                     "date": "2024 - Present",
                     "tags": [
-                        "LLM Matrix Orchestration",
-                        "Multi-Agent Architecture",
-                        "GitLab CI/CD Integration",
-                        "BullMQ / Redis",
-                        "Node.js & TypeScript"
+                        "Multi-Agent Orchestration",
+                        "GitLab CI/CD",
+                        "Node.js & Redis"
                     ],
                     "details": {
                         "challenge": "Manual code reviews in large projects are inconsistent and slow, creating CI/CD bottlenecks and increasing technical debt due to surface-level checks under tight deadlines.",
@@ -270,11 +253,9 @@
                     "company": "Personal Project / Open Source",
                     "date": "2024 - Present",
                     "tags": [
-                        "Knowledge Indexing",
-                        "Log Pattern Analysis",
-                        "FAIL Test Diagnosis",
-                        "Automated Root-Cause",
-                        "Python & TypeScript"
+                        "RAG & Semantic Search",
+                        "Automated Diagnostics",
+                        "Python & pgvector"
                     ],
                     "details": {
                         "challenge": "Diagnostic delays in complex firmware test logs (FAIL tests) often stall validation pipelines, where root causes are buried in megabytes of raw log data across disparate subsystems.",
