@@ -2,21 +2,8 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 const fs = require('fs');
 
-async function exportPDF(inputFile, outputFile, landscapeOverride) {
-    const systemChromePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-    const launchOptions = {
-        headless: "new",
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
-    };
-
-    if (process.platform === 'darwin' && fs.existsSync(systemChromePath)) {
-        launchOptions.executablePath = systemChromePath;
-        console.log(`Using System Chrome: ${systemChromePath}`);
-    }
-
-    const browser = await puppeteer.launch(launchOptions);
+async function exportPDFWithBrowser(browser, inputFile, outputFile, landscapeOverride) {
     const page = await browser.newPage();
-
     const fullPath = `file://${path.resolve(inputFile)}`;
     await page.goto(fullPath, { waitUntil: 'networkidle2', timeout: 60000 });
 
@@ -28,8 +15,22 @@ async function exportPDF(inputFile, outputFile, landscapeOverride) {
         margin: { top: 0, right: 0, bottom: 0, left: 0 }
     });
 
-    await browser.close();
+    await page.close();
     console.log(`✅ PDF Export complete: ${outputFile}`);
+}
+
+async function exportPDF(inputFile, outputFile, landscapeOverride) {
+    const systemChromePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+    const launchOptions = {
+        headless: "new",
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    };
+    if (process.platform === 'darwin' && fs.existsSync(systemChromePath)) {
+        launchOptions.executablePath = systemChromePath;
+    }
+    const browser = await puppeteer.launch(launchOptions);
+    await exportPDFWithBrowser(browser, inputFile, outputFile, landscapeOverride);
+    await browser.close();
 }
 
 (async () => {
@@ -49,6 +50,17 @@ async function exportPDF(inputFile, outputFile, landscapeOverride) {
             await exportPDF(resolvedInput, resolvedOutput);
         } else {
             // Standard multi-target mode
+            const systemChromePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+            const launchOptions = {
+                headless: "new",
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            };
+            if (process.platform === 'darwin' && fs.existsSync(systemChromePath)) {
+                launchOptions.executablePath = systemChromePath;
+            }
+            console.log(`🚀 Launching browser for concurrent exports...`);
+            const browser = await puppeteer.launch(launchOptions);
+
             const targets = [
                 { input: 'index.html', output: 'resume_slides.pdf', landscape: true },
                 { input: 'resume_master.html', output: 'resume_master.pdf', landscape: false },
@@ -62,15 +74,20 @@ async function exportPDF(inputFile, outputFile, landscapeOverride) {
                 { input: 'resume_google_mfg.html', output: 'resume_google_mfg.pdf', landscape: false }
             ];
 
+            const exportPromises = [];
+
             for (const target of targets) {
                 const inputPath = path.join(OUTPUT_DIR, target.input);
                 if (fs.existsSync(inputPath)) {
                     const outputPath = path.join(OUTPUT_DIR, target.output);
-                    await exportPDF(inputPath, outputPath, target.landscape);
+                    exportPromises.push(exportPDFWithBrowser(browser, inputPath, outputPath, target.landscape));
                 } else {
                     console.log(`ℹ️ Skipping missing target: ${target.input}`);
                 }
             }
+
+            await Promise.all(exportPromises);
+            await browser.close();
         }
 
     } catch (error) {

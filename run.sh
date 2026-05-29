@@ -16,6 +16,7 @@ function run_full_flow {
         echo "✅ Release successful!"
         
         echo "🌐 Starting Dev Server..."
+        lsof -ti :20424 | xargs kill -9 2>/dev/null || true
         npm run serve
     else
         echo "❌ Release failed. Server not started."
@@ -39,6 +40,7 @@ case "$COMMAND" in
         ;;
     serve)
         echo "🌐 Starting Dev Server..."
+        lsof -ti :20424 | xargs kill -9 2>/dev/null || true
         npm run serve
         ;;
     help)
