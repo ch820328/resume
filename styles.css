@@ -607,6 +607,10 @@ body {
         justify-content: center;
     }
 
+    .slide:last-of-type {
+        page-break-after: auto;
+    }
+
     /* Hide UI Elements */
     .nav-bar, #chat-widget, .chat-widget, [class*="chat"], .laser-pointer, .nav-dot, #chat-toggle-btn, #chat-window {
         display: none !important;

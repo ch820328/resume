@@ -1,0 +1,47 @@
+<section class="slide" id="redfish_smbios_check">
+    <div class="content-wrapper">
+        <div class="slide-header-row">
+            <h2 class="slide-title">Redfish SMBIOS Consistency Checker</h2>
+            <span class="slide-tag">Infrastructure Validation</span>
+        </div>
+        <div class="star-grid">
+            <div class="star-content">
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Challenge:</span>
+                        <span class="star-text">
+                            "Silent configuration drift" in data center servers caused unexpected performance drops. Inconsistent BIOS settings across hundreds of nodes made hardware performance data unreliable and root-cause analysis time-consuming.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Solution:</span>
+                        <span class="star-text">
+                            Engineered an automated scanning tool using the <strong>Redfish API</strong> to fetch and validate SMBIOS settings across the fleet concurrently. Implemented Python's <strong>asyncio</strong> with <strong>Exponential Backoff</strong> to maximize scan speed without overwhelming BMC control planes.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Impact:</span>
+                        <span class="star-text">
+                            Transformed a manual, days-long audit process into an automated, minutes-long fleet-wide scan. By establishing a bit-level "Golden Standard" for configuration, we greatly reduced silent regressions and significantly improved the reliability of our tail latency metrics.
+                        </span>
+                    </div>
+                </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">Python (Strategy Pattern)</span>
+                    <span class="tech-tag">Redfish (RESTful)</span>
+                    <span class="tech-tag">Selenium WebDriver</span>
+                    <span class="tech-tag">Data Reconciliation</span>
+                </div>
+            </div>
+            <div class="star-visual">
+                <div class="process-flow-viz">
+                    <img src="src/image/0_images.png" alt="Redfish SMBIOS Config Validation" class="slide-image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -7,10 +7,10 @@
 ### 1. 💬 口語說明 (Colloquial Explanation)
 
 *   **🇺🇸 English (Simple & Direct):**
-    "Finding a root cause in 50,000 lines of hardware logs is a nightmare. I built 'OpenClaw Log' to automate this. I used **pgvector and LLMs** to create a semantic knowledge base. Now, instead of engineers manually digging through legacy ticket lists, the system automatically analyzes **20+ machine test reports daily**. It even empowers our testers to perform self-service diagnostics when an issue occurs, significantly reducing the 'detect-to-verify' cycle."
+    "Finding a root cause in 50,000 lines of hardware logs is a nightmare. I built 'OpenClaw Log' to automate this. I implemented a **Staged Expert Pipeline** where a Root-Cause expert analyzes the log, and its output is fed into an Action expert, preventing contradicting advice. Coupled with **Codebase RAG**, the AI dynamically looks up repository context before diagnosing. Now, the system automatically analyzes **20+ machine test reports daily**, significantly reducing the 'detect-to-verify' cycle."
     
 *   **🇹🇼 中文 (口語精簡):**
-    「在幾萬行硬體日誌裡找 Bug 是研發的噩夢。我開發了『OpenClaw Log』，利用 **pgvector 與 LLM** 建立了一個語義知識庫。現在，工程師不用再手動翻找舊的 Ticket 列表，系統每天會自動分析 **20 多份機器測試報告**。當問題發生時，測試人員可以利用這個工具自助診斷，大大縮短了從發現問題到確認原因的週期。」
+    「在幾萬行硬體日誌裡找 Bug 是研發的噩夢。我開發了『OpenClaw Log』來自動化這個過程。我實作了 **分段式專家管線 (Staged Expert Pipeline)**，讓『根本原因』專家的分析結果能餵給『行動建議』專家，避免前後矛盾。結合 **Codebase RAG**，AI 在診斷前會動態查找程式碼庫的上下文。現在系統每天會自動分析 **20 多份機器測試報告**，大大縮短了從發現問題到確認原因的週期。」
 
 ---
 

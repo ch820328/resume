@@ -1,0 +1,59 @@
+<svg width="400" height="520" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg">
+  <text x="200" y="30" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="18" fill="#1e293b">OpenClaw: Validation Monitor</text>
+  <text x="200" y="50" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="500" font-size="12" fill="#64748b">Health Check &amp; Telemetry Aggregation</text>
+
+  <!-- Data Sources -->
+  <g transform="translate(10, 80)">
+    <rect x="0" y="0" width="110" height="40" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+    <text x="55" y="24" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#166534">Redfish API</text>
+  </g>
+  <g transform="translate(145, 80)">
+    <rect x="0" y="0" width="110" height="40" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+    <text x="55" y="24" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#1d4ed8">MySQL DB</text>
+  </g>
+  <g transform="translate(280, 80)">
+    <rect x="0" y="0" width="110" height="40" rx="8" fill="#fdf2f7" stroke="#fbcfe8" stroke-width="1.5"/>
+    <text x="55" y="24" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#9d174d">Jenkins CI</text>
+  </g>
+
+  <!-- Arrows -->
+  <line x1="65" y1="120" x2="160" y2="180" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="200" y1="120" x2="200" y2="180" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="335" y1="120" x2="240" y2="180" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,4"/>
+
+  <!-- Core Service -->
+  <g transform="translate(40, 180)">
+    <rect x="0" y="0" width="320" height="150" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="0" y="0" width="320" height="25" rx="10" fill="#e2e8f0"/>
+    <text x="160" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#334155">Node.js Monitor Core</text>
+    
+    <rect x="20" y="45" width="135" height="40" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+    <text x="87" y="70" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#2563eb">Health Diagnostics</text>
+
+    <rect x="165" y="45" width="135" height="40" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+    <text x="232" y="70" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#9d174d">Fail Case Analysis</text>
+
+    <rect x="20" y="95" width="280" height="40" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+    <text x="160" y="120" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="10" fill="#475569">Restoration Mechanism (Reboot Trigger)</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="200" y1="330" x2="200" y2="380" stroke="#3b82f6" stroke-width="3"/>
+  <polygon points="194,375 206,375 200,385" fill="#3b82f6"/>
+
+  <!-- UI Endpoint -->
+  <g transform="translate(40, 390)">
+    <rect x="0" y="0" width="320" height="60" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <text x="160" y="25" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="800" font-size="12" fill="#0f172a">Unified Observability Dashboard</text>
+    <text x="160" y="45" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" fill="#475569">Real-Time Logs &amp; Reboot Sequence Records</text>
+  </g>
+
+  <!-- Impact Badges -->
+  <g transform="translate(40, 480)">
+      <rect x="0" y="0" width="150" height="25" rx="12.5" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+      <text x="75" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#16a34a">⚡ Prevent Hangs</text>
+      
+      <rect x="170" y="0" width="150" height="25" rx="12.5" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+      <text x="245" y="17" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="9" fill="#2563eb">🛡️ Auto-Recovery</text>
+  </g>
+</svg>
