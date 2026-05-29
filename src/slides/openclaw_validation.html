@@ -1,0 +1,48 @@
+<section class="slide" id="openclaw_validation">
+    <div class="content-wrapper">
+        <div class="slide-header-row">
+            <h2 class="slide-title">OpenClaw: Validation Monitor</h2>
+            <span class="slide-tag">Real-Time Hardware & Test Telemetry</span>
+        </div>
+        <div class="star-grid">
+            <div class="star-content">
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Challenge:</span>
+                        <span class="star-text">
+                            Test execution visibility was fragmented across MySQL, Jenkins, and BMC endpoints. Engineers lacked a unified view to diagnose failures, and undetected hardware issues would often cause test pipelines to hang and block resources indefinitely.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Solution:</span>
+                        <span class="star-text">
+                            Engineered a real-time <strong>Validation Monitor</strong> service aggregating Jenkins logs, ATS test data, and hardware telemetry (Redfish API). Implemented continuous <strong>health-checks</strong> and an automated <strong>restoration mechanism</strong> to gracefully reboot and recover stuck systems.
+                        </span>
+                    </div>
+                </div>
+                <div class="star-card">
+                    <div class="star-item">
+                        <span class="star-label">Impact:</span>
+                        <span class="star-text">
+                            Provided real-time observability and automated <strong>fail-case analysis</strong> by correlating software logs with hardware events (e.g., thermal throttling). Significantly reduced manual triage time and eliminated pipeline bottlenecks by recording detailed reboot sequences for post-mortem review.
+                        </span>
+                    </div>
+                </div>
+                <div class="tech-footer">
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Redfish API (BMC)</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Jenkins API</span>
+                    <span class="tech-tag">ATS Log Parsing</span>
+                </div>
+            </div>
+            <div class="star-visual">
+                <div class="process-flow-viz">
+                    <img src="src/image/openclaw_validation.svg" alt="Validation Monitor Architecture" class="slide-image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

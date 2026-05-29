@@ -6,11 +6,11 @@
 
 ### 1. 💬 口語說明 (Colloquial Explanation)
 
-*   **🇺🇸 English (System Design Narrative):**
-    "In firmware validation, engineers were wasting hours doing manual triage on massive, unstructured test logs. Traditional `grep` keyword searches failed miserably because they missed the semantic context across disparate subsystems. To solve this, I engineered a **Semantic Log Matrix** using LLMs and pgvector. The key innovation wasn't just throwing logs at an LLM; I actually indexed our entire codebase so the system could correlate log errors directly with internal implementation logic. This turned MBs of raw data into actionable root causes automatically, empowering QA testers with a self-service diagnostic tool and drastically reducing escalations to the engineering team."
+*   **🇺🇸 English (Simple & Direct):**
+    "Finding a root cause in 50,000 lines of hardware logs is a nightmare. I built 'OpenClaw Log' to automate this. I implemented a **Staged Expert Pipeline** where a Root-Cause expert analyzes the log, and its output is fed into an Action expert, preventing contradicting advice. Coupled with **Codebase RAG**, the AI dynamically looks up repository context before diagnosing. Now, the system automatically analyzes **20+ machine test reports daily**, significantly reducing the 'detect-to-verify' cycle."
     
-*   **🇹🇼 中文 (講故事版本):**
-    「在韌體驗證中，工程師往往要花費數小時手動排查龐大且毫無結構的測試日誌。傳統的 `grep` 關鍵字搜尋根本行不通，因為它無法捕捉跨越多個子系統的真實語意脈絡。為了解決這問題，我利用 LLM 和 pgvector 打造了『語意日誌矩陣』。這個系統最核心的創新不只是把 Log 丟給 AI，而是我**將整個原始碼庫建立了索引 (Indexed the codebase)**。這讓系統能夠將報錯的 Log，直接與底層實作邏輯進行高保真關聯。這項設計把數 MB 的原始雜訊，自動轉換成了具體可執行的 Root-Cause，讓 QA 測試員能自助診斷問題，大幅減少了把工單往上呈報 (Escalate) 給開發團隊的次數。」
+*   **🇹🇼 中文 (口語精簡):**
+    「在幾萬行硬體日誌裡找 Bug 是研發的噩夢。我開發了『OpenClaw Log』來自動化這個過程。我實作了 **分段式專家管線 (Staged Expert Pipeline)**，讓『根本原因』專家的分析結果能餵給『行動建議』專家，避免前後矛盾。結合 **Codebase RAG**，AI 在診斷前會動態查找程式碼庫的上下文。現在系統每天會自動分析 **20 多份機器測試報告**，大大縮短了從發現問題到確認原因的週期。」
 
 ---
 

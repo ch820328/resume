@@ -615,7 +615,7 @@ body {
         justify-content: center;
     }
 
-    .slide:last-child {
+    .slide:last-of-type {
         page-break-after: auto;
     }
 
