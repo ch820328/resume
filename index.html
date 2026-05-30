@@ -180,48 +180,8 @@
 
     <div class="main-container">
         <!-- LEFT: RESUME HUB -->
-        <div class="resume-panel">
-            <div class="resume-section">
-                <span class="section-title">Master Portfolio</span>
-                <div class="resume-topic master-topic">
-                    <div class="topic-header">Full Career Master</div>
-                    <div class="btn-group">
-                        <a href="output/resume_master.pdf" target="_blank" class="btn-small">One-page</a>
-                        <a href="output/resume_slides.pdf" target="_blank" class="btn-small">Slides</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="resume-section">
-                <span class="section-title">Technical Specializations</span>
-                
-                <!-- Embedded -->
-                <div class="resume-topic" style="margin-bottom: 0.8rem;">
-                    <div class="topic-header">Embedded Systems</div>
-                    <div class="btn-group">
-                        <a href="output/resume_embedded.pdf" target="_blank" class="btn-small">One-page</a>
-                        <a href="output/resume_slides_embedded.pdf" target="_blank" class="btn-small">Slides</a>
-                    </div>
-                </div>
-
-                <!-- Fullstack -->
-                <div class="resume-topic" style="margin-bottom: 0.8rem;">
-                    <div class="topic-header">Full-Stack / Cloud</div>
-                    <div class="btn-group">
-                        <a href="output/resume_fullstack.pdf" target="_blank" class="btn-small">One-page</a>
-                        <a href="output/resume_slides_fullstack.pdf" target="_blank" class="btn-small">Slides</a>
-                    </div>
-                </div>
-
-                <!-- Target Tailored -->
-                <div class="resume-topic">
-                    <div class="topic-header">Google Performance</div>
-                    <div class="btn-group">
-                        <a href="output/resume_tailored.pdf" target="_blank" class="btn-small">One-page</a>
-                        <a href="output/resume_slides_tailored.pdf" target="_blank" class="btn-small">Slides</a>
-                    </div>
-                </div>
-            </div>
+        <div class="resume-panel" id="dynamic-profiles-container">
+            <div style="color: var(--text-gray); font-size: 0.8rem;">Loading profiles...</div>
         </div>
 
         <!-- RIGHT: SLIDES EXPLORER -->
@@ -277,6 +237,64 @@
             div.onclick = () => openSlide(slide.id);
             grid.appendChild(div);
         });
+
+        // Load Profiles Dynamically
+        async function loadProfiles() {
+            try {
+                const response = await fetch('config/onepage_config.json');
+                const config = await response.json();
+                const container = document.getElementById('dynamic-profiles-container');
+                
+                let masterHtml = '';
+                let specsHtml = '';
+
+                for (const [key, profile] of Object.entries(config.profiles)) {
+                    const onePagePdf = profile.output_file ? profile.output_file.replace('.html', '.pdf') : `resume_${key}.pdf`;
+                    const slidesPdf = key === 'master' ? 'resume_slides.pdf' : `resume_slides_${key}.pdf`;
+                    
+                    // Generate a shorter display name for the UI by taking the part inside parentheses if it exists, or truncating
+                    let displayName = profile.name;
+                    const match = displayName.match(/\((.*?)\)/);
+                    if (match) {
+                        displayName = match[1];
+                    } else if (displayName.length > 25) {
+                        displayName = displayName.substring(0, 25) + '...';
+                    }
+
+                    const template = `
+                        <div class="resume-topic ${key === 'master' ? 'master-topic' : ''}" style="margin-bottom: 0.8rem;">
+                            <div class="topic-header" style="font-size: 0.95rem; line-height: 1.2;">${displayName}</div>
+                            <div class="btn-group">
+                                <a href="output/${onePagePdf}" target="_blank" class="btn-small">One-page</a>
+                                <a href="output/${slidesPdf}" target="_blank" class="btn-small">Slides</a>
+                            </div>
+                        </div>
+                    `;
+
+                    if (key === 'master') {
+                        masterHtml += template;
+                    } else {
+                        specsHtml += template;
+                    }
+                }
+
+                container.innerHTML = `
+                    <div class="resume-section">
+                        <span class="section-title">Master Portfolio</span>
+                        ${masterHtml}
+                    </div>
+                    <div class="resume-section">
+                        <span class="section-title">Tailored Profiles (JDs)</span>
+                        ${specsHtml}
+                    </div>
+                `;
+            } catch(e) {
+                console.error("Error loading profiles", e);
+                document.getElementById('dynamic-profiles-container').innerHTML = '<div style="color:red;">Failed to load profiles.</div>';
+            }
+        }
+        
+        loadProfiles();
 
         async function openSlide(slideId) {
             modalContent.innerHTML = '<div style="display:flex; justify-content:center; align-items:center; height:100%; color: #334155;">Loading Professional Slide...</div>';
