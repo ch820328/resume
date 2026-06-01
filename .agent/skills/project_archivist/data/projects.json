@@ -128,8 +128,7 @@
                     "date": "2024 - Present",
                     "tags": [
                         "Go & Angular",
-                        "WebSockets",
-                        "API Data Aggregation"
+                        "WebSockets"
                     ],
                     "details": {
                         "challenge": "Engineers suffered from high cognitive load due to context-switching between SSH terminals, fragmented CLI tools (IPMI/Redfish), and disparate project management platforms (Redmine/Project Board).",
@@ -254,8 +253,8 @@
                     "date": "2024 - Present",
                     "tags": [
                         "RAG & Semantic Search",
-                        "Automated Diagnostics",
-                        "Python & pgvector"
+                        "Angular & NestJS",
+                        "pgvector"
                     ],
                     "details": {
                         "challenge": "Diagnostic delays in complex firmware test logs (FAIL tests) often stall validation pipelines, where root causes are buried in megabytes of raw log data across disparate subsystems.",

@@ -1,0 +1,17 @@
+{
+    "suffix": "google_manufacturing_swe",
+    "slides": [
+        "00_profile.html",
+        "openclaw_log.html",
+        "appendix_diagnostic_report.html",
+        "openclaw_validation.html",
+        "central_dashboard.html",
+        "appendix_diagnostic_report.html",
+        "appendix_diagnostic_report_action.html",
+        "appendix_diagnostic_report_root_cause.html",
+        "appendix_validation_monitor.html",
+        "appendix_validation_monitor_device.html",
+        "appendix_central_management.html",
+        "99_end.html"
+    ]
+}

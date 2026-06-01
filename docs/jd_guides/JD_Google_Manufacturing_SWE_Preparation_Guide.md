@@ -15,8 +15,70 @@
 *   **`TrackBy` Function**：
     *   **概念**：在使用 `*ngFor` 渲染龐大列表時，如果資料更新，預設會把整個 DOM 砍掉重練。
     *   **深度解法**：實作 `trackBy` 方法（例如用機台的 `id` 作為 key）。這樣 Angular 在比較新舊陣列時，就知道只要更新變動的那個 DOM 節點，大幅降低 CPU 計算與記憶體消耗。
+```typescript
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
+@Component({
+  selector: 'app-smart-factory-dashboard',
+  templateUrl: './smart-factory-dashboard.component.html',
+  // 🔥 【防線一】合理做法的第一步：直接宣告啟動 OnPush，拒絕盲目全樹檢查
+  changeDetection: ChangeDetectionStrategy.OnPush 
+})
+export class SmartFactoryDashboardComponent {
+  // 假設這是我們的大型機台 Table 陣列
+  machines = [
+    { id: 1, name: 'ATE_Station_A', temp: 40, status: 'Running' },
+    { id: 2, name: 'ATE_Station_B', temp: 39, status: 'Running' },
+    { id: 3, name: 'ATE_Station_C', temp: 40, status: 'Running' }
+  ];
+
+  // 🔥 【防線二】當後端 WebSocket 傳來「3號機台溫度變為 45 度」的即時訊號時：
+  updateMachineDataFromServer(incomingId: number, newTemp: number) {
+    
+    // 用 map 產生全新陣列外殼（更換外殼記憶體位址），一秒鐘驚醒 OnPush 秘書
+    this.machines = this.machines.map(m => {
+      if (m.id === incomingId) {
+        // 找到 3 號 Key！倒出舊內容，精準覆蓋 temp，產生部分更新的 Row 新物件
+        return { ...m, temp: newTemp }; 
+      }
+      // 1 號和 2 號不及格，原封不動搬過去，記憶體位址 100% 沿用
+      return m; 
+    });
+  }
+
+  // 🔥 【防線三】合理做法的靈魂：實作 TrackBy 認人機制
+  // 告訴 Angular：外殼變了沒關係，請用機台的 id 作為唯一標籤去對帳！
+  trackByMachineId(index: number, machine: any): number {
+    return machine.id; 
+  }
+}
+
+<tr *ngFor="let machine of machines; trackBy: trackByMachineId">
+  <td>{{ machine.id }}</td>
+  <td>{{ machine.name }}</td>
+  <td [class.alert]="machine.temp > 42">{{ machine.temp }}°C</td>
+  <td>{{ machine.status }}</td>
+</tr>
+```
+
 *   **Virtual Scrolling (虛擬滾動)**：
     *   遇到幾十萬筆 Log，即便用 `OnPush` 瀏覽器也會崩潰。必須引入 Angular CDK 的 `ScrollingModule`，畫面上只渲染使用者目前看到的 20~30 筆 DOM 節點，滾動時動態替換內容。
+```typescript
+<div class="log-container">
+  <h2>全球產線歷史測試日誌 (ATE High-Throughput Logs)</h2>
+
+  <cdk-virtual-scroll-viewport itemSize="50" class="log-viewport">
+    
+    <div *cdkVirtualFor="let log of logDataset; trackBy: trackByLogId" class="log-row">
+      <span class="log-id">[{ { log.id } }]</span>
+      <span class="log-time">{ { log.timestamp } }</span>
+      <span class="log-level" [ngClass]="log.level">{ { log.level } }</span>
+      <span class="log-msg">{ { log.message } }</span>
+    </div>
+
+  </cdk-virtual-scroll-viewport>
+</div>
+```
 
 ### 1.2 RxJS：複雜資料流與非同步處理
 面試一定會考 RxJS 的 High-order Mapping Operators，你必須能精準說出使用情境：
@@ -154,3 +216,31 @@ JD 點名了 "RPC backend services"。
     1. 撰寫一個 `.proto` 檔案，定義 `MachineStatus` Message 與一個 `GetStatus` RPC Service。
     2. 嘗試編譯出 stub 程式碼，並讓 Client 成功呼叫 Server。
     3. 感受 Protobuf 強型別與 JSON 的差異。
+
+
+
+```
+【誕生】 
+   │
+   ├── 1. constructor()           (類別初始化，此時 DOM 尚未存在)
+   │
+   ├── 2. ngOnChanges()           (🚀 只要有 @Input 資料綁定進來，此站最先點火)
+   ├── 3. ngOnInit()              (🚀 元件基本商業邏輯初始化完成，最常用的主戰場)
+   ├── 4. ngDoCheck()             (手動髒檢查對帳，高頻觸發，少用)
+   │
+   ├── 5. ngAfterContentInit()    (外部投影內容 <ng-content> 塞入元件內部完畢)
+   ├── 6. ngAfterContentChecked() (外部投影內容對帳檢查完畢)
+   │
+   ▼
+【DOM 觀測站 (你問的 ngAfterViewInit 就在這)】
+   │
+   ├── 7. ngAfterViewInit()       (🚀 關鍵：元件自己的 HTML 畫面與子組件全部渲染繪製完畢)
+   └── 8. ngAfterViewChecked()    (元件自己的 HTML 畫面與子組件對帳檢查完畢)
+   │
+   ▼
+【頻繁變更迴圈】 (只要畫面上任何 @Input 改變，或非同步事件觸發，會重複跑 2 -> 4 -> 6 -> 8 站)
+   │
+   ▼
+【銷毀】
+   └── 9. ngOnDestroy()           (🚀 離開頁面清場：解綁 RxJS 訂閱、清除監聽器，防止記憶體洩漏)
+   ```

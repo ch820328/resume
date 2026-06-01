@@ -1,4 +1,24 @@
 <section class="slide profile-slide" id="slide-1">
+    <style>
+        .deco-circle-2 {
+            left: -5% !important;
+            bottom: -50px !important;
+        }
+
+        /* Override flex layout for absolute positioning */
+        .profile-layout {
+            display: block !important;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .sepan-block {
+            position: absolute;
+            top: 30%;
+            left: 25%;
+        }
+    </style>
 
     <!-- Background geometric decoration -->
     <div class="profile-bg-deco">
@@ -9,78 +29,18 @@
 
     <div class="profile-layout">
 
-        <!-- LEFT: Identity + Bio -->
-        <div class="profile-left animate-in">
+        <!-- LEFT: Identity + Tags (Moved up and right) -->
+        <div class="profile-left animate-in sepan-block">
             <div class="profile-badge">Senior Software Engineer</div>
 
-            <h1 class="profile-name">Chun-Yu Tsai</h1>
-
-            <p class="profile-tagline">
-                I build <strong>internal platforms</strong> that fix engineering bottlenecks —
-                turning weeks of manual work into automated, scalable systems.
-            </p>
+            <h1 class="profile-name" style="margin-bottom: 1rem;">Sepan Tsai</h1>
 
             <div class="profile-competencies">
                 <span class="competency-tag">Test Automation</span>
-                <span class="competency-tag">CI/CD Architecture</span>
-                <span class="competency-tag">API Integration</span>
-                <span class="competency-tag">Full-Stack Systems</span>
+                <span class="competency-tag">CI/CD</span>
+                <span class="competency-tag">Full-Stack</span>
                 <span class="competency-tag">Engineering Productivity</span>
             </div>
-
-            <div class="profile-tech-line">
-                <span class="tech-label">Stack</span>
-                <span class="tech-items">
-                    Python · Go · React · Vue · Angular <br>
-                    Docker · PostgreSQL · GitLab CI
-                </span>
-            </div>
-        </div>
-
-        <!-- RIGHT: Stats + Highlight -->
-        <div class="profile-right animate-in delay-2">
-
-            <div class="profile-stats">
-                <div class="stat-block">
-                    <span class="stat-num">5<span class="stat-unit">x</span></span>
-                    <span class="stat-desc">Process Speedup</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-block">
-                    <span class="stat-num">5<span class="stat-unit">+</span></span>
-                    <span class="stat-desc">Internal Platforms</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-block">
-                    <span class="stat-num">10<span class="stat-unit">+</span></span>
-                    <span class="stat-desc">Standardized Projects</span>
-                </div>
-            </div>
-
-            <div class="profile-focus-card">
-                <div class="focus-icon">⚡</div>
-                <div class="focus-content">
-                    <div class="focus-label">Core Focus</div>
-                    <div class="focus-text">Engineering Productivity &amp; Automation</div>
-                    <div class="focus-sub">Scalable internal platforms · Cross-team tooling · Developer experience</div>
-                </div>
-            </div>
-
-            <div class="profile-domains">
-                <div class="domain-item">
-                    <span class="domain-dot"></span>
-                    <span>Automation</span>
-                </div>
-                <div class="domain-item">
-                    <span class="domain-dot"></span>
-                    <span>Full-Stack Web Platforms</span>
-                </div>
-                <div class="domain-item">
-                    <span class="domain-dot"></span>
-                    <span>DevOps &amp; CI/CD Infrastructure</span>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>

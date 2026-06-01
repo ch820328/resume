@@ -71,7 +71,9 @@ async function exportPDF(inputFile, outputFile, landscapeOverride) {
                 { input: 'index_tailored.html', output: 'resume_slides_tailored.pdf', landscape: true },
                 { input: 'resume_tailored.html', output: 'resume_tailored.pdf', landscape: false },
                 { input: 'index_google_mfg.html', output: 'resume_slides_google_mfg.pdf', landscape: true },
-                { input: 'resume_google_mfg.html', output: 'resume_google_mfg.pdf', landscape: false }
+                { input: 'resume_google_mfg.html', output: 'resume_google_mfg.pdf', landscape: false },
+                { input: 'index_google_manufacturing_swe.html', output: 'resume_slides_google_manufacturing_swe.pdf', landscape: true },
+                { input: 'resume_google_manufacturing.html', output: 'resume_google_manufacturing.pdf', landscape: false }
             ];
 
             const exportPromises = [];
